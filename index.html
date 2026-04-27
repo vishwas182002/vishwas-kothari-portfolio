@@ -38,7 +38,6 @@
             color: var(--text);
             -ms-overflow-style: none;
             scrollbar-width: none;
-            /* default cursor hidden, custom one is used */
             cursor: none;
         }
         body::-webkit-scrollbar { display: none; }
@@ -104,8 +103,7 @@
         .preloader-btn.visible { opacity:1; transform:translateY(0); }
         .preloader-btn:hover { background: var(--gold); color:#0d0d0d; border-color: var(--gold); }
 
-        /* ===== CUSTOM CURSOR (created via JS, but base styles are here if needed) ===== */
-        /* The actual cursor is created with an ID #customCursor, these styles are fallback */
+        /* ===== CUSTOM CURSOR ===== */
         #customCursor {
             position: fixed;
             pointer-events: none;
@@ -210,7 +208,7 @@
             filter:grayscale(20%);
         }
 
-        /* ===== SPOTLIGHT TEXT ===== */
+        /* ===== SPOTLIGHT TEXT (fixed) ===== */
         .spotlight-wrapper {
             position:relative;
             display:inline-block;
@@ -226,12 +224,12 @@
             z-index:2;
             pointer-events:none;
             color: #fff;
+            /* The magic: a circular mask that reveals the clone only where the cursor is */
             -webkit-mask-image: radial-gradient(circle var(--spotlight-size) at center, black 0%, transparent 70%);
             mask-image: radial-gradient(circle var(--spotlight-size) at center, black 0%, transparent 70%);
             -webkit-mask-repeat: no-repeat;
             mask-repeat: no-repeat;
-            -webkit-mask-size: 100% 100%;
-            mask-size: 100% 100%;
+            /* DO NOT set mask-size — the gradient must keep its natural size (a 250px circle) */
             -webkit-mask-position: -9999px -9999px;
             mask-position: -9999px -9999px;
             transition: -webkit-mask-position 0.1s ease-out, mask-position 0.1s ease-out;
@@ -740,12 +738,10 @@
     </script>
 
     <script>
-        // ==================== CUSTOM CURSOR (dynamic, always on top) ====================
+        // ==================== CUSTOM CURSOR (always on top, with a tiny white dot) ====================
         (function initCursor() {
-            // Create the cursor element
             const cursorEl = document.createElement('div');
             cursorEl.id = 'customCursor';
-            // Base styles already defined in CSS, but we add inline styles to be sure
             cursorEl.style.width = '28px';
             cursorEl.style.height = '28px';
             cursorEl.style.border = '2px solid var(--gold, #B7AB98)';
@@ -759,7 +755,7 @@
             cursorEl.style.display = 'flex';
             cursorEl.style.alignItems = 'center';
             cursorEl.style.justifyContent = 'center';
-            // Add a small inner dot
+
             const dot = document.createElement('div');
             dot.style.width = '4px';
             dot.style.height = '4px';
@@ -770,13 +766,11 @@
 
             document.body.appendChild(cursorEl);
 
-            // Move cursor
             document.addEventListener('mousemove', (e) => {
                 cursorEl.style.left = e.clientX + 'px';
                 cursorEl.style.top = e.clientY + 'px';
             });
 
-            // Hover effect on interactive elements
             const hoverTargets = document.querySelectorAll('a, button, .project-card, .cert-card');
             hoverTargets.forEach(el => {
                 el.addEventListener('mouseenter', () => {
@@ -793,7 +787,6 @@
                 });
             });
 
-            // Hide when leaving window
             document.addEventListener('mouseleave', () => {
                 cursorEl.style.opacity = '0';
             });
@@ -854,7 +847,7 @@
             }, 300);
         });
 
-        // ==================== SPOTLIGHT EFFECT ====================
+        // ==================== SPOTLIGHT EFFECT (mask follows cursor) ====================
         const spotlights = document.querySelectorAll('.spotlight-text');
         spotlights.forEach(wrapper => {
             const clone = wrapper.querySelector('.spotlight-clone');
