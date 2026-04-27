@@ -24,11 +24,6 @@
             --gold-dim: rgba(183, 171, 152, 0.15);
             --border: rgba(255, 255, 255, 0.06);
             --spotlight-size: 250px;
-            --cursor-size: 24px;
-            --cursor-border: 1.5px solid #B7AB98;
-            --cursor-hover-size: 70px;
-            --cursor-hover-bg: rgba(183,171,152,0.08);
-            --cursor-z: 10000000;
         }
         * { margin:0; padding:0; box-sizing:border-box; }
         html { overscroll-behavior-y: none !important; }
@@ -43,6 +38,7 @@
             color: var(--text);
             -ms-overflow-style: none;
             scrollbar-width: none;
+            /* default cursor hidden, custom one is used */
             cursor: none;
         }
         body::-webkit-scrollbar { display: none; }
@@ -108,28 +104,19 @@
         .preloader-btn.visible { opacity:1; transform:translateY(0); }
         .preloader-btn:hover { background: var(--gold); color:#0d0d0d; border-color: var(--gold); }
 
-        /* ===== CUSTOM CURSOR (now above everything) ===== */
-        .cursor {
-            position:fixed;
-            top:0; left:0;
-            width: var(--cursor-size);
-            height: var(--cursor-size);
-            border: var(--cursor-border);
-            border-radius:50%;
-            pointer-events:none;
-            z-index: var(--cursor-z);
-            transform:translate(-50%,-50%);
+        /* ===== CUSTOM CURSOR (created via JS, but base styles are here if needed) ===== */
+        /* The actual cursor is created with an ID #customCursor, these styles are fallback */
+        #customCursor {
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999999;
+            transform: translate(-50%, -50%);
             transition: width 0.25s, height 0.25s, border-color 0.25s, background 0.25s;
-            background: transparent;
-            /* no mix-blend-mode – always visible */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .cursor.hover {
-            width: var(--cursor-hover-size);
-            height: var(--cursor-hover-size);
-            background: var(--cursor-hover-bg);
-            border-color: var(--gold-light);
-        }
-        .cursor.hidden-cursor { opacity:0; }
 
         /* ===== HEADER ===== */
         .header {
@@ -443,7 +430,7 @@
             .timeline-item { grid-template-columns:1fr; gap:0.5rem; }
             .skill-row { grid-template-columns:1fr; gap:0.5rem; }
             .projects-grid { grid-template-columns:1fr; }
-            .cursor { display:none; }
+            #customCursor { display:none; }
         }
     </style>
 </head>
@@ -460,9 +447,6 @@
         <button class="preloader-btn" id="preloaderBtn">Enter</button>
     </div>
 
-    <!-- CURSOR (now with ultra‑high z‑index) -->
-    <div class="cursor" id="cursor"></div>
-
     <!-- HEADER -->
     <header class="header">
         <div class="header-logo"><a href="#">VK</a></div>
@@ -474,7 +458,6 @@
         </ul>
     </header>
 
-    <!-- MAIN -->
     <main>
         <!-- HERO -->
         <section class="hero" id="about">
@@ -757,7 +740,69 @@
     </script>
 
     <script>
-        // === PRELOADER ===
+        // ==================== CUSTOM CURSOR (dynamic, always on top) ====================
+        (function initCursor() {
+            // Create the cursor element
+            const cursorEl = document.createElement('div');
+            cursorEl.id = 'customCursor';
+            // Base styles already defined in CSS, but we add inline styles to be sure
+            cursorEl.style.width = '28px';
+            cursorEl.style.height = '28px';
+            cursorEl.style.border = '2px solid var(--gold, #B7AB98)';
+            cursorEl.style.backgroundColor = 'transparent';
+            cursorEl.style.position = 'fixed';
+            cursorEl.style.pointerEvents = 'none';
+            cursorEl.style.zIndex = '99999999';
+            cursorEl.style.transform = 'translate(-50%, -50%)';
+            cursorEl.style.transition = 'width 0.25s, height 0.25s, border-color 0.25s, background 0.25s';
+            cursorEl.style.borderRadius = '50%';
+            cursorEl.style.display = 'flex';
+            cursorEl.style.alignItems = 'center';
+            cursorEl.style.justifyContent = 'center';
+            // Add a small inner dot
+            const dot = document.createElement('div');
+            dot.style.width = '4px';
+            dot.style.height = '4px';
+            dot.style.backgroundColor = '#ffffff';
+            dot.style.borderRadius = '50%';
+            dot.style.opacity = '0.8';
+            cursorEl.appendChild(dot);
+
+            document.body.appendChild(cursorEl);
+
+            // Move cursor
+            document.addEventListener('mousemove', (e) => {
+                cursorEl.style.left = e.clientX + 'px';
+                cursorEl.style.top = e.clientY + 'px';
+            });
+
+            // Hover effect on interactive elements
+            const hoverTargets = document.querySelectorAll('a, button, .project-card, .cert-card');
+            hoverTargets.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursorEl.style.width = '70px';
+                    cursorEl.style.height = '70px';
+                    cursorEl.style.backgroundColor = 'rgba(183,171,152,0.1)';
+                    cursorEl.style.borderColor = '#c9bda8';
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursorEl.style.width = '28px';
+                    cursorEl.style.height = '28px';
+                    cursorEl.style.backgroundColor = 'transparent';
+                    cursorEl.style.borderColor = '#B7AB98';
+                });
+            });
+
+            // Hide when leaving window
+            document.addEventListener('mouseleave', () => {
+                cursorEl.style.opacity = '0';
+            });
+            document.addEventListener('mouseenter', () => {
+                cursorEl.style.opacity = '1';
+            });
+        })();
+
+        // ==================== PRELOADER ====================
         const preloader = document.getElementById('preloader');
         const progressCircle = document.getElementById('progressCircle');
         const preloaderPercent = document.getElementById('preloaderPercent');
@@ -809,20 +854,7 @@
             }, 300);
         });
 
-        // === CUSTOM CURSOR ===
-        const cursor = document.getElementById('cursor');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-        document.querySelectorAll('a, button, .project-card, .cert-card').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-        });
-        document.addEventListener('mouseleave', () => cursor.classList.add('hidden-cursor'));
-        document.addEventListener('mouseenter', () => cursor.classList.remove('hidden-cursor'));
-
-        // === SPOTLIGHT EFFECT ===
+        // ==================== SPOTLIGHT EFFECT ====================
         const spotlights = document.querySelectorAll('.spotlight-text');
         spotlights.forEach(wrapper => {
             const clone = wrapper.querySelector('.spotlight-clone');
@@ -842,7 +874,7 @@
             });
         });
 
-        // === LENIS SMOOTH SCROLL ===
+        // ==================== LENIS SMOOTH SCROLL ====================
         const lenis = new Lenis({
             duration: 1.4,
             easing: (t) => 1 - Math.pow(1 - t, 3),
@@ -855,7 +887,7 @@
         }
         requestAnimationFrame(raf);
 
-        // === SCROLL REVEAL ===
+        // ==================== SCROLL REVEAL ====================
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -865,7 +897,7 @@
         }, { threshold: 0.15 });
         document.querySelectorAll('.fade-up').forEach(el => revealObserver.observe(el));
 
-        // === GSAP ANIMATIONS ===
+        // ==================== GSAP ANIMATIONS ====================
         gsap.registerPlugin(ScrollTrigger);
 
         setTimeout(() => {
