@@ -402,6 +402,9 @@
             .nav-links.active { transform: translateY(0); }
             .hamburger { display: flex; }
             .cursor { display: none; }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -414,6 +417,7 @@
             <li><a href="#home" class="active">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -497,25 +501,25 @@ Outside work: cricket, badminton, and a reading habit that leans toward technolo
         <h2 class="section-title"><span>Certifications</span> & Leadership</h2>
         <div class="highlight-card"><h3><i class="fas fa-award" style="color:var(--gold);"></i> AWS Certified Cloud Practitioner</h3><p style="color:var(--muted);">Score: 970/1000 (2024)</p></div>
         <div class="highlight-card"><h3><i class="fas fa-book-open" style="color:var(--cyan);"></i> Publication</h3><p style="color:var(--muted);">Kothari, V., Krishwanth, B. (2025). <em>Empowering Survivors: Ethical AI for Countering Violence Against Women.</em> Springer.</p></div>
-        <div class="highlight-card"><h3><i class="fas fa-users" style="color:var(--magenta);"></i> Leadership</h3><ul style="color:var(--muted); padding-left:1.2rem;"><li>Reviewer, Elsevier Journals (Public Health) – 2026–Present</li><li>Senior Core Committee, E-Cell, VIT-Stellar, Anokha NGO (2023-24)</li></ul></div>
+        <div class="highlight-card"><h3><i class="fas fa-users" style="color:var(--magenta);"></i> Leadership</h3><ul style="color:var(--muted); padding-left:1.2rem;"><li>Reviewer, <em>Public Health</em> and <em>Social Sciences and Humanities Open</em> (Elsevier Journals) – 2026–Present</li><li>Senior Core Committee, E-Cell, VIT-Stellar, VIT-Spartans, Anokha NGO, Youth Red Cross (2023-24)</li></ul></div>
     </section>
 
     <section id="contact" class="section">
         <h2 class="section-title">Get In <span>Touch</span></h2>
         <div class="contact-card">
             <p style="font-size:1.2rem; margin-bottom:2rem;">Let's discuss AI, research, or exciting opportunities.</p>
-            <p><i class="fas fa-envelope" style="color:var(--cyan); margin-right:0.5rem;"></i> vishwavskothari@gmail.com</p>
+            <p><i class="fas fa-envelope" style="color:var(--cyan); margin-right:0.5rem;"></i> vishwasvkothari@gmail.com</p>
             <p><i class="fas fa-phone-alt" style="color:var(--magenta); margin-right:0.5rem;"></i> (720) 388-4856</p>
             <div style="display:flex; gap:2rem; justify-content:center; margin-top:2.5rem;">
                 <a href="https://linkedin.com/in/vishwas-kothari" target="_blank" style="color:var(--muted); font-size:1.8rem;"><i class="fab fa-linkedin"></i></a>
                 <a href="https://github.com/vishwas182002" target="_blank" style="color:var(--muted); font-size:1.8rem;"><i class="fab fa-github"></i></a>
-                <a href="mailto:vishwavskothari@gmail.com" style="color:var(--muted); font-size:1.8rem;"><i class="fas fa-envelope"></i></a>
+                <a href="mailto:vishwasvkothari@gmail.com" style="color:var(--muted); font-size:1.8rem;"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
     </section>
 
     <footer class="footer">
-        <p>© 2026 Vishwas Kothari. Built with passion for explainable AI.</p>
+        <p>&copy; 2026 Vishwas Kothari. Built with passion for explainable AI.</p>
     </footer>
 
     <script type="importmap">
@@ -534,7 +538,6 @@ Outside work: cricket, badminton, and a reading habit that leans toward technolo
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
         camera.position.z = 5;
 
-        // ----- Scattered starfield -----
         const starCount = 800;
         const starPositions = new Float32Array(starCount * 3);
         const spreadRadius = 8;
@@ -555,7 +558,6 @@ Outside work: cricket, badminton, and a reading habit that leans toward technolo
         const stars = new THREE.Points(starsGeo, starsMat);
         scene.add(stars);
 
-        // ----- Torus knot -----
         const knotGeo = new THREE.TorusKnotGeometry(1.5, 0.35, 200, 24);
         const knotMat = new THREE.MeshBasicMaterial({
             color: 0x8e24aa,
@@ -567,7 +569,6 @@ Outside work: cricket, badminton, and a reading habit that leans toward technolo
         torusKnot.position.z = -0.5;
         scene.add(torusKnot);
 
-        // ----- Icosahedron -----
         const icoGeo = new THREE.IcosahedronGeometry(1.2, 0);
         const icoMat = new THREE.MeshBasicMaterial({
             color: 0x00bcd4,
@@ -579,7 +580,6 @@ Outside work: cricket, badminton, and a reading habit that leans toward technolo
         icosa.position.set(0, 0, 1.2);
         scene.add(icosa);
 
-        // Small glowing orbs
         const orbGeo = new THREE.SphereGeometry(0.04);
         const orbMat = new THREE.MeshBasicMaterial({ color: 0xc2185b });
         const orbs = [];
@@ -598,24 +598,19 @@ Outside work: cricket, badminton, and a reading habit that leans toward technolo
 
         function animate() {
             requestAnimationFrame(animate);
-
             stars.rotation.y += 0.00008;
             stars.rotation.x += 0.00004;
-
             torusKnot.rotation.x += 0.002;
             torusKnot.rotation.y += 0.003;
             icosa.rotation.x -= 0.0015;
             icosa.rotation.y -= 0.002;
-
             orbs.forEach((orb, i) => {
                 orb.position.y += Math.sin(Date.now() * 0.002 + i) * 0.002;
                 orb.position.x += Math.cos(Date.now() * 0.002 + i) * 0.002;
             });
-
             camera.position.x += (mouseX * 0.6 - camera.position.x) * 0.02;
             camera.position.y += (mouseY * 0.3 - camera.position.y) * 0.02;
             camera.lookAt(scene.position);
-
             renderer.render(scene, camera);
         }
         animate();
@@ -644,7 +639,7 @@ Outside work: cricket, badminton, and a reading habit that leans toward technolo
             "Building explainable AI for the real world.",
             "Turning complex data into transparent insights.",
             "Passionate about fairness & ethics in ML.",
-            "ISRO intern · CU Boulder MS CS."
+            "ISRO intern \u00b7 CU Boulder MS CS."
         ];
         let phraseIndex = 0, charIndex = 0, isDeleting = false;
         const typewriterEl = document.getElementById('typewriter-text');
@@ -679,18 +674,24 @@ Outside work: cricket, badminton, and a reading habit that leans toward technolo
             link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active'));
         });
 
-        // Projects
+        // Projects — FIXED: correct GitHub links + added Collision Avoidance project
         const projects = [
             {
                 name: "XAI Credit Lens",
                 techs: ["Python","SHAP","LIME","DiCE","XGBoost","Optuna","Streamlit"],
-                desc: "An end-to-end explainable credit risk framework that balances high predictive performance with complete transparency. Hyperparameter‑tuned ensemble reaches 0.782 AUC on 30K records, while integrated SHAP, LIME, and DiCE generate human‑readable explanations. Automated fairness auditing across four protected attributes ensures zero violations, and regulatory compliance mapping (ECOA, EU AI Act, Fed SR 11‑7) makes it deployment‑ready.",
-                link: "https://github.com/vishwas182002"
+                desc: "An end-to-end explainable credit risk framework that balances high predictive performance with complete transparency. Hyperparameter\u2011tuned ensemble reaches 0.782 AUC on 30K records, while integrated SHAP, LIME, and DiCE generate human\u2011readable explanations. Automated fairness auditing across four protected attributes ensures zero violations, and regulatory compliance mapping (ECOA, EU AI Act, Fed SR 11\u20117) makes it deployment\u2011ready.",
+                link: "https://github.com/vishwas182002/xai-credit-lens"
             },
             {
                 name: "Financial Document VQA",
                 techs: ["PyTorch","LayoutLMv3","Donut","Pix2Struct","LoRA","Gradio"],
-                desc: "Benchmarked four state‑of‑the‑art vision‑language models on real SEC 10‑K filings, revealing a 63‑83% performance drop compared to generic DocVQA. Curated a gold‑standard benchmark of 79 SEC images and 397 question‑answer pairs across 10 companies. Domain‑specific LoRA fine‑tuning on just 307 financial QA pairs improved ANLS by 22%, while generic DocVQA fine‑tuning caused 39% negative transfer — highlighting the importance of domain adaptation in high‑stakes NLP.",
+                desc: "Benchmarked four state\u2011of\u2011the\u2011art vision\u2011language models on real SEC 10\u2011K filings, revealing a 63\u201183% performance drop compared to generic DocVQA. Curated a gold\u2011standard benchmark of 79 SEC images and 397 question\u2011answer pairs across 10 companies. Domain\u2011specific LoRA fine\u2011tuning on just 307 financial QA pairs improved ANLS by 22%, while generic DocVQA fine\u2011tuning caused 39% negative transfer.",
+                link: "https://github.com/vishwas182002/financial-document-vqa"
+            },
+            {
+                name: "XAI-Driven Collision Avoidance",
+                techs: ["Python","SHAP","LIME","Random Forest","Explainable AI"],
+                desc: "Developed an interpretable collision detection system for Vehicle-to-Vehicle and Vehicle-to-Infrastructure communication in the Internet of Vehicles. Achieved 99.9% AUC on 206K instances with transparent feature attribution via SHAP and LIME, enabling safety-critical AI decision-making. Manuscript in preparation.",
                 link: "https://github.com/vishwas182002"
             }
         ];
@@ -716,7 +717,7 @@ Outside work: cricket, badminton, and a reading habit that leans toward technolo
         });
 
         // Skills
-        const skills = ["Python","SQL","Java","C/C++","JavaScript","scikit-learn","XGBoost","LightGBM","PyTorch","TensorFlow","SHAP","LIME","DiCE","Optuna","LLM Workflows","NumPy","Pandas","SciPy","xarray","NetCDF","ETL Pipelines","Data Validation","Data Visualization","AWS","Git","Docker","Linux","Streamlit","MySQL","MongoDB","Power BI","Explainable AI","Fairness Auditing"];
+        const skills = ["Python","SQL","Java","C/C++","JavaScript","scikit-learn","XGBoost","LightGBM","PyTorch","TensorFlow","SHAP","LIME","DiCE","Optuna","LLM Workflows","NumPy","Pandas","SciPy","xarray","NetCDF","OpenCV","ETL Pipelines","Data Validation","Data Visualization","AWS","Git","Docker","Linux","Streamlit","Gradio","MySQL","MongoDB","Power BI","Explainable AI","Fairness Auditing"];
         const cloud = document.getElementById('skillsCloud');
         skills.forEach(s => {
             const span = document.createElement('span');
@@ -724,8 +725,6 @@ Outside work: cricket, badminton, and a reading habit that leans toward technolo
             span.textContent = s;
             cloud.appendChild(span);
         });
-
-        // CV download now handled by the anchor tag directly
 
         // Active nav highlight
         window.addEventListener('scroll', () => {
