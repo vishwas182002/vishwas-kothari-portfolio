@@ -260,7 +260,7 @@
       letter-spacing: -0.5px;
     }
 
-    .header-menu { display: flex; gap: 2.5rem; list-style: none; }
+    .header-menu { display: flex; gap: clamp(1rem, 2.2vw, 2rem); list-style: none; }
 
     .header-menu a {
       color: rgba(255, 255, 255, 0.55);
@@ -785,7 +785,8 @@
         <div class="header-logo"><a href="#" data-cursor="contract" data-magnetic>VK</a></div>
         <ul class="header-menu">
           <li><a href="#about" data-cursor="contract" data-magnetic><span class="nav-word">About</span><span class="nav-word-active">About</span></a></li>
-          <li><a href="#work" data-cursor="contract" data-magnetic><span class="nav-word">Work</span><span class="nav-word-active">Work</span></a></li>
+          <li><a href="#experience" data-cursor="contract" data-magnetic><span class="nav-word">Experience</span><span class="nav-word-active">Experience</span></a></li>
+          <li><a href="#education" data-cursor="contract" data-magnetic><span class="nav-word">Education</span><span class="nav-word-active">Education</span></a></li>
           <li><a href="#projects" data-cursor="contract" data-magnetic><span class="nav-word">Projects</span><span class="nav-word-active">Projects</span></a></li>
           <li><a href="#contact" data-cursor="contract" data-magnetic><span class="nav-word">Contact</span><span class="nav-word-active">Contact</span></a></li>
         </ul>
@@ -812,10 +813,10 @@
         <section class="section">
           <div class="container-sm">
             <p class="section-label fade-up">About me</p>
-            <div class="bio-text" data-cursor="extend" data-scroll-mask>
+            <div class="bio-text" data-cursor="subtle">
               <span class="line-mask"><span>My background spans two worlds: applied research at <strong>ISRO's</strong> Space Applications Centre, where I built optimization models to extract meaningful signal from satellite sensor data, and rigorous graduate-level ML at the <strong>University of Colorado Boulder</strong>, where the focus is less on what models do and more on why they work.</span></span>
             </div>
-            <p class="body-copy fade-up" data-scroll-mask>
+            <p class="body-copy fade-up">
               Along the way I've published in Springer, earned an AWS certification, peer-reviewed for Elsevier, and built end-to-end ML systems that prioritize explainability and accountability because a model no one can audit is a model no one should trust.
             </p>
             <p class="body-copy small fade-up">
@@ -841,14 +842,14 @@
                 <p>PyTorch, TensorFlow, XGBoost, and vision-language models applied to problems where the stakes are high enough that getting it wrong actually matters.</p>
               </div>
               <div class="skill-row fade-up" data-cursor="subtle" data-row-mask>
-                <h3>Cloud & MLOps</h3>
-                <p>AWS certified, Docker, Git, and reproducible workflows because good research deserves good infrastructure.</p>
+                <h3>Research Engineering</h3>
+                <p>Turning research ideas into reproducible experiments, clear reports, and usable demos with Python, AWS fundamentals, Git, Docker, Streamlit, and Gradio.</p>
               </div>
             </div>
           </div>
         </section>
 
-        <section class="section" id="work" style="padding-top: 2rem;">
+        <section class="section" id="experience" style="padding-top: 2rem;">
           <div class="container">
             <p class="section-label fade-up">Experience</p>
             <div class="timeline-item fade-up" data-cursor="subtle" data-row-mask>
@@ -867,7 +868,7 @@
               </div>
             </div>
 
-            <p class="section-label fade-up" style="margin-top: 4rem;">Education</p>
+            <p class="section-label fade-up" id="education" style="margin-top: 4rem;">Education</p>
             <div class="timeline-item fade-up" data-cursor="subtle" data-row-mask>
               <div class="timeline-year">2025 - 2027</div>
               <div class="timeline-role">
@@ -926,6 +927,7 @@
                 <div class="cert-icon"><i class="fas fa-file-alt"></i></div>
                 <h4>Springer Publication</h4>
                 <p>Kothari, V., Krishwanth, B. (2025). <em>Empowering Survivors: Ethical AI for Countering Violence Against Women.</em></p>
+                <a href="https://doi.org/10.1007/978-981-96-6046-9_26" target="_blank" class="project-link" data-cursor="contract">DOI: 10.1007/978-981-96-6046-9_26 <span aria-hidden="true">→</span></a>
               </div>
               <div class="cert-card fade-up" data-cursor="subtle">
                 <div class="cert-icon"><i class="fas fa-clipboard-check"></i></div>
@@ -1143,7 +1145,7 @@
 
     function updateActiveNav() {
       const navLinks = document.querySelectorAll('.header-menu a[href^="#"]');
-      const sectionIds = ["about", "work", "projects", "contact"];
+      const sectionIds = ["about", "experience", "education", "projects", "contact"];
       let activeId = sectionIds[0];
       const marker = window.scrollY + window.innerHeight * 0.38;
 
