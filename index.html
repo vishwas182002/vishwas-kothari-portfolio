@@ -208,7 +208,7 @@
             filter:grayscale(20%);
         }
 
-        /* ===== SPOTLIGHT TEXT (fixed) ===== */
+        /* ===== SPOTLIGHT TEXT (fixed – white inside the mask for visibility) ===== */
         .spotlight-wrapper {
             position:relative;
             display:inline-block;
@@ -223,13 +223,12 @@
             top:0; left:0;
             z-index:2;
             pointer-events:none;
-            color: #fff;
-            /* The magic: a circular mask that reveals the clone only where the cursor is */
-            -webkit-mask-image: radial-gradient(circle var(--spotlight-size) at center, black 0%, transparent 70%);
-            mask-image: radial-gradient(circle var(--spotlight-size) at center, black 0%, transparent 70%);
+            color: #fff;   /* bright text */
+            /* The mask: a white circle (fully visible) fading to transparent (hidden) */
+            -webkit-mask-image: radial-gradient(circle var(--spotlight-size) at center, white 0%, transparent 70%);
+            mask-image: radial-gradient(circle var(--spotlight-size) at center, white 0%, transparent 70%);
             -webkit-mask-repeat: no-repeat;
             mask-repeat: no-repeat;
-            /* DO NOT set mask-size — the gradient must keep its natural size (a 250px circle) */
             -webkit-mask-position: -9999px -9999px;
             mask-position: -9999px -9999px;
             transition: -webkit-mask-position 0.1s ease-out, mask-position 0.1s ease-out;
@@ -738,7 +737,7 @@
     </script>
 
     <script>
-        // ==================== CUSTOM CURSOR (always on top, with a tiny white dot) ====================
+        // ==================== CUSTOM CURSOR ====================
         (function initCursor() {
             const cursorEl = document.createElement('div');
             cursorEl.id = 'customCursor';
@@ -847,7 +846,7 @@
             }, 300);
         });
 
-        // ==================== SPOTLIGHT EFFECT (mask follows cursor) ====================
+        // ==================== SPOTLIGHT EFFECT (now works) ====================
         const spotlights = document.querySelectorAll('.spotlight-text');
         spotlights.forEach(wrapper => {
             const clone = wrapper.querySelector('.spotlight-clone');
