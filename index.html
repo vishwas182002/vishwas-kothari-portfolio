@@ -128,10 +128,14 @@
       left: 50%;
       transform: translate(-50%, -50%);
       font-family: "Syne", sans-serif;
-      font-size: 0.85rem;
-      font-weight: 600;
+      font-size: 0.82rem;
+      font-weight: 700;
       color: var(--gold);
-      letter-spacing: 0.15em;
+      letter-spacing: 0.18em;
+      line-height: 1.35;
+      text-align: center;
+      text-transform: uppercase;
+      width: 150px;
     }
 
     .preloader-btn {
@@ -195,6 +199,10 @@
       pointer-events: none;
       clip-path: circle(var(--cursor-size) at var(--cursor-x) var(--cursor-y));
       will-change: clip-path;
+    }
+
+    .layer-reveal.is-dormant {
+      visibility: hidden;
     }
 
     .layer-reveal .hero-bg { display: none; }
@@ -1201,6 +1209,16 @@
       }
     }
 
+    @media (pointer: coarse) {
+      body { cursor: auto; }
+      a, button, .project-card, .cert-card { cursor: pointer; }
+      .cursor-dot,
+      .cursor-ring,
+      .layer-reveal {
+        display: none;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.001ms !important;
@@ -1218,9 +1236,9 @@
         <circle class="bg-circle" cx="100" cy="100" r="90"></circle>
         <circle class="progress-circle" id="progressCircle" cx="100" cy="100" r="90"></circle>
       </svg>
-      <div class="preloader-percent" id="preloaderPercent">00</div>
+      <div class="preloader-percent" id="preloaderPercent">VK</div>
     </div>
-    <button class="preloader-btn" id="preloaderBtn" data-cursor="contract">Enter</button>
+    <button class="preloader-btn" id="preloaderBtn" data-cursor="contract">Enter Experience</button>
   </div>
 
   <div class="portfolio-stage" id="portfolioStage">
@@ -1392,8 +1410,8 @@
 
         <div class="experience-band" aria-hidden="true">
           <div class="experience-track">
-            <span>Research systems / Data products / Human-centered AI / Cloud fundamentals / Visual engineering /</span>
-            <span>Research systems / Data products / Human-centered AI / Cloud fundamentals / Visual engineering /</span>
+            <span>ISRO satellite data pipelines / Explainable credit risk / Financial document VQA / Collision avoidance / Springer publication / Elsevier reviewer / AWS certified /</span>
+            <span>ISRO satellite data pipelines / Explainable credit risk / Financial document VQA / Collision avoidance / Springer publication / Elsevier reviewer / AWS certified /</span>
           </div>
         </div>
 
@@ -1478,8 +1496,10 @@
     const canvas = document.getElementById("bgCanvas");
     if (canvas) {
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const isSmallScreen = window.innerWidth < 768;
+      const maxPixelRatio = isSmallScreen ? 1.1 : 1.35;
       const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxPixelRatio));
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.setClearColor(0x0d0d0d, 1);
 
@@ -1519,12 +1539,13 @@
         return new THREE.Points(geometry, material);
       }
 
-      const farField = createParticleField(1100, { x: 27, y: 16, z: 16 }, 0.018, 0xb7ab98, 0.48);
-      const nearField = createParticleField(180, { x: 12, y: 7, z: 8 }, 0.035, 0xf2efe8, 0.22);
+      const farField = createParticleField(isSmallScreen ? 260 : 520, { x: 27, y: 16, z: 16 }, 0.018, 0xb7ab98, 0.46);
+      const nearField = createParticleField(isSmallScreen ? 45 : 90, { x: 12, y: 7, z: 8 }, 0.035, 0xf2efe8, 0.2);
       scene.add(farField, nearField);
 
       const nodePositions = [];
-      for (let i = 0; i < 54; i += 1) {
+      const nodeCount = isSmallScreen ? 24 : 34;
+      for (let i = 0; i < nodeCount; i += 1) {
         const ring = i % 3;
         const angle = i * 0.72;
         const radius = 1.2 + ring * 0.65 + Math.sin(i * 1.7) * 0.2;
@@ -1551,7 +1572,7 @@
       nodePositions.forEach((a, i) => {
         nodePositions.forEach((b, j) => {
           if (j <= i) return;
-          if (a.distanceTo(b) < 1.22) {
+          if (a.distanceTo(b) < 1.14) {
             linePositions.push(a.x, a.y, a.z, b.x, b.y, b.z);
           }
         });
@@ -1570,7 +1591,7 @@
       network.add(networkLines);
 
       const knot = new THREE.Mesh(
-        new THREE.TorusKnotGeometry(1.4, 0.3, 180, 24),
+        new THREE.TorusKnotGeometry(1.4, 0.3, isSmallScreen ? 96 : 132, 16),
         new THREE.MeshBasicMaterial({
           color: 0xb7ab98,
           wireframe: true,
@@ -1597,7 +1618,7 @@
       ];
 
       const beacons = beaconPositions.map(([x, y, z], index) => {
-        const beacon = new THREE.Mesh(new THREE.TorusGeometry(0.24 + index * 0.035, 0.006, 8, 80), beaconMaterial.clone());
+        const beacon = new THREE.Mesh(new THREE.TorusGeometry(0.24 + index * 0.035, 0.006, 8, 44), beaconMaterial.clone());
         beacon.position.set(x, y, z);
         beacon.rotation.x = Math.PI / 2;
         network.add(beacon);
@@ -1615,9 +1636,12 @@
       });
 
       const clock = new THREE.Clock();
+      let lastFrame = 0;
 
-      function animate() {
+      function animate(frameTime = 0) {
         if (!prefersReducedMotion) requestAnimationFrame(animate);
+        if (!prefersReducedMotion && frameTime - lastFrame < 1000 / 45) return;
+        lastFrame = frameTime;
 
         const elapsed = clock.getElapsedTime();
         const scrollProgress = Math.min(window.scrollY / Math.max(window.innerHeight, 1), 2.2);
@@ -1656,6 +1680,7 @@
       window.addEventListener("resize", () => {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth < 768 ? 1.1 : 1.35));
         renderer.setSize(window.innerWidth, window.innerHeight);
       });
     }
@@ -1764,14 +1789,17 @@
       });
     }
 
+    const navLinks = Array.from(document.querySelectorAll('.header-menu a[href^="#"]'));
+    const sectionIds = ["about", "experience", "education", "projects", "contact"];
+    const navSections = sectionIds.map((id) => ({ id, section: document.getElementById(id) }));
+    const scrollMaskEls = Array.from(document.querySelectorAll("[data-scroll-mask]"));
+    const parallaxEls = Array.from(document.querySelectorAll("[data-parallax]"));
+
     function updateActiveNav() {
-      const navLinks = document.querySelectorAll('.header-menu a[href^="#"]');
-      const sectionIds = ["about", "experience", "education", "projects", "contact"];
       let activeId = sectionIds[0];
       const marker = window.scrollY + window.innerHeight * 0.38;
 
-      sectionIds.forEach((id) => {
-        const section = document.getElementById(id);
+      navSections.forEach(({ id, section }) => {
         if (section && section.offsetTop <= marker) activeId = id;
       });
 
@@ -1785,13 +1813,13 @@
     function updateScrollDrivenEffects() {
       const vh = window.innerHeight || 1;
 
-      document.querySelectorAll("[data-scroll-mask]").forEach((el) => {
+      scrollMaskEls.forEach((el) => {
         const rect = el.getBoundingClientRect();
         const progress = clamp((vh * 0.82 - rect.top) / (vh * 0.55 + rect.height), 0, 1);
         el.style.setProperty("--scrub", `${Math.round(progress * 100)}%`);
       });
 
-      document.querySelectorAll("[data-parallax]").forEach((el) => {
+      parallaxEls.forEach((el) => {
         const speed = parseFloat(el.dataset.parallax || "0");
         const rect = el.getBoundingClientRect();
         const centerDelta = rect.top + rect.height / 2 - vh / 2;
@@ -1816,21 +1844,25 @@
       const cursorDot = document.getElementById("cursorDot");
       const cursorRing = document.getElementById("cursorRing");
       if (!cursorDot || !cursorRing) return;
+      if (!window.matchMedia("(pointer: fine)").matches) {
+        if (revealLayer) revealLayer.classList.add("is-dormant");
+        return;
+      }
 
       const cursor = {
         x: window.innerWidth / 2,
         y: window.innerHeight / 2,
         targetX: window.innerWidth / 2,
         targetY: window.innerHeight / 2,
-        size: 28,
-        targetSize: 28,
-        ringSize: 28,
-        targetRingSize: 28
+        size: 18,
+        targetSize: 18,
+        ringSize: 24,
+        targetRingSize: 24
       };
 
       function setCursorMode(mode) {
         if (mode === "extend") {
-          cursor.targetSize = Math.min(260, Math.max(170, window.innerWidth * 0.16));
+          cursor.targetSize = Math.min(190, Math.max(125, window.innerWidth * 0.13));
           cursor.targetRingSize = cursor.targetSize;
           return;
         }
@@ -1847,8 +1879,8 @@
           return;
         }
 
-        cursor.targetSize = 28;
-        cursor.targetRingSize = 28;
+        cursor.targetSize = 18;
+        cursor.targetRingSize = 24;
       }
 
       function updatePointer(event) {
@@ -1879,9 +1911,13 @@
         cursor.size += (cursor.targetSize - cursor.size) * 0.18;
         cursor.ringSize += (cursor.targetRingSize - cursor.ringSize) * 0.18;
 
-        root.style.setProperty("--cursor-x", `${cursor.x}px`);
-        root.style.setProperty("--cursor-y", `${cursor.y + window.scrollY}px`);
-        root.style.setProperty("--cursor-size", `${Math.max(cursor.size, 0)}px`);
+        const shouldReveal = cursor.size > 2 || cursor.targetSize > 2;
+        if (revealLayer) revealLayer.classList.toggle("is-dormant", !shouldReveal);
+        if (shouldReveal) {
+          root.style.setProperty("--cursor-x", `${cursor.x}px`);
+          root.style.setProperty("--cursor-y", `${cursor.y + window.scrollY}px`);
+          root.style.setProperty("--cursor-size", `${Math.max(cursor.size, 0)}px`);
+        }
 
         cursorDot.style.transform = `translate3d(${cursor.x}px, ${cursor.y}px, 0) translate(-50%, -50%)`;
         cursorRing.style.transform = `translate3d(${cursor.x}px, ${cursor.y}px, 0) translate(-50%, -50%)`;
@@ -1909,7 +1945,15 @@
       progress = Math.min(value, 100);
       const offset = circumference - (progress / 100) * circumference;
       progressCircle.style.strokeDashoffset = offset;
-      preloaderPercent.textContent = String(Math.round(progress)).padStart(2, "0");
+      if (progress >= 100) {
+        preloaderPercent.textContent = "Ready";
+      } else if (progress >= 70) {
+        preloaderPercent.textContent = "Shaping";
+      } else if (progress >= 35) {
+        preloaderPercent.textContent = "Loading";
+      } else {
+        preloaderPercent.textContent = "VK";
+      }
 
       if (progress === 100 && !ready) {
         ready = true;
