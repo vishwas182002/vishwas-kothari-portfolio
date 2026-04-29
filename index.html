@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vishwas Kothari — Explainable AI & Research</title>
-  <meta name="description" content="I build things that are meant to be understood, not just by machines, but by the people who depend on them.">
+  <title>Vishwas Kothari — Portfolio</title>
+  <meta name="description" content="A cinematic portfolio for Vishwas Kothari: research, engineering, data, and systems built with clarity.">
   <script>history.scrollRestoration = "manual";</script>
-  <meta property="og:title" content="Vishwas Kothari — Explainable AI & Research">
-  <meta property="og:description" content="I build things that are meant to be understood, not just by machines, but by the people who depend on them.">
+  <meta property="og:title" content="Vishwas Kothari — Portfolio">
+  <meta property="og:description" content="Research, engineering, data, and systems built with clarity.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#0d0d0d">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,6 +24,8 @@
       --gold-light: #c9bda8;
       --gold-dim: rgba(183, 171, 152, 0.15);
       --border: rgba(255, 255, 255, 0.06);
+      --ink: #070707;
+      --soft-white: #f2efe8;
       --reveal-bg: #b7ab98;
       --reveal-text: #0d0d0d;
       --cursor-x: 50vw;
@@ -209,6 +211,22 @@
       color: var(--reveal-text);
     }
 
+    .layer-reveal .project-visual,
+    .layer-reveal .answer-panel,
+    .layer-reveal .doc-page {
+      background-color: rgba(13, 13, 13, 0.06);
+      border-color: rgba(13, 13, 13, 0.14);
+    }
+
+    .layer-reveal .answer-panel span {
+      color: rgba(13, 13, 13, 0.68);
+    }
+
+    .layer-reveal .metric-ring,
+    .layer-reveal .answer-panel strong {
+      color: var(--reveal-text);
+    }
+
     .cursor-dot,
     .cursor-ring {
       position: fixed;
@@ -309,7 +327,8 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      padding: 6rem 2rem 4rem;
+      padding: 7rem 2rem 5rem;
+      overflow: hidden;
     }
 
     .hero-bg {
@@ -323,9 +342,30 @@
       pointer-events: none;
     }
 
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: min(86vw, 920px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(183, 171, 152, 0.08);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+    }
+
+    .hero::after {
+      width: min(66vw, 680px);
+      border-color: rgba(183, 171, 152, 0.05);
+      animation: heroHalo 18s linear infinite;
+    }
+
     .hero-inner {
       text-align: center;
-      max-width: 800px;
+      max-width: 900px;
       position: relative;
       z-index: 1;
     }
@@ -364,6 +404,55 @@
 
     .hero-subtitle strong { color: var(--text); font-weight: 500; }
 
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2.2rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-link {
+      min-width: 150px;
+      border: 1px solid rgba(183, 171, 152, 0.22);
+      border-radius: 999px;
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.11em;
+      padding: 0.95rem 1.25rem;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.35s var(--ease-out), border-color 0.35s var(--ease-out), transform 0.35s var(--ease-out);
+      z-index: 0;
+    }
+
+    .hero-link::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.45s var(--ease-out);
+      z-index: -1;
+    }
+
+    .hero-link:hover {
+      border-color: var(--gold);
+      color: var(--ink);
+      transform: translateY(-2px);
+    }
+
+    .hero-link:hover::before { transform: scaleX(1); }
+
     .hero-profile {
       width: 140px;
       height: 140px;
@@ -371,6 +460,8 @@
       overflow: hidden;
       margin: 0 auto 2rem;
       border: 1px solid rgba(183, 171, 152, 0.3);
+      position: relative;
+      box-shadow: 0 0 0 10px rgba(183, 171, 152, 0.025), 0 24px 70px rgba(0, 0, 0, 0.45);
     }
 
     .hero-profile img {
@@ -378,6 +469,10 @@
       height: 100%;
       object-fit: cover;
       filter: grayscale(20%);
+    }
+
+    @keyframes heroHalo {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
     }
 
     .hero-profile,
@@ -585,6 +680,21 @@
       box-shadow: 0 25px 45px rgba(183, 171, 152, 0.15);
     }
 
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.08) 42%, transparent 62%),
+        radial-gradient(circle at var(--card-x, 50%) var(--card-y, 30%), rgba(183, 171, 152, 0.18), transparent 34%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s var(--ease-out);
+      z-index: 0;
+    }
+
+    .project-card.is-card-hover::before { opacity: 1; }
+
     .cert-card::after {
       content: "";
       position: absolute;
@@ -617,6 +727,250 @@
       font-weight: 700;
       margin-bottom: 0.75rem;
       letter-spacing: -0.5px;
+    }
+
+    .project-visual {
+      height: 164px;
+      margin: -0.55rem -0.55rem 1.8rem;
+      border: 1px solid rgba(183, 171, 152, 0.1);
+      border-radius: 14px;
+      background:
+        linear-gradient(rgba(183, 171, 152, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(183, 171, 152, 0.035) 1px, transparent 1px),
+        rgba(8, 8, 8, 0.42);
+      background-size: 26px 26px;
+      overflow: hidden;
+      position: relative;
+      transform: translateZ(34px);
+    }
+
+    .project-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.42);
+      pointer-events: none;
+    }
+
+    .metric-ring {
+      position: absolute;
+      left: 1.2rem;
+      top: 50%;
+      width: 92px;
+      height: 92px;
+      border: 1px solid rgba(183, 171, 152, 0.42);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--soft-white);
+      font-family: "Syne", sans-serif;
+      font-weight: 700;
+      transform: translateY(-50%);
+    }
+
+    .metric-ring::before,
+    .metric-ring::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(183, 171, 152, 0.18);
+      border-radius: 50%;
+      inset: 9px;
+      animation: spinFine 9s linear infinite;
+    }
+
+    .metric-ring::after {
+      inset: -8px;
+      border-top-color: rgba(242, 239, 232, 0.6);
+      border-left-color: transparent;
+      animation-duration: 7s;
+      animation-direction: reverse;
+    }
+
+    .signal-bars {
+      position: absolute;
+      right: 1.1rem;
+      bottom: 1.15rem;
+      display: flex;
+      align-items: end;
+      gap: 0.55rem;
+      height: 105px;
+    }
+
+    .signal-bars span {
+      width: 13px;
+      border-radius: 999px 999px 0 0;
+      background: linear-gradient(180deg, var(--soft-white), rgba(183, 171, 152, 0.24));
+      animation: barPulse 2.8s ease-in-out infinite;
+      transform-origin: bottom;
+    }
+
+    .signal-bars span:nth-child(1) { height: 44%; animation-delay: -0.5s; }
+    .signal-bars span:nth-child(2) { height: 72%; animation-delay: -1.2s; }
+    .signal-bars span:nth-child(3) { height: 56%; animation-delay: -0.2s; }
+    .signal-bars span:nth-child(4) { height: 88%; animation-delay: -1.8s; }
+    .signal-bars span:nth-child(5) { height: 64%; animation-delay: -0.8s; }
+
+    .doc-stack {
+      position: absolute;
+      inset: 1.25rem;
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .doc-page {
+      border: 1px solid rgba(183, 171, 152, 0.18);
+      border-radius: 10px;
+      background: rgba(224, 221, 214, 0.045);
+      padding: 0.9rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .doc-page::before {
+      content: "";
+      position: absolute;
+      left: -20%;
+      right: -20%;
+      top: -30%;
+      height: 44%;
+      background: linear-gradient(180deg, transparent, rgba(183, 171, 152, 0.18), transparent);
+      animation: scanLine 3.4s ease-in-out infinite;
+    }
+
+    .doc-line {
+      display: block;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(224, 221, 214, 0.18);
+      margin-bottom: 0.55rem;
+    }
+
+    .doc-line:nth-child(2) { width: 76%; }
+    .doc-line:nth-child(3) { width: 54%; }
+    .doc-line:nth-child(4) { width: 88%; }
+
+    .attention-box {
+      position: absolute;
+      border: 1px solid rgba(242, 239, 232, 0.52);
+      background: rgba(183, 171, 152, 0.12);
+      animation: attentionShift 4.2s ease-in-out infinite;
+    }
+
+    .attention-box.one { width: 42%; height: 18%; left: 13%; top: 42%; }
+    .attention-box.two { width: 32%; height: 20%; right: 11%; bottom: 17%; animation-delay: -1.6s; }
+
+    .answer-panel {
+      border: 1px solid rgba(183, 171, 152, 0.12);
+      border-radius: 12px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: rgba(183, 171, 152, 0.035);
+    }
+
+    .answer-panel strong {
+      color: var(--soft-white);
+      font-family: "Syne", sans-serif;
+      font-size: 1.45rem;
+      letter-spacing: -0.04em;
+    }
+
+    .answer-panel span {
+      color: var(--muted);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .radar-visual {
+      display: grid;
+      place-items: center;
+    }
+
+    .radar-core {
+      width: 124px;
+      height: 124px;
+      border: 1px solid rgba(183, 171, 152, 0.22);
+      border-radius: 50%;
+      position: relative;
+      background:
+        radial-gradient(circle, rgba(242, 239, 232, 0.24) 0 2px, transparent 3px),
+        repeating-radial-gradient(circle, transparent 0 29px, rgba(183, 171, 152, 0.16) 30px 31px);
+    }
+
+    .radar-core::before {
+      content: "";
+      position: absolute;
+      inset: 50% 50% 0 50%;
+      width: 58px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(242, 239, 232, 0.9), transparent);
+      transform-origin: left center;
+      animation: radarSweep 3.2s linear infinite;
+    }
+
+    .radar-core::after {
+      content: "";
+      position: absolute;
+      inset: -14px;
+      border-radius: 50%;
+      border: 1px solid rgba(183, 171, 152, 0.08);
+    }
+
+    .radar-ping {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 16px rgba(183, 171, 152, 0.65);
+    }
+
+    .radar-ping.one { left: 68%; top: 28%; }
+    .radar-ping.two { left: 27%; top: 62%; animation-delay: -0.8s; }
+    .radar-ping.three { left: 58%; top: 70%; animation-delay: -1.5s; }
+
+    .radar-ping::after {
+      content: "";
+      position: absolute;
+      inset: -9px;
+      border: 1px solid rgba(183, 171, 152, 0.36);
+      border-radius: 50%;
+      animation: ping 2.4s ease-out infinite;
+    }
+
+    @keyframes spinFine {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes barPulse {
+      0%, 100% { transform: scaleY(0.78); opacity: 0.54; }
+      50% { transform: scaleY(1); opacity: 1; }
+    }
+
+    @keyframes scanLine {
+      0%, 100% { transform: translateY(0); opacity: 0; }
+      20%, 70% { opacity: 1; }
+      100% { transform: translateY(350%); }
+    }
+
+    @keyframes attentionShift {
+      0%, 100% { opacity: 0.34; transform: translate3d(0, 0, 0); }
+      50% { opacity: 1; transform: translate3d(8px, -4px, 0); }
+    }
+
+    @keyframes radarSweep {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes ping {
+      0% { transform: scale(0.55); opacity: 0.75; }
+      100% { transform: scale(2.4); opacity: 0; }
     }
 
     .project-tags {
@@ -685,6 +1039,36 @@
     .cert-card h4 { font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600; }
     .cert-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
     .cert-icon { color: var(--gold); font-size: 1.3rem; margin-bottom: 1rem; }
+
+    .experience-band {
+      margin: 3rem auto 0;
+      max-width: 1100px;
+      border-top: 1px solid rgba(183, 171, 152, 0.08);
+      border-bottom: 1px solid rgba(183, 171, 152, 0.08);
+      overflow: hidden;
+      padding: 1.15rem 0;
+      position: relative;
+    }
+
+    .experience-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 26s linear infinite;
+    }
+
+    .experience-track span {
+      color: rgba(224, 221, 214, 0.42);
+      font-family: "Syne", sans-serif;
+      font-size: clamp(1.3rem, 3vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      padding-right: 2rem;
+      white-space: nowrap;
+    }
+
+    @keyframes marquee {
+      to { transform: translateX(-50%); }
+    }
 
     .contact-block { text-align: center; }
 
@@ -763,6 +1147,66 @@
       .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
       .skill-row { grid-template-columns: 1fr; gap: 0.5rem; }
       .projects-grid { grid-template-columns: 1fr; }
+      .project-card { padding: 1.7rem; }
+      .hero {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+      .hero-actions { gap: 0.7rem; }
+      .hero-link { min-width: 132px; padding: 0.82rem 1rem; }
+      .project-visual {
+        height: 146px;
+        margin-left: -0.25rem;
+        margin-right: -0.25rem;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .header {
+        align-items: flex-start;
+        padding: 0.9rem 1rem;
+      }
+      .header-logo a { font-size: 1.05rem; }
+      .header-menu {
+        flex-wrap: wrap;
+        gap: 0.55rem 0.75rem;
+        justify-content: flex-end;
+        max-width: 250px;
+      }
+      .header-menu a {
+        font-size: 0.56rem;
+        letter-spacing: 0.07em;
+      }
+      .hero {
+        padding-top: 8.5rem;
+      }
+      .hero-title {
+        letter-spacing: -1px;
+      }
+      .hero-actions {
+        flex-direction: column;
+      }
+      .hero-link {
+        width: min(100%, 260px);
+      }
+      .doc-stack {
+        grid-template-columns: 1fr;
+        gap: 0.65rem;
+      }
+      .answer-panel {
+        min-height: 68px;
+      }
+      .answer-panel strong {
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
     }
 
   </style>
@@ -807,6 +1251,10 @@
             <p class="hero-subtitle fade-up" data-parallax="-0.06">
               I build things that are meant to be <strong>understood</strong>, not just by machines, but by the people who depend on them.
             </p>
+            <div class="hero-actions fade-up" data-parallax="-0.045">
+              <a class="hero-link" href="#projects" data-cursor="contract" data-magnetic>Explore Work <i class="fas fa-arrow-down"></i></a>
+              <a class="hero-link" href="#contact" data-cursor="contract" data-magnetic>Contact <i class="fas fa-paper-plane"></i></a>
+            </div>
           </div>
         </section>
 
@@ -893,18 +1341,46 @@
             <p class="section-label fade-up">Featured Projects</p>
             <div class="projects-grid">
               <div class="project-card fade-up" data-cursor="subtle" data-tilt>
+                <div class="project-visual visual-credit" aria-hidden="true">
+                  <div class="metric-ring">0.782</div>
+                  <div class="signal-bars"><span></span><span></span><span></span><span></span><span></span></div>
+                </div>
                 <h3>XAI Credit Lens</h3>
                 <div class="project-tags"><span>Python</span><span>SHAP</span><span>LIME</span><span>DiCE</span><span>XGBoost</span><span>Optuna</span><span>Streamlit</span></div>
                 <p>End-to-end explainable credit risk framework: 0.782 AUC on 30K records with automated fairness auditing and zero violations across four protected attributes. Regulatory compliance mapping for ECOA, EU AI Act, and Fed SR 11-7.</p>
                 <a href="https://github.com/vishwas182002/xai-credit-lens" target="_blank" class="project-link" data-cursor="contract">View on GitHub <span aria-hidden="true">→</span></a>
               </div>
               <div class="project-card fade-up" data-cursor="subtle" data-tilt>
+                <div class="project-visual visual-document" aria-hidden="true">
+                  <div class="doc-stack">
+                    <div class="doc-page">
+                      <span class="doc-line"></span>
+                      <span class="doc-line"></span>
+                      <span class="doc-line"></span>
+                      <span class="doc-line"></span>
+                      <span class="attention-box one"></span>
+                      <span class="attention-box two"></span>
+                    </div>
+                    <div class="answer-panel">
+                      <span>Document VQA</span>
+                      <strong>+22%</strong>
+                      <span>Domain adaptation lift</span>
+                    </div>
+                  </div>
+                </div>
                 <h3>Financial Document VQA</h3>
                 <div class="project-tags"><span>PyTorch</span><span>LayoutLMv3</span><span>Donut</span><span>Pix2Struct</span><span>LoRA</span><span>Gradio</span></div>
                 <p>Benchmarked 4 vision-language models on SEC 10-K filings, revealing 63-83% performance drop vs generic DocVQA. Domain-specific LoRA fine-tuning on 307 examples improved ANLS by 22%, while generic fine-tuning caused 39% negative transfer.</p>
                 <a href="https://github.com/vishwas182002/financial-document-vqa" target="_blank" class="project-link" data-cursor="contract">View on GitHub <span aria-hidden="true">→</span></a>
               </div>
               <div class="project-card fade-up" data-cursor="subtle" data-tilt>
+                <div class="project-visual radar-visual" aria-hidden="true">
+                  <div class="radar-core">
+                    <span class="radar-ping one"></span>
+                    <span class="radar-ping two"></span>
+                    <span class="radar-ping three"></span>
+                  </div>
+                </div>
                 <h3>XAI-Driven Collision Avoidance</h3>
                 <div class="project-tags"><span>Python</span><span>SHAP</span><span>LIME</span><span>Random Forest</span><span>Explainable AI</span></div>
                 <p>Interpretable collision detection system for V2V/V2I communication in the Internet of Vehicles. Achieved 99.9% AUC on 206K instances with transparent feature attribution via SHAP and LIME for safety-critical AI decision-making.</p>
@@ -913,6 +1389,13 @@
             </div>
           </div>
         </section>
+
+        <div class="experience-band" aria-hidden="true">
+          <div class="experience-track">
+            <span>Research systems / Data products / Human-centered AI / Cloud fundamentals / Visual engineering /</span>
+            <span>Research systems / Data products / Human-centered AI / Cloud fundamentals / Visual engineering /</span>
+          </div>
+        </div>
 
         <section class="section" style="padding-top: 2rem;">
           <div class="container">
@@ -974,7 +1457,7 @@
       </main>
 
       <footer class="footer">
-        <p>© 2026 Vishwas Kothari. Built with passion for explainable AI.</p>
+        <p>© 2026 Vishwas Kothari. Built as a living portfolio experience.</p>
       </footer>
     </div>
   </div>
@@ -994,66 +1477,181 @@
 
     const canvas = document.getElementById("bgCanvas");
     if (canvas) {
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.setClearColor(0x0d0d0d, 1);
 
       const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 1000);
-      camera.position.z = 5;
+      scene.fog = new THREE.FogExp2(0x0d0d0d, 0.045);
 
-      const starCount = 500;
-      const positions = new Float32Array(starCount * 3);
-      for (let i = 0; i < starCount * 3; i += 3) {
-        positions[i] = (Math.random() - 0.5) * 20;
-        positions[i + 1] = (Math.random() - 0.5) * 14;
-        positions[i + 2] = (Math.random() - 0.5) * 10;
+      const camera = new THREE.PerspectiveCamera(64, window.innerWidth / window.innerHeight, 0.1, 100);
+      camera.position.set(0, 0, 6.8);
+
+      const stage = new THREE.Group();
+      const core = new THREE.Group();
+      const network = new THREE.Group();
+      scene.add(stage);
+      stage.add(network, core);
+
+      function createParticleField(count, spread, size, color, opacity) {
+        const geometry = new THREE.BufferGeometry();
+        const positions = new Float32Array(count * 3);
+
+        for (let i = 0; i < count; i += 1) {
+          const i3 = i * 3;
+          positions[i3] = (Math.random() - 0.5) * spread.x;
+          positions[i3 + 1] = (Math.random() - 0.5) * spread.y;
+          positions[i3 + 2] = (Math.random() - 0.5) * spread.z;
+        }
+
+        geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+        const material = new THREE.PointsMaterial({
+          color,
+          size,
+          transparent: true,
+          opacity,
+          depthWrite: false,
+          blending: THREE.AdditiveBlending
+        });
+
+        return new THREE.Points(geometry, material);
       }
 
-      const starsGeo = new THREE.BufferGeometry();
-      starsGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-      const starsMat = new THREE.PointsMaterial({
-        size: 0.02,
-        color: 0xb7ab98,
-        blending: THREE.AdditiveBlending,
-        transparent: true,
-        opacity: 0.5
-      });
-      const stars = new THREE.Points(starsGeo, starsMat);
-      scene.add(stars);
+      const farField = createParticleField(1100, { x: 27, y: 16, z: 16 }, 0.018, 0xb7ab98, 0.48);
+      const nearField = createParticleField(180, { x: 12, y: 7, z: 8 }, 0.035, 0xf2efe8, 0.22);
+      scene.add(farField, nearField);
 
-      const knotGeo = new THREE.TorusKnotGeometry(1.4, 0.3, 160, 20);
-      const knotMat = new THREE.MeshBasicMaterial({
+      const nodePositions = [];
+      for (let i = 0; i < 54; i += 1) {
+        const ring = i % 3;
+        const angle = i * 0.72;
+        const radius = 1.2 + ring * 0.65 + Math.sin(i * 1.7) * 0.2;
+        nodePositions.push(new THREE.Vector3(
+          Math.cos(angle) * radius,
+          Math.sin(i * 0.46) * 1.35 + (ring - 1) * 0.28,
+          Math.sin(angle) * radius * 0.78
+        ));
+      }
+
+      const nodeGeometry = new THREE.BufferGeometry().setFromPoints(nodePositions);
+      const nodeMaterial = new THREE.PointsMaterial({
+        color: 0xf2efe8,
+        size: 0.055,
+        transparent: true,
+        opacity: 0.72,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending
+      });
+      const nodes = new THREE.Points(nodeGeometry, nodeMaterial);
+      network.add(nodes);
+
+      const linePositions = [];
+      nodePositions.forEach((a, i) => {
+        nodePositions.forEach((b, j) => {
+          if (j <= i) return;
+          if (a.distanceTo(b) < 1.22) {
+            linePositions.push(a.x, a.y, a.z, b.x, b.y, b.z);
+          }
+        });
+      });
+
+      const lineGeometry = new THREE.BufferGeometry();
+      lineGeometry.setAttribute("position", new THREE.Float32BufferAttribute(linePositions, 3));
+      const lineMaterial = new THREE.LineBasicMaterial({
         color: 0xb7ab98,
+        transparent: true,
+        opacity: 0.12,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending
+      });
+      const networkLines = new THREE.LineSegments(lineGeometry, lineMaterial);
+      network.add(networkLines);
+
+      const knot = new THREE.Mesh(
+        new THREE.TorusKnotGeometry(1.4, 0.3, 180, 24),
+        new THREE.MeshBasicMaterial({
+          color: 0xb7ab98,
+          wireframe: true,
+          transparent: true,
+          opacity: 0.075,
+          depthWrite: false
+        })
+      );
+      knot.position.z = -0.45;
+      core.add(knot);
+
+      const beaconMaterial = new THREE.MeshBasicMaterial({
+        color: 0xc9bda8,
         wireframe: true,
         transparent: true,
-        opacity: 0.06
+        opacity: 0.24,
+        depthWrite: false
       });
-      const knot = new THREE.Mesh(knotGeo, knotMat);
-      knot.position.z = -0.5;
-      scene.add(knot);
+
+      const beaconPositions = [
+        [-2.2, -0.95, 0.15],
+        [2.15, -0.35, -0.35],
+        [0.25, 1.58, 0.18]
+      ];
+
+      const beacons = beaconPositions.map(([x, y, z], index) => {
+        const beacon = new THREE.Mesh(new THREE.TorusGeometry(0.24 + index * 0.035, 0.006, 8, 80), beaconMaterial.clone());
+        beacon.position.set(x, y, z);
+        beacon.rotation.x = Math.PI / 2;
+        network.add(beacon);
+        return beacon;
+      });
 
       let mouseX = 0;
       let mouseY = 0;
+      let cameraX = 0;
+      let cameraY = 0;
+
       window.addEventListener("mousemove", (event) => {
         mouseX = (event.clientX / window.innerWidth) * 2 - 1;
         mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
       });
 
+      const clock = new THREE.Clock();
+
       function animate() {
-        requestAnimationFrame(animate);
-        stars.rotation.y += 0.0001;
-        stars.rotation.x += 0.00005;
-        knot.rotation.x += 0.0015;
-        knot.rotation.y += 0.002;
-        camera.position.x += (mouseX * 0.4 - camera.position.x) * 0.015;
-        camera.position.y += (mouseY * 0.2 - camera.position.y) * 0.015;
+        if (!prefersReducedMotion) requestAnimationFrame(animate);
+
+        const elapsed = clock.getElapsedTime();
+        const scrollProgress = Math.min(window.scrollY / Math.max(window.innerHeight, 1), 2.2);
+
+        farField.rotation.y = elapsed * 0.012;
+        farField.rotation.x = -elapsed * 0.004;
+        nearField.rotation.y = -elapsed * 0.024;
+        nearField.rotation.z = elapsed * 0.006;
+
+        stage.rotation.y = elapsed * 0.045 + mouseX * 0.1 + scrollProgress * 0.16;
+        stage.rotation.x = -0.08 + mouseY * 0.08 - scrollProgress * 0.04;
+        core.rotation.z = elapsed * 0.05;
+        knot.rotation.x = elapsed * 0.14;
+        knot.rotation.y = elapsed * 0.18;
+        beacons.forEach((beacon, index) => {
+          const pulse = 1 + Math.sin(elapsed * 1.8 + index) * 0.08;
+          beacon.scale.setScalar(pulse);
+          beacon.rotation.z = elapsed * (0.35 + index * 0.05);
+        });
+
+        networkLines.material.opacity = 0.11 + Math.sin(elapsed * 1.2) * 0.025;
+        nodes.material.opacity = 0.62 + Math.sin(elapsed * 1.6) * 0.08;
+
+        cameraX += (mouseX * 0.56 - cameraX) * 0.025;
+        cameraY += (mouseY * 0.28 - cameraY) * 0.025;
+        camera.position.x = cameraX;
+        camera.position.y = cameraY;
+        camera.position.z = 6.8 - scrollProgress * 0.18;
         camera.lookAt(scene.position);
         renderer.render(scene, camera);
       }
 
       animate();
+      if (prefersReducedMotion) renderer.render(scene, camera);
 
       window.addEventListener("resize", () => {
         camera.aspect = window.innerWidth / window.innerHeight;
@@ -1134,11 +1732,34 @@
           const y = event.clientY - rect.top;
           const rotX = (y - rect.height / 2) / 12;
           const rotY = (rect.width / 2 - x) / 12;
+          card.classList.add("is-card-hover");
+          card.style.setProperty("--card-x", `${x}px`);
+          card.style.setProperty("--card-y", `${y}px`);
           card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
         });
 
         card.addEventListener("pointerleave", () => {
+          card.classList.remove("is-card-hover");
+          card.style.removeProperty("--card-x");
+          card.style.removeProperty("--card-y");
           card.style.transform = "perspective(1000px) rotateX(0) rotateY(0) scale(1)";
+        });
+      });
+    }
+
+    function initCardHighlights() {
+      document.querySelectorAll(".layer-base .cert-card").forEach((card) => {
+        card.addEventListener("pointermove", (event) => {
+          const rect = card.getBoundingClientRect();
+          card.classList.add("is-card-hover");
+          card.style.setProperty("--card-x", `${event.clientX - rect.left}px`);
+          card.style.setProperty("--card-y", `${event.clientY - rect.top}px`);
+        });
+
+        card.addEventListener("pointerleave", () => {
+          card.classList.remove("is-card-hover");
+          card.style.removeProperty("--card-x");
+          card.style.removeProperty("--card-y");
         });
       });
     }
@@ -1187,6 +1808,7 @@
     initRowMasks();
     initMagneticElements();
     initTiltCards();
+    initCardHighlights();
     updateScrollDrivenEffects();
 
     // ==================== MINH-STYLE FULL-PAGE MASK CURSOR ====================
