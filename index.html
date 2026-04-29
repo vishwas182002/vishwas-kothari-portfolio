@@ -952,6 +952,99 @@
       animation: ping 2.4s ease-out infinite;
     }
 
+    .bias-visual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    .bias-panel {
+      align-items: center;
+      border: 1px solid rgba(183, 171, 152, 0.12);
+      border-radius: 14px;
+      background: rgba(183, 171, 152, 0.03);
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 0.55rem;
+      min-width: 0;
+      overflow: hidden;
+      padding: 0.8rem;
+      position: relative;
+    }
+
+    .bias-label {
+      color: var(--muted);
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .mnist-frame {
+      width: min(82px, 100%);
+      aspect-ratio: 1;
+      border: 1px solid rgba(183, 171, 152, 0.14);
+      border-radius: 10px;
+      background:
+        linear-gradient(rgba(183, 171, 152, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(183, 171, 152, 0.05) 1px, transparent 1px),
+        rgba(8, 8, 8, 0.55);
+      background-size: 10px 10px;
+      margin: 0 auto;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .mnist-frame::before {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 7px;
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      background: rgba(183, 171, 152, 0.2);
+      box-shadow: 0 0 18px rgba(183, 171, 152, 0.22);
+    }
+
+    .bias-panel.shortcut .mnist-frame::before {
+      background: #b7ab98;
+      box-shadow: 0 0 28px rgba(183, 171, 152, 0.9);
+      animation: patchPulse 1.9s ease-in-out infinite;
+    }
+
+    .digit-stroke {
+      position: absolute;
+      border: 5px solid rgba(242, 239, 232, 0.18);
+      border-left-color: transparent;
+      border-radius: 50%;
+      inset: 20px 18px 17px 21px;
+      transform: rotate(-24deg);
+    }
+
+    .bias-panel.rich .digit-stroke {
+      border-color: rgba(242, 239, 232, 0.86);
+      border-left-color: transparent;
+      box-shadow: 0 0 22px rgba(242, 239, 232, 0.22);
+      animation: digitGlow 2.4s ease-in-out infinite;
+    }
+
+    .bias-panel::after {
+      content: "";
+      bottom: 0.65rem;
+      height: 1px;
+      left: 18%;
+      position: absolute;
+      right: 18%;
+      background: linear-gradient(90deg, transparent, rgba(183, 171, 152, 0.36), transparent);
+    }
+
+    .bias-panel.shortcut::after {
+      background: linear-gradient(90deg, transparent, rgba(183, 171, 152, 0.7), transparent);
+    }
+
     @keyframes spinFine {
       to { transform: rotate(360deg); }
     }
@@ -979,6 +1072,16 @@
     @keyframes ping {
       0% { transform: scale(0.55); opacity: 0.75; }
       100% { transform: scale(2.4); opacity: 0; }
+    }
+
+    @keyframes patchPulse {
+      0%, 100% { transform: scale(0.9); opacity: 0.62; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+
+    @keyframes digitGlow {
+      0%, 100% { opacity: 0.58; transform: rotate(-24deg) scale(0.96); }
+      50% { opacity: 1; transform: rotate(-24deg) scale(1.04); }
     }
 
     .project-tags {
@@ -1392,6 +1495,22 @@
                 <a href="https://github.com/vishwas182002/financial-document-vqa" target="_blank" class="project-link" data-cursor="contract">View on GitHub <span aria-hidden="true">→</span></a>
               </div>
               <div class="project-card fade-up" data-cursor="subtle" data-tilt>
+                <div class="project-visual bias-visual" aria-hidden="true">
+                  <div class="bias-panel shortcut">
+                    <span class="bias-label">SGD shortcut</span>
+                    <div class="mnist-frame"><span class="digit-stroke"></span></div>
+                  </div>
+                  <div class="bias-panel rich">
+                    <span class="bias-label">Adam shape</span>
+                    <div class="mnist-frame"><span class="digit-stroke"></span></div>
+                  </div>
+                </div>
+                <h3>Implicit Bias of Adam vs. SGD</h3>
+                <div class="project-tags"><span>PyTorch</span><span>CVXPY</span><span>NumPy</span><span>Matplotlib</span><span>Margin Theory</span><span>OOD</span></div>
+                <p>Investigated why different optimizers find fundamentally different solutions in overparameterized models. Connected recent theory showing GD converges to the ℓ₂ max-margin solution while Adam converges to ℓ∞, then verified this empirically across 5 seeds with &gt;0.98 cosine similarity to exact convex-programming solutions. Demonstrated practical consequences on an MNIST spurious-correlation benchmark: SGD suffered a 30% OOD accuracy drop and 3× higher shortcut reliance, while Adam reduced the drop to 13%.</p>
+                <a href="https://github.com/vishwas182002/implicit-bias-adam-sgd" target="_blank" class="project-link" data-cursor="contract">View on GitHub <span aria-hidden="true">→</span></a>
+              </div>
+              <div class="project-card fade-up" data-cursor="subtle" data-tilt>
                 <div class="project-visual radar-visual" aria-hidden="true">
                   <div class="radar-core">
                     <span class="radar-ping one"></span>
@@ -1410,8 +1529,8 @@
 
         <div class="experience-band" aria-hidden="true">
           <div class="experience-track">
-            <span>ISRO satellite data pipelines / Explainable credit risk / Financial document VQA / Collision avoidance / Springer publication / Elsevier reviewer / AWS certified /</span>
-            <span>ISRO satellite data pipelines / Explainable credit risk / Financial document VQA / Collision avoidance / Springer publication / Elsevier reviewer / AWS certified /</span>
+            <span>ISRO satellite data pipelines / Explainable credit risk / Financial document VQA / Adam vs SGD implicit bias / Collision avoidance / Springer publication / Elsevier reviewer / AWS certified /</span>
+            <span>ISRO satellite data pipelines / Explainable credit risk / Financial document VQA / Adam vs SGD implicit bias / Collision avoidance / Springer publication / Elsevier reviewer / AWS certified /</span>
           </div>
         </div>
 
