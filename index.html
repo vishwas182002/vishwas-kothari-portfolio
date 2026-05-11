@@ -819,6 +819,106 @@
     .signal-bars span:nth-child(4) { height: 88%; animation-delay: -1.8s; }
     .signal-bars span:nth-child(5) { height: 64%; animation-delay: -0.8s; }
 
+    .visual-finagent {
+      padding: 1rem;
+    }
+
+    .agent-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1.1fr 0.9fr;
+      height: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .agent-card {
+      border: 1px solid rgba(183, 171, 152, 0.14);
+      border-radius: 12px;
+      background: rgba(183, 171, 152, 0.035);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+      overflow: hidden;
+      padding: 0.9rem;
+      position: relative;
+    }
+
+    .agent-card::before {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(183, 171, 152, 0.8), transparent);
+      opacity: 0.7;
+    }
+
+    .agent-card.primary {
+      grid-row: span 2;
+      background:
+        radial-gradient(circle at 55% 35%, rgba(183, 171, 152, 0.16), transparent 42%),
+        rgba(183, 171, 152, 0.045);
+    }
+
+    .agent-card.warning::before {
+      background: linear-gradient(90deg, transparent, rgba(242, 239, 232, 0.55), transparent);
+    }
+
+    .agent-card span {
+      color: var(--muted);
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .agent-card strong {
+      color: var(--soft-white);
+      font-family: "Syne", sans-serif;
+      font-size: clamp(1.2rem, 4vw, 2.05rem);
+      letter-spacing: -0.05em;
+      line-height: 1.05;
+      margin-top: 0.35rem;
+    }
+
+    .agent-card small {
+      color: rgba(224, 221, 214, 0.48);
+      display: block;
+      font-size: 0.68rem;
+      line-height: 1.35;
+      margin-top: 0.5rem;
+    }
+
+    .agent-card.primary strong {
+      font-size: clamp(2.25rem, 7vw, 3.4rem);
+    }
+
+    .agent-route {
+      align-items: center;
+      bottom: 1.2rem;
+      display: flex;
+      gap: 0.35rem;
+      left: 1.25rem;
+      opacity: 0.75;
+      position: absolute;
+      right: 1.25rem;
+      z-index: 2;
+    }
+
+    .agent-route span {
+      background: rgba(183, 171, 152, 0.42);
+      border-radius: 999px;
+      display: block;
+      flex: 1;
+      height: 1px;
+      transform-origin: left;
+      animation: agentTrace 2.6s ease-in-out infinite;
+    }
+
+    .agent-route span:nth-child(2) { animation-delay: -1.7s; }
+    .agent-route span:nth-child(3) { animation-delay: -0.9s; }
+
     .doc-stack {
       position: absolute;
       inset: 1.25rem;
@@ -1052,6 +1152,11 @@
     @keyframes barPulse {
       0%, 100% { transform: scaleY(0.78); opacity: 0.54; }
       50% { transform: scaleY(1); opacity: 1; }
+    }
+
+    @keyframes agentTrace {
+      0%, 100% { transform: scaleX(0.25); opacity: 0.28; }
+      45%, 65% { transform: scaleX(1); opacity: 0.9; }
     }
 
     @keyframes scanLine {
@@ -1462,14 +1567,28 @@
             <p class="section-label fade-up">Featured Projects</p>
             <div class="projects-grid">
               <div class="project-card fade-up" data-cursor="subtle" data-tilt>
-                <div class="project-visual visual-credit" aria-hidden="true">
-                  <div class="metric-ring">0.782</div>
-                  <div class="signal-bars"><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="project-visual visual-finagent" aria-hidden="true">
+                  <div class="agent-grid">
+                    <div class="agent-card primary">
+                      <span>Qwen vs legacy</span>
+                      <strong>4.3x</strong>
+                      <small>ANLS improvement over the best document-AI baseline</small>
+                    </div>
+                    <div class="agent-card">
+                      <span>Dataset</span>
+                      <strong>397 Qs</strong>
+                    </div>
+                    <div class="agent-card warning">
+                      <span>Numerical ANLS</span>
+                      <strong>0.1138</strong>
+                    </div>
+                  </div>
+                  <div class="agent-route"><span></span><span></span><span></span></div>
                 </div>
-                <h3>XAI Credit Lens</h3>
-                <div class="project-tags"><span>Python</span><span>SHAP</span><span>LIME</span><span>DiCE</span><span>XGBoost</span><span>Optuna</span><span>Streamlit</span></div>
-                <p>End-to-end explainable credit risk framework: 0.782 AUC on 30K records with automated fairness auditing and zero violations across four protected attributes. Regulatory compliance mapping for ECOA, EU AI Act, and Fed SR 11-7.</p>
-                <a href="https://github.com/vishwas182002/xai-credit-lens" target="_blank" class="project-link" data-cursor="contract">View on GitHub <span aria-hidden="true">→</span></a>
+                <h3>FinAgent-Eval</h3>
+                <div class="project-tags"><span>Qwen2.5-VL</span><span>Pix2Struct</span><span>Donut</span><span>LayoutLMv3</span><span>Streamlit</span><span>SEC Filings</span></div>
+                <p>Reproducible evaluation harness for visual question answering over real SEC filing screenshots. Hand-curated 397 questions from 10 US public companies across extractive, layout, numerical reasoning, and chart interpretation tasks, then compared 5 models: Pix2Struct, Donut, LayoutLMv3, OCR+RoBERTa, and Qwen2.5-VL-7B on a free Colab T4. Qwen delivered a 4.3x ANLS lift, but numerical reasoning remained unsolved with 0.1138 ANLS and 0% paraphrase consistency.</p>
+                <a href="https://github.com/vishwas182002/FinAgent-Eval" target="_blank" class="project-link" data-cursor="contract">View on GitHub <span aria-hidden="true">→</span></a>
               </div>
               <div class="project-card fade-up" data-cursor="subtle" data-tilt>
                 <div class="project-visual visual-document" aria-hidden="true">
@@ -1493,6 +1612,16 @@
                 <div class="project-tags"><span>PyTorch</span><span>LayoutLMv3</span><span>Donut</span><span>Pix2Struct</span><span>LoRA</span><span>Gradio</span></div>
                 <p>Benchmarked 4 vision-language models on SEC 10-K filings, revealing 63-83% performance drop vs generic DocVQA. Domain-specific LoRA fine-tuning on 307 examples improved ANLS by 22%, while generic fine-tuning caused 39% negative transfer.</p>
                 <a href="https://github.com/vishwas182002/financial-document-vqa" target="_blank" class="project-link" data-cursor="contract">View on GitHub <span aria-hidden="true">→</span></a>
+              </div>
+              <div class="project-card fade-up" data-cursor="subtle" data-tilt>
+                <div class="project-visual visual-credit" aria-hidden="true">
+                  <div class="metric-ring">0.782</div>
+                  <div class="signal-bars"><span></span><span></span><span></span><span></span><span></span></div>
+                </div>
+                <h3>XAI Credit Lens</h3>
+                <div class="project-tags"><span>Python</span><span>SHAP</span><span>LIME</span><span>DiCE</span><span>XGBoost</span><span>Optuna</span><span>Streamlit</span></div>
+                <p>End-to-end explainable credit risk framework: 0.782 AUC on 30K records with automated fairness auditing and zero violations across four protected attributes. Regulatory compliance mapping for ECOA, EU AI Act, and Fed SR 11-7.</p>
+                <a href="https://github.com/vishwas182002/xai-credit-lens" target="_blank" class="project-link" data-cursor="contract">View on GitHub <span aria-hidden="true">→</span></a>
               </div>
               <div class="project-card fade-up" data-cursor="subtle" data-tilt>
                 <div class="project-visual bias-visual" aria-hidden="true">
@@ -1529,8 +1658,8 @@
 
         <div class="experience-band" aria-hidden="true">
           <div class="experience-track">
-            <span>ISRO satellite data pipelines / Explainable credit risk / Financial document VQA / Adam vs SGD implicit bias / Collision avoidance / Springer publication / Elsevier reviewer / AWS certified /</span>
-            <span>ISRO satellite data pipelines / Explainable credit risk / Financial document VQA / Adam vs SGD implicit bias / Collision avoidance / Springer publication / Elsevier reviewer / AWS certified /</span>
+            <span>FinAgent-Eval SEC VQA / Qwen2.5-VL financial reasoning / Financial document VQA / Explainable credit risk / Adam vs SGD implicit bias / ISRO satellite data pipelines / Springer publication / Elsevier reviewer /</span>
+            <span>FinAgent-Eval SEC VQA / Qwen2.5-VL financial reasoning / Financial document VQA / Explainable credit risk / Adam vs SGD implicit bias / ISRO satellite data pipelines / Springer publication / Elsevier reviewer /</span>
           </div>
         </div>
 
