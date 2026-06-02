@@ -996,63 +996,6 @@
       text-transform: uppercase;
     }
 
-    .radar-visual {
-      display: grid;
-      place-items: center;
-    }
-
-    .radar-core {
-      width: 106px;
-      height: 106px;
-      border: 1px solid rgba(183, 171, 152, 0.22);
-      border-radius: 50%;
-      position: relative;
-      background:
-        radial-gradient(circle, rgba(242, 239, 232, 0.24) 0 2px, transparent 3px),
-        repeating-radial-gradient(circle, transparent 0 29px, rgba(183, 171, 152, 0.16) 30px 31px);
-    }
-
-    .radar-core::before {
-      content: "";
-      position: absolute;
-      inset: 50% 50% 0 50%;
-      width: 58px;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(242, 239, 232, 0.9), transparent);
-      transform-origin: left center;
-      animation: radarSweep 3.2s linear infinite;
-    }
-
-    .radar-core::after {
-      content: "";
-      position: absolute;
-      inset: -14px;
-      border-radius: 50%;
-      border: 1px solid rgba(183, 171, 152, 0.08);
-    }
-
-    .radar-ping {
-      position: absolute;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--gold);
-      box-shadow: 0 0 16px rgba(183, 171, 152, 0.65);
-    }
-
-    .radar-ping.one { left: 68%; top: 28%; }
-    .radar-ping.two { left: 27%; top: 62%; animation-delay: -0.8s; }
-    .radar-ping.three { left: 58%; top: 70%; animation-delay: -1.5s; }
-
-    .radar-ping::after {
-      content: "";
-      position: absolute;
-      inset: -9px;
-      border: 1px solid rgba(183, 171, 152, 0.36);
-      border-radius: 50%;
-      animation: ping 2.4s ease-out infinite;
-    }
-
     .bias-visual {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1169,15 +1112,6 @@
     @keyframes attentionShift {
       0%, 100% { opacity: 0.34; transform: translate3d(0, 0, 0); }
       50% { opacity: 1; transform: translate3d(8px, -4px, 0); }
-    }
-
-    @keyframes radarSweep {
-      to { transform: rotate(360deg); }
-    }
-
-    @keyframes ping {
-      0% { transform: scale(0.55); opacity: 0.75; }
-      100% { transform: scale(2.4); opacity: 0; }
     }
 
     @keyframes patchPulse {
@@ -1647,15 +1581,7 @@
                 <p>Investigated why different optimizers find fundamentally different solutions in overparameterized models. Connected recent theory showing GD converges to the ℓ₂ max-margin solution while Adam converges to ℓ∞, then verified this empirically across 5 seeds with &gt;0.98 cosine similarity to exact convex-programming solutions. Demonstrated practical consequences on an MNIST spurious-correlation benchmark: SGD suffered a 30% OOD accuracy drop and 3× higher shortcut reliance, while Adam reduced the drop to 13%.</p>
                 <a href="https://github.com/vishwas182002/implicit-bias-adam-sgd" target="_blank" class="project-link" data-cursor="contract">View on GitHub <span aria-hidden="true">→</span></a>
               </div>
-              <div class="project-card fade-up" data-cursor="subtle" data-tilt>
-                <div class="project-visual radar-visual" aria-hidden="true">
-                  <div class="radar-core">
-                    <span class="radar-ping one"></span>
-                    <span class="radar-ping two"></span>
-                    <span class="radar-ping three"></span>
-                  </div>
-                </div>
-
+            </div>
           </div>
         </section>
 
