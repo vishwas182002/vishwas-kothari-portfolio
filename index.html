@@ -82,7 +82,7 @@
     padding: 0 2.5rem;
     display: grid;
     grid-template-columns: 318px 1fr;
-    gap: 5rem;
+    gap: 0;
     align-items: start;
   }
 
@@ -94,8 +94,34 @@
     min-height: 560px;
     display: flex;
     flex-direction: column;
-    padding: 4.5rem 0 3rem;
+    padding: 4.5rem 3rem 3rem 0;
   }
+  .side-photo {
+    width: 92px; height: 92px;
+    border-radius: 16px;
+    object-fit: cover;
+    border: 1px solid var(--line);
+    margin-bottom: 1.5rem;
+    filter: grayscale(8%);
+    display: block;
+  }
+  .side-resume {
+    margin-top: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0.55rem 1rem;
+    transition: border-color 0.2s var(--ease), color 0.2s var(--ease), transform 0.2s var(--ease);
+  }
+  .side-resume:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
   .side-name {
     font-family: "Space Grotesk", sans-serif;
     font-size: 2rem;
@@ -178,7 +204,7 @@
   [data-theme="dark"] .toggle .sun { display: block; }
 
   /* ---------- content ---------- */
-  .content { padding: 4.5rem 0 6rem; max-width: 660px; }
+  .content { padding: 4.5rem 0 6rem 4rem; border-left: 1px solid var(--line-soft); max-width: none; }
 
   .intro {
     font-size: 1.18rem;
@@ -201,11 +227,12 @@
   .entry { padding: 2.2rem 0; border-top: 1px solid var(--line); }
   .entry:first-of-type { border-top: none; padding-top: 0; }
   .entry-meta { color: var(--muted); margin-bottom: 0.7rem; }
+  .entry-meta .ix { color: var(--faint); margin-right: 0.85rem; }
   .entry h3 {
     font-family: "Space Grotesk", sans-serif;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
   }
   .entry-result {
     margin-top: 0.7rem;
@@ -323,9 +350,10 @@
       min-height: 0;
       padding: 3rem 0 1.5rem;
     }
+    .side-photo { width: 80px; height: 80px; }
     .side-nav { display: none; }
     .side-foot { margin-top: 1.8rem; padding-top: 1.5rem; border-top: 1px solid var(--line-soft); }
-    .content { padding: 1.5rem 0 4rem; max-width: none; }
+    .content { padding: 1.5rem 0 4rem; max-width: none; border-left: none; }
     .intro { font-size: 1.08rem; padding-bottom: 2.5rem; }
     .skill-group { grid-template-columns: 1fr; gap: 0.5rem; }
   }
@@ -338,6 +366,7 @@
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="side-top">
+      <img class="side-photo" src="profile_pic.jpg" alt="Vishwas Kothari" onerror="this.style.display='none'">
       <div class="side-name">Vishwas<br>Kothari</div>
       <p class="side-role">Applied machine learning, model evaluation, and data engineering.</p>
       <div class="side-meta">
@@ -345,6 +374,7 @@
         <span>Boulder, CO</span>
         <span><span class="live-dot" style="margin-right:7px"></span>Open to full-time roles</span>
       </div>
+      <a class="side-resume" href="resume.pdf" target="_blank" rel="noopener">Résumé <span aria-hidden="true">↗</span></a>
     </div>
 
     <nav class="side-nav" aria-label="Sections">
@@ -380,7 +410,7 @@
       <span class="block-label mono reveal">Selected Work</span>
 
       <article class="entry reveal">
-        <div class="entry-meta mono">Evaluation · Multimodal · 2026</div>
+        <div class="entry-meta mono"><span class="ix">01</span>Evaluation · Multimodal · 2026</div>
         <h3>FinAgent-Eval</h3>
         <p class="entry-result"><b>4.3×</b>ANLS over the strongest document-AI baseline (0.6368 vs. 0.1472).</p>
         <p class="entry-desc">An evaluation harness for vision-language models on document question answering, run end to end on a single free GPU. Five models compared across 397 hand-curated QA pairs from ten sources. The top model leads overall but fails at numerical reasoning (0.11 ANLS, 0/6 paraphrase consistency); a seven-label taxonomy classifies the failure types.</p>
@@ -392,7 +422,7 @@
       </article>
 
       <article class="entry reveal">
-        <div class="entry-meta mono">ML Theory · Optimization</div>
+        <div class="entry-meta mono"><span class="ix">02</span>ML Theory · Optimization</div>
         <h3>Implicit Bias of Adam vs. SGD</h3>
         <p class="entry-result"><b>0.99</b>cosine similarity between empirical and exact max-margin solutions.</p>
         <p class="entry-desc">An empirical test of recent theory on optimizer implicit bias: gradient descent converges to the ℓ₂ max-margin solution, Adam to ℓ∞. Verified across five seeds against exact convex-program solutions, then measured the cost on a spurious-correlation benchmark — SGD dropped 30.2% out of distribution with 3× shortcut reliance; Adam dropped 13.6%.</p>
@@ -403,7 +433,7 @@
       </article>
 
       <article class="entry reveal">
-        <div class="entry-meta mono">Responsible ML · Fairness</div>
+        <div class="entry-meta mono"><span class="ix">03</span>Responsible ML · Fairness</div>
         <h3>XAI Credit Lens</h3>
         <p class="entry-result"><b>0.782</b>test AUC, with zero fairness violations across four attributes.</p>
         <p class="entry-desc">A decision-modeling pipeline with fairness auditing, SHAP and LIME explanations, and DiCE counterfactuals built in rather than added afterward. Gradient-boosted model on 30,000 records; disparate impact stays within 0.96–1.03 across four protected attributes. Credit scoring is the testbed.</p>
@@ -414,7 +444,7 @@
       </article>
 
       <article class="entry reveal">
-        <div class="entry-meta mono">Benchmark · Transfer Learning</div>
+        <div class="entry-meta mono"><span class="ix">04</span>Benchmark · Transfer Learning</div>
         <h3>Document VQA &amp; Transfer</h3>
         <p class="entry-result"><b>+22% / −39%</b>in-domain fine-tuning versus generic fine-tuning, same model and task.</p>
         <p class="entry-desc">Four vision-language models benchmarked on dense, real-world documents. A small in-domain LoRA run improved ANLS by 22%; training on 5,000 generic samples reduced it by 39%. The documents showed a 63–83% performance gap against generic document-QA benchmarks.</p>
@@ -455,12 +485,12 @@
       <div class="item reveal">
         <div class="when">2025 – 2027</div>
         <h4>MS, Computer Science</h4>
-        <div class="org">University of Colorado Boulder · GPA 3.5 / 4.0</div>
+        <div class="org">University of Colorado Boulder · GPA 3.74 / 4.0</div>
       </div>
       <div class="item reveal">
         <div class="when">2021 – 2025</div>
         <h4>B.Tech, Information Technology</h4>
-        <div class="org">Vellore Institute of Technology · GPA 8.49 / 10.0</div>
+        <div class="org">Vellore Institute of Technology · GPA 3.4 / 4.0</div>
       </div>
     </section>
 
@@ -520,7 +550,7 @@
     <section class="block" id="contact">
       <span class="block-label mono reveal">Contact</span>
       <div class="contact-end reveal">
-        <p>Open to full-time roles in AI, ML, and data science. Reach me at <a class="mail" href="mailto:vishwasvkothari@gmail.com">vishwasvkothari@gmail.com</a>, or on <a class="mail" href="https://linkedin.com/in/vishwas-kothari" target="_blank" rel="noopener">LinkedIn</a> and <a class="mail" href="https://github.com/vishwas182002" target="_blank" rel="noopener">GitHub</a>.</p>
+        <p>Open to full-time roles in AI, ML, and data science. Reach me at <a class="mail" href="mailto:vishwasvkothari@gmail.com">vishwasvkothari@gmail.com</a> — or see my <a class="mail" href="resume.pdf" target="_blank" rel="noopener">résumé</a>, <a class="mail" href="https://linkedin.com/in/vishwas-kothari" target="_blank" rel="noopener">LinkedIn</a>, and <a class="mail" href="https://github.com/vishwas182002" target="_blank" rel="noopener">GitHub</a>.</p>
       </div>
     </section>
 
