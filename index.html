@@ -1,2267 +1,764 @@
 <!doctype html>
-<html lang="en" class="no-system-cursor">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vishwas Kothari — Portfolio</title>
-  <meta name="description" content="A cinematic portfolio for Vishwas Kothari: research, engineering, data, and systems built with clarity.">
-  <script>history.scrollRestoration = "manual";</script>
-  <meta property="og:title" content="Vishwas Kothari — Portfolio">
-  <meta property="og:description" content="Research, engineering, data, and systems built with clarity.">
-  <meta property="og:type" content="website">
-  <meta name="theme-color" content="#0d0d0d">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    :root {
-      --bg: #0d0d0d;
-      --surface: #141414;
-      --text: #e0ddd6;
-      --muted: #8a8780;
-      --gold: #b7ab98;
-      --gold-light: #c9bda8;
-      --gold-dim: rgba(183, 171, 152, 0.15);
-      --border: rgba(255, 255, 255, 0.06);
-      --ink: #070707;
-      --soft-white: #f2efe8;
-      --reveal-bg: #b7ab98;
-      --reveal-text: #0d0d0d;
-      --cursor-x: 50vw;
-      --cursor-y: 50vh;
-      --cursor-size: 28px;
-      --vh: 1vh;
-      --ease-out: cubic-bezier(0.165, 0.84, 0.44, 1);
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html {
-      background: var(--bg);
-      overscroll-behavior-y: none !important;
-      scroll-behavior: auto !important;
-    }
-
-    html.lenis { height: auto; }
-    .lenis.lenis-smooth { scroll-behavior: auto; }
-    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
-    .lenis.lenis-stopped { overflow: hidden; }
-
-    body {
-      font-family: "DM Sans", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-      cursor: none;
-      overflow-x: hidden;
-    }
-
-    body::-webkit-scrollbar { display: none; }
-    body.no-scroll { overflow: hidden; }
-    body.is-cursor-hidden .cursor-dot,
-    body.is-cursor-hidden .cursor-ring { opacity: 0; }
-
-    a, button, .project-card, .cert-card { cursor: none; }
-
-    /* ===== PRELOADER ===== */
-    .preloader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--bg);
-      z-index: 999999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      transition: opacity 0.6s ease, visibility 0.6s ease;
-    }
-
-    .preloader.hidden {
-      opacity: 0;
-      pointer-events: none;
-      visibility: hidden;
-    }
-
-    .preloader-circle { position: relative; width: 200px; height: 200px; }
-    .preloader-circle::before {
-      content: "";
-      position: absolute;
-      inset: -12px;
-      border: 1px solid rgba(183, 171, 152, 0.08);
-      border-top-color: rgba(183, 171, 152, 0.45);
-      border-radius: 50%;
-      animation: loaderOrbit 8s linear infinite;
-    }
-
-    .preloader.hidden .preloader-circle {
-      transform: scale(0.92);
-      opacity: 0;
-      transition: transform 0.6s var(--ease-out), opacity 0.6s var(--ease-out);
-    }
-
-    .preloader-circle svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-
-    .preloader-circle .bg-circle {
-      fill: none;
-      stroke: rgba(183, 171, 152, 0.12);
-      stroke-width: 1.5;
-    }
-
-    .preloader-circle .progress-circle {
-      fill: none;
-      stroke: var(--gold);
-      stroke-width: 1.5;
-      stroke-linecap: round;
-      stroke-dasharray: 565.48;
-      stroke-dashoffset: 565.48;
-      transition: stroke-dashoffset 0.15s linear;
-    }
-
-    .preloader-percent {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: "Syne", sans-serif;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 0.18em;
-      line-height: 1.35;
-      text-align: center;
-      text-transform: uppercase;
-      width: 150px;
-    }
-
-    .preloader-btn {
-      margin-top: 2rem;
-      background: none;
-      border: 1px solid rgba(183, 171, 152, 0.3);
-      color: var(--gold);
-      padding: 0.7rem 2.5rem;
-      border-radius: 50px;
-      font-family: "DM Sans", sans-serif;
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      transition: all 0.35s ease;
-      opacity: 0;
-      transform: translateY(10px);
-    }
-
-    .preloader-btn.visible { opacity: 1; transform: translateY(0); }
-    .preloader-btn:hover { background: var(--gold); color: #0d0d0d; border-color: var(--gold); }
-
-    @keyframes loaderOrbit {
-      to { transform: rotate(360deg); }
-    }
-
-    /* ===== FULL-PAGE CURSOR REVEAL ===== */
-    .portfolio-stage {
-      position: relative;
-      min-height: 100vh;
-      background: var(--bg);
-    }
-
-    .page-layer {
-      width: 100%;
-      min-height: 100vh;
-    }
-
-    .layer-base {
-      position: relative;
-      z-index: 1;
-      background: var(--bg);
-      color: var(--text);
-    }
-
-    .layer-reveal {
-      --surface: rgba(13, 13, 13, 0.08);
-      --text: var(--reveal-text);
-      --muted: rgba(13, 13, 13, 0.67);
-      --gold: var(--reveal-text);
-      --gold-light: var(--reveal-text);
-      --gold-dim: rgba(13, 13, 13, 0.15);
-      --border: rgba(13, 13, 13, 0.12);
-      position: absolute;
-      inset: 0 auto auto 0;
-      z-index: 2;
-      width: 100%;
-      min-height: 100%;
-      background: var(--reveal-bg);
-      color: var(--reveal-text);
-      pointer-events: none;
-      clip-path: circle(var(--cursor-size) at var(--cursor-x) var(--cursor-y));
-      will-change: clip-path;
-    }
-
-    .layer-reveal.is-dormant {
-      visibility: hidden;
-    }
-
-    .layer-reveal .hero-bg { display: none; }
-    .layer-reveal strong,
-    .layer-reveal .highlight,
-    .layer-reveal .accent { color: var(--reveal-text); }
-
-    .layer-reveal .header {
-      mix-blend-mode: normal;
-    }
-
-    .layer-reveal .header-logo a,
-    .layer-reveal .header-menu a {
-      color: var(--reveal-text);
-    }
-
-    .layer-reveal .project-visual,
-    .layer-reveal .answer-panel,
-    .layer-reveal .doc-page {
-      background-color: rgba(13, 13, 13, 0.06);
-      border-color: rgba(13, 13, 13, 0.14);
-    }
-
-    .layer-reveal .answer-panel span {
-      color: rgba(13, 13, 13, 0.68);
-    }
-
-    .layer-reveal .metric-ring,
-    .layer-reveal .answer-panel strong {
-      color: var(--reveal-text);
-    }
-
-    .cursor-dot,
-    .cursor-ring {
-      position: fixed;
-      left: 0;
-      top: 0;
-      pointer-events: none;
-      z-index: 999998;
-      opacity: 1;
-      transition: opacity 0.25s ease;
-      will-change: transform, width, height;
-    }
-
-    .cursor-dot {
-      width: 5px;
-      height: 5px;
-      background: #fff;
-      border-radius: 50%;
-      mix-blend-mode: difference;
-      z-index: 999999;
-    }
-
-    .cursor-ring {
-      width: 28px;
-      height: 28px;
-      border: 1px solid rgba(183, 171, 152, 0.82);
-      border-radius: 50%;
-    }
-
-    /* ===== HEADER ===== */
-    .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      padding: 1.5rem 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      mix-blend-mode: difference;
-    }
-
-    .header-logo a {
-      font-family: "Syne", sans-serif;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #fff;
-      text-decoration: none;
-      letter-spacing: -0.5px;
-    }
-
-    .header-menu { display: flex; gap: clamp(1rem, 2.2vw, 2rem); list-style: none; }
-
-    .header-menu a {
-      color: rgba(255, 255, 255, 0.55);
-      display: block;
-      text-decoration: none;
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      line-height: 1;
-      overflow: hidden;
-      position: relative;
-      text-transform: uppercase;
-      transition: color 0.3s;
-    }
-
-    .header-menu a:hover { color: #fff; }
-
-    .nav-word,
-    .nav-word-active {
-      display: block;
-      transition: transform 0.45s var(--ease-out), color 0.45s var(--ease-out);
-    }
-
-    .nav-word-active {
-      color: #fff;
-      left: 0;
-      position: absolute;
-      top: 0;
-      transform: translateY(115%);
-    }
-
-    .header-menu a:hover .nav-word,
-    .header-menu a.is-active .nav-word {
-      transform: translateY(-115%);
-    }
-
-    .header-menu a:hover .nav-word-active,
-    .header-menu a.is-active .nav-word-active {
-      transform: translateY(0);
-    }
-
-    /* ===== HERO ===== */
-    .hero {
-      min-height: calc(var(--vh) * 100);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      padding: 7rem 2rem 5rem;
-      overflow: hidden;
-    }
-
-    .hero-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      opacity: 0.7;
-      pointer-events: none;
-    }
-
-    .hero::before,
-    .hero::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: min(86vw, 920px);
-      aspect-ratio: 1;
-      border: 1px solid rgba(183, 171, 152, 0.08);
-      border-radius: 50%;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      z-index: 0;
-    }
-
-    .hero::after {
-      width: min(66vw, 680px);
-      border-color: rgba(183, 171, 152, 0.05);
-      animation: heroHalo 18s linear infinite;
-    }
-
-    .hero-inner {
-      text-align: center;
-      max-width: 900px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-eyebrow {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.25em;
-      color: var(--gold);
-      margin-bottom: 1.5rem;
-      font-weight: 500;
-    }
-
-    .hero-title {
-      font-family: "Syne", sans-serif;
-      font-size: clamp(3.5rem, 10vw, 7.5rem);
-      font-weight: 800;
-      line-height: 0.9;
-      letter-spacing: -2px;
-    }
-
-    .hero-title .line { display: block; overflow: hidden; }
-    .hero-title .line span { display: block; }
-    .hero-title .highlight { color: var(--gold); }
-
-    .hero-subtitle {
-      font-size: 1.15rem;
-      color: var(--muted);
-      margin-top: 2.5rem;
-      font-weight: 300;
-      line-height: 1.6;
-      max-width: 550px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .hero-subtitle strong { color: var(--text); font-weight: 500; }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 2.2rem;
-      flex-wrap: wrap;
-    }
-
-    .hero-link {
-      min-width: 150px;
-      border: 1px solid rgba(183, 171, 152, 0.22);
-      border-radius: 999px;
-      color: var(--text);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.11em;
-      padding: 0.95rem 1.25rem;
-      position: relative;
-      overflow: hidden;
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: color 0.35s var(--ease-out), border-color 0.35s var(--ease-out), transform 0.35s var(--ease-out);
-      z-index: 0;
-    }
-
-    .hero-link::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: var(--gold);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.45s var(--ease-out);
-      z-index: -1;
-    }
-
-    .hero-link:hover {
-      border-color: var(--gold);
-      color: var(--ink);
-      transform: translateY(-2px);
-    }
-
-    .hero-link:hover::before { transform: scaleX(1); }
-
-    .hero-profile {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      overflow: hidden;
-      margin: 0 auto 2rem;
-      border: 1px solid rgba(183, 171, 152, 0.3);
-      position: relative;
-      box-shadow: 0 0 0 10px rgba(183, 171, 152, 0.025), 0 24px 70px rgba(0, 0, 0, 0.45);
-    }
-
-    .hero-profile img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: grayscale(20%);
-    }
-
-    @keyframes heroHalo {
-      to { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-
-    .hero-profile,
-    .hero-title,
-    .hero-subtitle,
-    .section-label,
-    [data-parallax] {
-      will-change: transform;
-    }
-
-    /* ===== SECTIONS ===== */
-    .section { padding: 8rem 2rem; position: relative; }
-    .container { max-width: 1100px; margin: 0 auto; }
-    .container-sm { max-width: 750px; margin: 0 auto; }
-
-    .section-label {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-      margin-bottom: 2.5rem;
-      font-weight: 600;
-    }
-
-    .bio-text {
-      font-size: clamp(1.5rem, 3vw, 2.2rem);
-      font-weight: 400;
-      line-height: 1.35;
-      letter-spacing: -0.3px;
-    }
-
-    .bio-text strong { color: var(--text); font-weight: 500; }
-    .bio-text .line-mask { overflow: hidden; display: block; }
-    .bio-text .line-mask span { display: block; }
-
-    [data-scroll-mask] {
-      --scrub: 0%;
-      background: linear-gradient(90deg, var(--text) var(--scrub), rgba(224, 221, 214, 0.18) var(--scrub));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      transition: background 0.2s linear;
-    }
-
-    [data-scroll-mask] strong {
-      color: inherit;
-    }
-
-    .layer-reveal [data-scroll-mask] {
-      background: linear-gradient(90deg, var(--reveal-text) var(--scrub), rgba(13, 13, 13, 0.24) var(--scrub));
-      -webkit-background-clip: text;
-      background-clip: text;
-    }
-
-    .body-copy {
-      color: var(--muted);
-      margin-top: 1.5rem;
-      font-size: 1.05rem;
-      line-height: 1.8;
-      max-width: 600px;
-    }
-
-    .body-copy.small {
-      margin-top: 1rem;
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-
-    .skills-showcase { margin-top: 5rem; }
-
-    .skill-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      padding: 2.5rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      align-items: center;
-      position: relative;
-    }
-
-    [data-row-mask] {
-      isolation: isolate;
-      overflow: hidden;
-    }
-
-    [data-row-mask] > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    [data-row-mask]::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: var(--gold);
-      clip-path: inset(50% 0 50% 0);
-      opacity: 0.95;
-      transition: clip-path 0.55s var(--ease-out), opacity 0.55s var(--ease-out);
-      z-index: 0;
-    }
-
-    [data-row-mask].is-row-hover::before {
-      clip-path: inset(0);
-    }
-
-    [data-row-mask] h3,
-    [data-row-mask] h4,
-    [data-row-mask] p,
-    [data-row-mask] li,
-    [data-row-mask] .timeline-year,
-    [data-row-mask] .company {
-      transition: color 0.45s var(--ease-out), transform 0.45s var(--ease-out);
-    }
-
-    [data-row-mask].is-row-hover h3,
-    [data-row-mask].is-row-hover h4,
-    [data-row-mask].is-row-hover p,
-    [data-row-mask].is-row-hover li,
-    [data-row-mask].is-row-hover .timeline-year,
-    [data-row-mask].is-row-hover .company {
-      color: #0d0d0d;
-    }
-
-    [data-row-mask].is-row-hover h3,
-    [data-row-mask].is-row-hover h4 {
-      transform: translateX(0.35em);
-    }
-
-    .layer-reveal .skill-row {
-      border-bottom-color: rgba(13, 13, 13, 0.12);
-    }
-
-    .skill-row h3 {
-      font-family: "Syne", sans-serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 700;
-      letter-spacing: -1px;
-    }
-
-    .skill-row p {
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 120px 1fr 1fr;
-      gap: 2rem;
-      padding: 2rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-      align-items: start;
-    }
-
-    .layer-reveal .timeline-item {
-      border-bottom-color: rgba(13, 13, 13, 0.12);
-    }
-
-    .timeline-year {
-      font-family: "Syne", sans-serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--gold);
-    }
-
-    .timeline-role h4 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .timeline-role .company {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-top: 0.25rem;
-    }
-
-    .timeline-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
-    .timeline-desc li { margin-bottom: 0.4rem; list-style: none; position: relative; padding-left: 1rem; }
-    .timeline-desc li::before { content: "-"; position: absolute; left: 0; color: var(--gold); }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 2rem;
-      margin-top: 1rem;
-    }
-
-    .project-card {
-      background: var(--surface);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      border-radius: 16px;
-      padding: 2.5rem;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.1s ease-out, box-shadow 0.3s, border-color 0.3s;
-      transform-style: preserve-3d;
-      perspective: 1000px;
-    }
-
-    .project-card:hover {
-      border-color: rgba(183, 171, 152, 0.3);
-      box-shadow: 0 25px 45px rgba(183, 171, 152, 0.15);
-    }
-
-    .project-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.08) 42%, transparent 62%),
-        radial-gradient(circle at var(--card-x, 50%) var(--card-y, 30%), rgba(183, 171, 152, 0.18), transparent 34%);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.35s var(--ease-out);
-      z-index: 0;
-    }
-
-    .project-card.is-card-hover::before { opacity: 1; }
-
-    .cert-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at var(--card-x, 50%) var(--card-y, 50%), rgba(183, 171, 152, 0.2), transparent 38%);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.35s var(--ease-out);
-    }
-
-    .cert-card.is-card-hover::after {
-      opacity: 1;
-    }
-
-    .project-card > *,
-    .cert-card > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .layer-reveal .project-card,
-    .layer-reveal .cert-card {
-      border-color: rgba(13, 13, 13, 0.12);
-      box-shadow: none;
-    }
-
-    .project-card h3 {
-      font-family: "Syne", sans-serif;
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-      letter-spacing: -0.5px;
-    }
-
-    .project-visual {
-      height: 148px;
-      margin: -0.35rem -0.35rem 1.45rem;
-      border: 1px solid rgba(183, 171, 152, 0.1);
-      border-radius: 14px;
-      background:
-        linear-gradient(rgba(183, 171, 152, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(183, 171, 152, 0.035) 1px, transparent 1px),
-        rgba(8, 8, 8, 0.42);
-      background-size: 26px 26px;
-      overflow: hidden;
-      position: relative;
-      contain: paint;
-      transform: translateZ(18px);
-    }
-
-    .project-visual::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.42);
-      pointer-events: none;
-    }
-
-    .metric-ring {
-      position: absolute;
-      left: 1.2rem;
-      top: 50%;
-      width: 78px;
-      height: 78px;
-      border: 1px solid rgba(183, 171, 152, 0.42);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      color: var(--soft-white);
-      font-family: "Syne", sans-serif;
-      font-weight: 700;
-      transform: translateY(-50%);
-    }
-
-    .metric-ring::before,
-    .metric-ring::after {
-      content: "";
-      position: absolute;
-      border: 1px solid rgba(183, 171, 152, 0.18);
-      border-radius: 50%;
-      inset: 9px;
-      animation: spinFine 9s linear infinite;
-    }
-
-    .metric-ring::after {
-      inset: -8px;
-      border-top-color: rgba(242, 239, 232, 0.6);
-      border-left-color: transparent;
-      animation-duration: 7s;
-      animation-direction: reverse;
-    }
-
-    .signal-bars {
-      position: absolute;
-      right: 1.1rem;
-      bottom: 1.15rem;
-      display: flex;
-      align-items: end;
-      gap: 0.55rem;
-      height: 88px;
-    }
-
-    .signal-bars span {
-      width: 13px;
-      border-radius: 999px 999px 0 0;
-      background: linear-gradient(180deg, var(--soft-white), rgba(183, 171, 152, 0.24));
-      animation: barPulse 2.8s ease-in-out infinite;
-      transform-origin: bottom;
-    }
-
-    .signal-bars span:nth-child(1) { height: 44%; animation-delay: -0.5s; }
-    .signal-bars span:nth-child(2) { height: 72%; animation-delay: -1.2s; }
-    .signal-bars span:nth-child(3) { height: 56%; animation-delay: -0.2s; }
-    .signal-bars span:nth-child(4) { height: 88%; animation-delay: -1.8s; }
-    .signal-bars span:nth-child(5) { height: 64%; animation-delay: -0.8s; }
-
-    .visual-finagent {
-      padding: 0.78rem;
-    }
-
-    .agent-grid {
-      display: grid;
-      gap: 0.55rem;
-      grid-template-columns: 1.1fr 0.9fr;
-      height: 100%;
-      position: relative;
-      z-index: 1;
-    }
-
-    .agent-card {
-      border: 1px solid rgba(183, 171, 152, 0.14);
-      border-radius: 12px;
-      background: rgba(183, 171, 152, 0.035);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-width: 0;
-      overflow: hidden;
-      padding: 0.68rem;
-      position: relative;
-    }
-
-    .agent-card::before {
-      content: "";
-      position: absolute;
-      inset: auto 0 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(183, 171, 152, 0.8), transparent);
-      opacity: 0.7;
-    }
-
-    .agent-card.primary {
-      grid-row: span 2;
-      background:
-        radial-gradient(circle at 55% 35%, rgba(183, 171, 152, 0.16), transparent 42%),
-        rgba(183, 171, 152, 0.045);
-    }
-
-    .agent-card.warning::before {
-      background: linear-gradient(90deg, transparent, rgba(242, 239, 232, 0.55), transparent);
-    }
-
-    .agent-card span {
-      color: var(--muted);
-      font-size: 0.56rem;
-      font-weight: 800;
-      letter-spacing: 0.11em;
-      text-transform: uppercase;
-    }
-
-    .agent-card strong {
-      color: var(--soft-white);
-      font-family: "Syne", sans-serif;
-      font-size: clamp(1.08rem, 3vw, 1.55rem);
-      letter-spacing: -0.05em;
-      line-height: 1.05;
-      margin-top: 0.35rem;
-    }
-
-    .agent-card small {
-      color: rgba(224, 221, 214, 0.48);
-      display: block;
-      font-size: 0.58rem;
-      line-height: 1.28;
-      margin-top: 0.35rem;
-    }
-
-    .agent-card.primary strong {
-      font-size: clamp(2rem, 5.8vw, 2.85rem);
-    }
-
-    .agent-route {
-      align-items: center;
-      bottom: 0.85rem;
-      display: flex;
-      gap: 0.35rem;
-      left: 1.25rem;
-      opacity: 0.35;
-      position: absolute;
-      right: 1.25rem;
-      z-index: 0;
-    }
-
-    .agent-route span {
-      background: rgba(183, 171, 152, 0.42);
-      border-radius: 999px;
-      display: block;
-      flex: 1;
-      height: 1px;
-      transform-origin: left;
-      animation: agentTrace 2.6s ease-in-out infinite;
-    }
-
-    .agent-route span:nth-child(2) { animation-delay: -1.7s; }
-    .agent-route span:nth-child(3) { animation-delay: -0.9s; }
-
-    .doc-stack {
-      position: absolute;
-      inset: 0.95rem;
-      display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
-      gap: 0.7rem;
-      align-items: stretch;
-    }
-
-    .doc-page {
-      border: 1px solid rgba(183, 171, 152, 0.18);
-      border-radius: 10px;
-      background: rgba(224, 221, 214, 0.045);
-      padding: 0.72rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .doc-page::before {
-      content: "";
-      position: absolute;
-      left: -20%;
-      right: -20%;
-      top: -30%;
-      height: 44%;
-      background: linear-gradient(180deg, transparent, rgba(183, 171, 152, 0.18), transparent);
-      animation: scanLine 3.4s ease-in-out infinite;
-    }
-
-    .doc-line {
-      display: block;
-      height: 5px;
-      border-radius: 999px;
-      background: rgba(224, 221, 214, 0.18);
-      margin-bottom: 0.44rem;
-    }
-
-    .doc-line:nth-child(2) { width: 76%; }
-    .doc-line:nth-child(3) { width: 54%; }
-    .doc-line:nth-child(4) { width: 88%; }
-
-    .attention-box {
-      position: absolute;
-      border: 1px solid rgba(242, 239, 232, 0.52);
-      background: rgba(183, 171, 152, 0.12);
-      animation: attentionShift 4.2s ease-in-out infinite;
-    }
-
-    .attention-box.one { width: 42%; height: 18%; left: 13%; top: 42%; }
-    .attention-box.two { width: 32%; height: 20%; right: 11%; bottom: 17%; animation-delay: -1.6s; }
-
-    .answer-panel {
-      border: 1px solid rgba(183, 171, 152, 0.12);
-      border-radius: 12px;
-      padding: 0.78rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background: rgba(183, 171, 152, 0.035);
-    }
-
-    .answer-panel strong {
-      color: var(--soft-white);
-      font-family: "Syne", sans-serif;
-      font-size: 1.22rem;
-      letter-spacing: -0.04em;
-    }
-
-    .answer-panel span {
-      color: var(--muted);
-      font-size: 0.58rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .bias-visual {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.7rem;
-      padding: 0.78rem;
-    }
-
-    .bias-panel {
-      align-items: center;
-      border: 1px solid rgba(183, 171, 152, 0.12);
-      border-radius: 14px;
-      background: rgba(183, 171, 152, 0.03);
-      display: grid;
-      grid-template-rows: auto 1fr;
-      gap: 0.55rem;
-      min-width: 0;
-      overflow: hidden;
-      padding: 0.62rem;
-      position: relative;
-    }
-
-    .bias-label {
-      color: var(--muted);
-      font-size: 0.62rem;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      text-align: center;
-      text-transform: uppercase;
-    }
-
-    .mnist-frame {
-      width: min(72px, 100%);
-      aspect-ratio: 1;
-      border: 1px solid rgba(183, 171, 152, 0.14);
-      border-radius: 10px;
-      background:
-        linear-gradient(rgba(183, 171, 152, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(183, 171, 152, 0.05) 1px, transparent 1px),
-        rgba(8, 8, 8, 0.55);
-      background-size: 10px 10px;
-      margin: 0 auto;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .mnist-frame::before {
-      content: "";
-      position: absolute;
-      left: 7px;
-      top: 7px;
-      width: 18px;
-      height: 18px;
-      border-radius: 4px;
-      background: rgba(183, 171, 152, 0.2);
-      box-shadow: 0 0 18px rgba(183, 171, 152, 0.22);
-    }
-
-    .bias-panel.shortcut .mnist-frame::before {
-      background: #b7ab98;
-      box-shadow: 0 0 28px rgba(183, 171, 152, 0.9);
-      animation: patchPulse 1.9s ease-in-out infinite;
-    }
-
-    .digit-stroke {
-      position: absolute;
-      border: 5px solid rgba(242, 239, 232, 0.18);
-      border-left-color: transparent;
-      border-radius: 50%;
-      inset: 20px 18px 17px 21px;
-      transform: rotate(-24deg);
-    }
-
-    .bias-panel.rich .digit-stroke {
-      border-color: rgba(242, 239, 232, 0.86);
-      border-left-color: transparent;
-      box-shadow: 0 0 22px rgba(242, 239, 232, 0.22);
-      animation: digitGlow 2.4s ease-in-out infinite;
-    }
-
-    .bias-panel::after {
-      content: "";
-      bottom: 0.65rem;
-      height: 1px;
-      left: 18%;
-      position: absolute;
-      right: 18%;
-      background: linear-gradient(90deg, transparent, rgba(183, 171, 152, 0.36), transparent);
-    }
-
-    .bias-panel.shortcut::after {
-      background: linear-gradient(90deg, transparent, rgba(183, 171, 152, 0.7), transparent);
-    }
-
-    @keyframes spinFine {
-      to { transform: rotate(360deg); }
-    }
-
-    @keyframes barPulse {
-      0%, 100% { transform: scaleY(0.78); opacity: 0.54; }
-      50% { transform: scaleY(1); opacity: 1; }
-    }
-
-    @keyframes agentTrace {
-      0%, 100% { transform: scaleX(0.25); opacity: 0.28; }
-      45%, 65% { transform: scaleX(1); opacity: 0.9; }
-    }
-
-    @keyframes scanLine {
-      0%, 100% { transform: translateY(0); opacity: 0; }
-      20%, 70% { opacity: 1; }
-      100% { transform: translateY(350%); }
-    }
-
-    @keyframes attentionShift {
-      0%, 100% { opacity: 0.34; transform: translate3d(0, 0, 0); }
-      50% { opacity: 1; transform: translate3d(8px, -4px, 0); }
-    }
-
-    @keyframes patchPulse {
-      0%, 100% { transform: scale(0.9); opacity: 0.62; }
-      50% { transform: scale(1.08); opacity: 1; }
-    }
-
-    @keyframes digitGlow {
-      0%, 100% { opacity: 0.58; transform: rotate(-24deg) scale(0.96); }
-      50% { opacity: 1; transform: rotate(-24deg) scale(1.04); }
-    }
-
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .project-tags span {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--gold);
-      border: 1px solid rgba(183, 171, 152, 0.2);
-      padding: 0.2rem 0.7rem;
-      border-radius: 50px;
-    }
-
-    .layer-reveal .project-tags span {
-      border-color: rgba(13, 13, 13, 0.2);
-    }
-
-    .project-card p { color: var(--muted); font-size: 0.93rem; line-height: 1.7; }
-
-    .project-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--gold);
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 500;
-      margin-top: 1.5rem;
-      transition: gap 0.3s;
-    }
-
-    .project-link:hover { gap: 0.8rem; }
-
-    .project-meta {
-      display: inline-block;
-      color: var(--muted);
-      font-size: 0.85rem;
-      font-style: italic;
-      margin-top: 1.5rem;
-    }
-
-    .cert-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .cert-card {
-      background: var(--surface);
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      border-radius: 12px;
-      padding: 2rem;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 0.3s;
-      transform-style: preserve-3d;
-    }
-
-    .cert-card:hover { border-color: rgba(183, 171, 152, 0.2); }
-    .cert-card h4 { font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600; }
-    .cert-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
-    .cert-icon { color: var(--gold); font-size: 1.3rem; margin-bottom: 1rem; }
-
-    .experience-band {
-      margin: 3rem auto 0;
-      max-width: 1100px;
-      border-top: 1px solid rgba(183, 171, 152, 0.08);
-      border-bottom: 1px solid rgba(183, 171, 152, 0.08);
-      overflow: hidden;
-      padding: 1.15rem 0;
-      position: relative;
-    }
-
-    .experience-track {
-      display: flex;
-      width: max-content;
-      animation: marquee 26s linear infinite;
-    }
-
-    .experience-track span {
-      color: rgba(224, 221, 214, 0.42);
-      font-family: "Syne", sans-serif;
-      font-size: clamp(1.3rem, 3vw, 2.6rem);
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      padding-right: 2rem;
-      white-space: nowrap;
-    }
-
-    @keyframes marquee {
-      to { transform: translateX(-50%); }
-    }
-
-    .contact-block { text-align: center; }
-
-    .contact-block h2 {
-      font-family: "Syne", sans-serif;
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      font-weight: 800;
-      letter-spacing: -2px;
-      margin-bottom: 1.5rem;
-    }
-
-    .contact-block a {
-      color: var(--gold);
-      text-decoration: none;
-      font-size: 1.3rem;
-      transition: color 0.3s;
-    }
-
-    .contact-block a:hover { color: var(--text); }
-
-    .social-links {
-      display: flex;
-      gap: 2.5rem;
-      justify-content: center;
-      margin-top: 3rem;
-    }
-
-    .social-links a {
-      color: var(--muted);
-      font-size: 1.4rem;
-      transition: color 0.3s;
-    }
-
-    .social-links a:hover { color: var(--text); }
-
-    [data-magnetic] {
-      display: inline-flex;
-      transition: transform 0.45s var(--ease-out);
-      will-change: transform;
-    }
-
-    .header-logo a[data-magnetic] {
-      display: inline-block;
-    }
-
-    .footer {
-      text-align: center;
-      padding: 3rem;
-      color: var(--muted);
-      font-size: 0.8rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.03);
-      position: relative;
-    }
-
-    .layer-reveal .footer {
-      border-top-color: rgba(13, 13, 13, 0.12);
-    }
-
-    .reveal-line { overflow: hidden; display: block; }
-    .reveal-line span { display: block; }
-
-    .fade-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
-    .layer-reveal .fade-up { opacity: 1; transform: none; }
-
-    @media (max-width: 768px) {
-      .header { padding: 1rem 1.5rem; }
-      .header-menu { gap: 1.2rem; }
-      .header-menu a { font-size: 0.68rem; }
-      .section { padding: 5rem 1.5rem; }
-      .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
-      .skill-row { grid-template-columns: 1fr; gap: 0.5rem; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .project-card { padding: 1.7rem; }
-      .hero {
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
-      }
-      .hero-actions { gap: 0.7rem; }
-      .hero-link { min-width: 132px; padding: 0.82rem 1rem; }
-      .project-visual {
-        height: 136px;
-        margin-left: -0.25rem;
-        margin-right: -0.25rem;
-      }
-      .visual-finagent {
-        height: 152px;
-      }
-      .agent-card.primary strong {
-        font-size: 2.25rem;
-      }
-      .agent-card strong {
-        font-size: 1.18rem;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .header {
-        align-items: flex-start;
-        padding: 0.9rem 1rem;
-      }
-      .header-logo a { font-size: 1.05rem; }
-      .header-menu {
-        flex-wrap: wrap;
-        gap: 0.55rem 0.75rem;
-        justify-content: flex-end;
-        max-width: 250px;
-      }
-      .header-menu a {
-        font-size: 0.56rem;
-        letter-spacing: 0.07em;
-      }
-      .hero {
-        padding-top: 8.5rem;
-      }
-      .hero-title {
-        letter-spacing: -1px;
-      }
-      .hero-actions {
-        flex-direction: column;
-      }
-      .hero-link {
-        width: min(100%, 260px);
-      }
-      .doc-stack { grid-template-columns: 0.75fr 1fr; }
-      .answer-panel strong {
-        font-size: 1rem;
-      }
-      .answer-panel span { font-size: 0.52rem; }
-      .agent-card small { display: none; }
-      .agent-card.primary strong { font-size: 2.05rem; }
-      .bias-label { font-size: 0.52rem; }
-    }
-
-    @media (pointer: coarse) {
-      body { cursor: auto; }
-      a, button, .project-card, .cert-card { cursor: pointer; }
-      .cursor-dot,
-      .cursor-ring,
-      .layer-reveal {
-        display: none;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.001ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-      }
-    }
-
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vishwas Kothari — Applied ML / Evaluation & Explainability</title>
+<meta name="description" content="Vishwas Kothari — MS Computer Science, CU Boulder. I build machine-learning systems people can audit and trust: evaluation harnesses, explainability, and the failure modes benchmarks hide.">
+<meta property="og:title" content="Vishwas Kothari — Applied ML">
+<meta property="og:description" content="Machine learning you can audit. Evaluation, explainability, and failure analysis.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#f4f4f2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+  // Set theme before paint to avoid flash.
+  (function () {
+    try {
+      var saved = localStorage.getItem("vk-theme");
+      var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var theme = saved || (prefersDark ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    } catch (e) {
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+  })();
+</script>
+<style>
+  :root {
+    --bg: #f4f4f2;
+    --surface: #fbfbf9;
+    --ink: #16161a;
+    --ink-soft: #34343a;
+    --muted: #76767e;
+    --faint: #9b9ba2;
+    --line: rgba(20, 20, 26, 0.13);
+    --line-soft: rgba(20, 20, 26, 0.07);
+    --accent: #2a5078;
+    --accent-ink: #1f3d5c;
+    --live: #2f7d5e;
+    --maxw: 1080px;
+    --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  [data-theme="dark"] {
+    --bg: #111114;
+    --surface: #18181c;
+    --ink: #ededee;
+    --ink-soft: #c9c9cd;
+    --muted: #8c8c94;
+    --faint: #66666e;
+    --line: rgba(255, 255, 255, 0.14);
+    --line-soft: rgba(255, 255, 255, 0.06);
+    --accent: #8fb3dd;
+    --accent-ink: #a9c6e8;
+    --live: #5cba8e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    transition: background 0.4s var(--ease), color 0.4s var(--ease);
+  }
+
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  a { color: inherit; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 2rem; }
+
+  .mono {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ---------- top bar ---------- */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 86%, transparent);
+    backdrop-filter: saturate(140%) blur(10px);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .topbar-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0.95rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .brand {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .brand b { color: var(--accent); font-weight: 600; }
+  .nav { display: flex; align-items: center; gap: 1.6rem; }
+  .nav a {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s var(--ease);
+  }
+  .nav a:hover { color: var(--ink); }
+  @media (max-width: 620px) { .nav a.optional { display: none; } }
+
+  .toggle {
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    width: 34px;
+    height: 34px;
+    display: inline-grid;
+    place-items: center;
+    cursor: pointer;
+    color: var(--ink);
+    transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+    flex: none;
+  }
+  .toggle:hover { border-color: var(--accent); }
+  .toggle svg { width: 16px; height: 16px; display: none; }
+  [data-theme="light"] .toggle .moon { display: block; }
+  [data-theme="dark"] .toggle .sun { display: block; }
+
+  /* ---------- hero ---------- */
+  .hero { padding: clamp(4.5rem, 12vh, 8rem) 0 clamp(3.5rem, 8vh, 5.5rem); }
+  .eyebrow { display: block; margin-bottom: 1.5rem; color: var(--muted); }
+  .hero h1 {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 600;
+    font-size: clamp(2.3rem, 5.6vw, 4.1rem);
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+    max-width: 16ch;
+  }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero .lede {
+    margin-top: 1.6rem;
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 42ch;
+    font-weight: 400;
+  }
+
+  .facts {
+    margin-top: 2.4rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.4rem;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+  .facts span { display: inline-flex; align-items: center; gap: 0.55rem; }
+  .facts span::before {
+    content: "";
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--faint);
+  }
+
+  .cta-row { margin-top: 2.4rem; display: flex; flex-wrap: wrap; gap: 0.7rem; }
+  .btn {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.72rem 1.25rem;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    color: var(--ink);
+    transition: border-color 0.2s var(--ease), background 0.2s var(--ease), color 0.2s var(--ease), transform 0.2s var(--ease);
+    display: inline-flex; align-items: center; gap: 0.55rem;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn.solid { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .btn.solid:hover { background: var(--accent-ink); border-color: var(--accent-ink); }
+  .btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ---------- section frame ---------- */
+  section { padding: clamp(3.5rem, 8vh, 6rem) 0; border-top: 1px solid var(--line-soft); }
+  .sec-head {
+    display: flex; align-items: baseline; gap: 1rem;
+    margin-bottom: 2.6rem;
+  }
+  .sec-head .idx {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.74rem;
+    color: var(--faint);
+    letter-spacing: 0.08em;
+  }
+  .sec-head h2 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- work entries ---------- */
+  .entry {
+    display: grid;
+    grid-template-columns: minmax(190px, 0.5fr) 1.5fr;
+    gap: 1.5rem 3rem;
+    padding: 2.6rem 0;
+    border-top: 1px solid var(--line);
+  }
+  .entry:first-of-type { border-top: none; padding-top: 0.4rem; }
+
+  .entry-tag { margin-bottom: 1.1rem; }
+  .metric {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 600;
+    font-size: clamp(2.4rem, 5vw, 3.3rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    font-feature-settings: "tnum" 1;
+  }
+  .metric small {
+    display: block;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-top: 0.9rem;
+    max-width: 30ch;
+  }
+
+  .entry-body h3 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.7rem;
+  }
+  .entry-body p { color: var(--ink-soft); font-size: 1rem; line-height: 1.65; }
+
+  .stat-line {
+    margin-top: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .stat-line span {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.76rem;
+    color: var(--muted);
+    letter-spacing: 0.01em;
+    padding-left: 1.1rem;
+    position: relative;
+  }
+  .stat-line span::before {
+    content: "→";
+    position: absolute; left: 0;
+    color: var(--accent);
+  }
+
+  .links { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem; }
+  .lnk {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: var(--ink);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 2px;
+    transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .lnk:hover { color: var(--accent); border-color: var(--accent); }
+  .lnk .arr { transition: transform 0.2s var(--ease); }
+  .lnk:hover .arr { transform: translateX(3px); }
+  .live-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--live);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--live) 60%, transparent);
+    animation: pulse 2.4s var(--ease) infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--live) 55%, transparent); }
+    70% { box-shadow: 0 0 0 7px transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
+  }
+
+  /* ---------- about ---------- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 2.4rem;
+    align-items: start;
+  }
+  .avatar {
+    width: 96px; height: 96px;
+    border-radius: 14px;
+    object-fit: cover;
+    border: 1px solid var(--line);
+    filter: grayscale(12%);
+    background: var(--surface);
+  }
+  .about-grid p { font-size: 1.08rem; line-height: 1.72; color: var(--ink-soft); max-width: 58ch; }
+  .about-grid p + p { margin-top: 1.2rem; }
+  .about-grid p strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- two-col rows (experience / education) ---------- */
+  .row {
+    display: grid;
+    grid-template-columns: minmax(160px, 0.45fr) 1.55fr;
+    gap: 0.6rem 3rem;
+    padding: 1.9rem 0;
+    border-top: 1px solid var(--line);
+  }
+  .row:first-of-type { border-top: none; padding-top: 0; }
+  .row .when {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    padding-top: 0.2rem;
+  }
+  .row h4 { font-size: 1.12rem; font-weight: 600; letter-spacing: -0.01em; }
+  .row .org { color: var(--muted); font-size: 0.92rem; margin-top: 0.15rem; }
+  .row ul { list-style: none; margin-top: 0.85rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .row li { color: var(--ink-soft); font-size: 0.97rem; line-height: 1.6; padding-left: 1.1rem; position: relative; }
+  .row li::before { content: ""; position: absolute; left: 0; top: 0.7em; width: 5px; height: 1px; background: var(--accent); }
+  .row .note { color: var(--ink-soft); font-size: 0.97rem; margin-top: 0.4rem; }
+
+  /* ---------- recognition ---------- */
+  .rec {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .rec-item {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 1.5rem;
+    background: var(--surface);
+    transition: border-color 0.25s var(--ease);
+  }
+  .rec-item:hover { border-color: var(--accent); }
+  .rec-item .kicker { display: block; margin-bottom: 0.7rem; color: var(--accent); }
+  .rec-item h4 { font-size: 1rem; font-weight: 600; letter-spacing: -0.01em; line-height: 1.35; }
+  .rec-item p { font-size: 0.86rem; color: var(--muted); margin-top: 0.5rem; line-height: 1.55; }
+  .rec-item a { color: var(--accent); text-decoration: none; font-family: "JetBrains Mono", monospace; font-size: 0.72rem; letter-spacing: 0.02em; }
+  .rec-item a:hover { text-decoration: underline; }
+
+  /* ---------- skills ---------- */
+  .skills { display: flex; flex-direction: column; gap: 1.3rem; }
+  .skill-group { display: grid; grid-template-columns: minmax(150px, 0.4fr) 1.6fr; gap: 0.8rem 2rem; padding-bottom: 1.3rem; border-bottom: 1px solid var(--line-soft); }
+  .skill-group:last-child { border-bottom: none; }
+  .skill-group .label { color: var(--accent); padding-top: 0.2rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+  .chip {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.76rem;
+    letter-spacing: 0.01em;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 0.28rem 0.65rem;
+    transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+  }
+  .chip:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ---------- contact ---------- */
+  .contact { text-align: left; }
+  .contact h2 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    max-width: 16ch;
+  }
+  .contact h2 em { font-style: normal; color: var(--accent); }
+  .contact-links { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.7rem; }
+  .contact .small { margin-top: 1.4rem; }
+
+  footer {
+    border-top: 1px solid var(--line-soft);
+    padding: 2.5rem 0 3.5rem;
+  }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; align-items: center; }
+  footer p { font-family: "JetBrains Mono", monospace; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.02em; }
+
+  /* ---------- scroll reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .live-dot { animation: none; }
+  }
+
+  *:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 720px) {
+    .wrap, .topbar-inner { padding-left: 1.4rem; padding-right: 1.4rem; }
+    .entry { grid-template-columns: 1fr; gap: 1.4rem; padding: 2.2rem 0; }
+    .row { grid-template-columns: 1fr; gap: 0.4rem; }
+    .row .when { padding-top: 0; }
+    .skill-group { grid-template-columns: 1fr; gap: 0.6rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .avatar { width: 80px; height: 80px; }
+  }
+</style>
 </head>
-<body class="no-scroll">
-  <div class="preloader" id="preloader">
-    <div class="preloader-circle">
-      <svg viewBox="0 0 200 200">
-        <circle class="bg-circle" cx="100" cy="100" r="90"></circle>
-        <circle class="progress-circle" id="progressCircle" cx="100" cy="100" r="90"></circle>
-      </svg>
-      <div class="preloader-percent" id="preloaderPercent">VK</div>
-    </div>
-    <button class="preloader-btn" id="preloaderBtn" data-cursor="contract">Enter Experience</button>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="#top" class="brand">Vishwas Kothari<b>.</b></a>
+    <nav class="nav">
+      <a href="#work">Work</a>
+      <a href="#about" class="optional">About</a>
+      <a href="#experience" class="optional">Experience</a>
+      <a href="#contact">Contact</a>
+      <button class="toggle" id="themeToggle" aria-label="Toggle color theme">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+    </nav>
   </div>
+</div>
 
-  <div class="portfolio-stage" id="portfolioStage">
-    <div class="page-layer layer-base" id="baseLayer">
-      <header class="header">
-        <div class="header-logo"><a href="#" data-cursor="contract" data-magnetic>VK</a></div>
-        <ul class="header-menu">
-          <li><a href="#about" data-cursor="contract" data-magnetic><span class="nav-word">About</span><span class="nav-word-active">About</span></a></li>
-          <li><a href="#experience" data-cursor="contract" data-magnetic><span class="nav-word">Experience</span><span class="nav-word-active">Experience</span></a></li>
-          <li><a href="#education" data-cursor="contract" data-magnetic><span class="nav-word">Education</span><span class="nav-word-active">Education</span></a></li>
-          <li><a href="#projects" data-cursor="contract" data-magnetic><span class="nav-word">Projects</span><span class="nav-word-active">Projects</span></a></li>
-          <li><a href="#contact" data-cursor="contract" data-magnetic><span class="nav-word">Contact</span><span class="nav-word-active">Contact</span></a></li>
-        </ul>
-      </header>
+<main id="top">
 
-      <main>
-        <section class="hero" id="about">
-          <canvas class="hero-bg" id="bgCanvas"></canvas>
-          <div class="hero-inner" data-cursor="extend">
-            <div class="hero-profile fade-up" data-parallax="0.08">
-              <img src="profile_pic.jpg" alt="Vishwas Kothari">
-            </div>
-            <div class="hero-eyebrow fade-up" data-parallax="0.04">CS Graduate Student & AI Researcher</div>
-            <h1 class="hero-title" data-parallax="-0.035">
-              <span class="line"><span>Vishwas</span></span>
-              <span class="line"><span class="highlight">Kothari</span></span>
-            </h1>
-            <p class="hero-subtitle fade-up" data-parallax="-0.06">
-              I build things that are meant to be <strong>understood</strong>, not just by machines, but by the people who depend on them.
-            </p>
-            <div class="hero-actions fade-up" data-parallax="-0.045">
-              <a class="hero-link" href="#projects" data-cursor="contract" data-magnetic>Explore Work <i class="fas fa-arrow-down"></i></a>
-              <a class="hero-link" href="#contact" data-cursor="contract" data-magnetic>Contact <i class="fas fa-paper-plane"></i></a>
-            </div>
-          </div>
-        </section>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <span class="eyebrow mono">MS Computer Science · University of Colorado Boulder</span>
+      <h1>I build machine learning people can <em>audit</em>, not just deploy.</h1>
+      <p class="lede">Right now I'm measuring where financial AI breaks — building evaluation harnesses that surface the failures a single accuracy number quietly hides.</p>
+      <div class="facts">
+        <span>Boulder, CO</span>
+        <span>Applied AI / ML</span>
+        <span>Open to full-time roles</span>
+      </div>
+      <div class="cta-row">
+        <a class="btn solid" href="#work">View the work</a>
+        <a class="btn ghost" href="https://github.com/vishwas182002" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn ghost" href="https://linkedin.com/in/vishwas-kothari" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </header>
 
-        <section class="section">
-          <div class="container-sm">
-            <p class="section-label fade-up">About me</p>
-            <div class="bio-text" data-cursor="subtle">
-              <span class="line-mask"><span>My background spans two worlds: applied research at <strong>ISRO's</strong> Space Applications Centre, where I built optimization models to extract meaningful signal from satellite sensor data, and rigorous graduate-level ML at the <strong>University of Colorado Boulder</strong>, where the focus is less on what models do and more on why they work.</span></span>
-            </div>
-            <p class="body-copy fade-up">
-              Along the way I've published in Springer, earned an AWS certification, peer-reviewed for Elsevier, and built end-to-end ML systems that prioritize explainability and accountability because a model no one can audit is a model no one should trust.
-            </p>
-            <p class="body-copy small fade-up">
-              Outside work: cricket, badminton, and a reading habit that leans toward technology, business, and the occasional uncomfortable idea.
-            </p>
-          </div>
-        </section>
+  <!-- WORK -->
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="idx">01</span>
+        <h2>Selected Work</h2>
+      </div>
 
-        <section class="section" style="padding-top: 0;">
-          <div class="container-sm">
-            <p class="section-label fade-up">What I do</p>
-            <div class="skills-showcase">
-              <div class="skill-row fade-up" data-cursor="subtle" data-row-mask>
-                <h3>Explainable AI</h3>
-                <p>Building models that earn trust through transparency: SHAP, LIME, DiCE, and fairness auditing baked into every pipeline.</p>
-              </div>
-              <div class="skill-row fade-up" data-cursor="subtle" data-row-mask>
-                <h3>Data Engineering</h3>
-                <p>End-to-end data pipelines at scale, from satellite sensor data to financial documents, with validation at every step.</p>
-              </div>
-              <div class="skill-row fade-up" data-cursor="subtle" data-row-mask>
-                <h3>Machine Learning</h3>
-                <p>PyTorch, TensorFlow, XGBoost, and vision-language models applied to problems where the stakes are high enough that getting it wrong actually matters.</p>
-              </div>
-              <div class="skill-row fade-up" data-cursor="subtle" data-row-mask>
-                <h3>Research Engineering</h3>
-                <p>Turning research ideas into reproducible experiments, clear reports, and usable demos with Python, AWS fundamentals, Git, Docker, Streamlit, and Gradio.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section" id="experience" style="padding-top: 2rem;">
-          <div class="container">
-            <p class="section-label fade-up">Experience</p>
-            <div class="timeline-item fade-up" data-cursor="subtle" data-row-mask>
-              <div class="timeline-year">Jan - Jul 2025</div>
-              <div class="timeline-role">
-                <h4>Research Intern</h4>
-                <p class="company">Space Applications Centre — ISRO · Ahmedabad, India</p>
-              </div>
-              <div class="timeline-desc">
-                <ul>
-                  <li>Built end-to-end Python pipelines (SciPy, NumPy, xarray) for satellite data processing & NetCDF merging</li>
-                  <li>Developed Levenberg-Marquardt optimization for bio-optical parameter retrieval (R²=0.987)</li>
-                  <li>Created cross-sensor validation framework with 6 plot types & 4 statistical metrics</li>
-                  <li>Validated chlorophyll-a retrieval (log-space R²=0.879) and authored 60+ page technical report</li>
-                </ul>
-              </div>
-            </div>
-
-            <p class="section-label fade-up" id="education" style="margin-top: 4rem;">Education</p>
-            <div class="timeline-item fade-up" data-cursor="subtle" data-row-mask>
-              <div class="timeline-year">2025 - 2027</div>
-              <div class="timeline-role">
-                <h4>Professional Master's in CS</h4>
-                <p class="company">University of Colorado Boulder · GPA 3.5/4.0</p>
-              </div>
-              <div class="timeline-desc"><p>Graduate-level ML with focus on model interpretability and real-world deployment.</p></div>
-            </div>
-            <div class="timeline-item fade-up" data-cursor="subtle" data-row-mask>
-              <div class="timeline-year">2021 - 2025</div>
-              <div class="timeline-role">
-                <h4>B.Tech in Information Technology</h4>
-                <p class="company">Vellore Institute of Technology · GPA 8.49/10.0</p>
-              </div>
-              <div class="timeline-desc"><p>Foundation in computer science, algorithms, and software engineering.</p></div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section" id="projects" style="padding-top: 2rem;">
-          <div class="container">
-            <p class="section-label fade-up">Featured Projects</p>
-            <div class="projects-grid">
-              <div class="project-card fade-up" data-cursor="subtle" data-tilt>
-                <div class="project-visual visual-finagent" aria-hidden="true">
-                  <div class="agent-grid">
-                    <div class="agent-card primary">
-                      <span>Qwen vs legacy</span>
-                      <strong>4.3x</strong>
-                      <small>ANLS improvement over the best document-AI baseline</small>
-                    </div>
-                    <div class="agent-card">
-                      <span>Dataset</span>
-                      <strong>397 Qs</strong>
-                    </div>
-                    <div class="agent-card warning">
-                      <span>Numerical ANLS</span>
-                      <strong>0.1138</strong>
-                    </div>
-                  </div>
-                  <div class="agent-route"><span></span><span></span><span></span></div>
-                </div>
-                <h3>FinAgent-Eval</h3>
-                <div class="project-tags"><span>Qwen2.5-VL</span><span>Pix2Struct</span><span>Donut</span><span>LayoutLMv3</span><span>Streamlit</span><span>SEC Filings</span></div>
-                <p>Reproducible evaluation harness for visual question answering over real SEC filing screenshots. Hand-curated 397 questions from 10 US public companies across extractive, layout, numerical reasoning, and chart interpretation tasks, then compared 5 models: Pix2Struct, Donut, LayoutLMv3, OCR+RoBERTa, and Qwen2.5-VL-7B on a free Colab T4. Qwen delivered a 4.3x ANLS lift, but numerical reasoning remained unsolved with 0.1138 ANLS and 0% paraphrase consistency.</p>
-                <a href="https://github.com/vishwas182002/FinAgent-Eval" target="_blank" class="project-link" data-cursor="contract">View on GitHub <span aria-hidden="true">→</span></a>
-              </div>
-              <div class="project-card fade-up" data-cursor="subtle" data-tilt>
-                <div class="project-visual visual-document" aria-hidden="true">
-                  <div class="doc-stack">
-                    <div class="doc-page">
-                      <span class="doc-line"></span>
-                      <span class="doc-line"></span>
-                      <span class="doc-line"></span>
-                      <span class="doc-line"></span>
-                      <span class="attention-box one"></span>
-                      <span class="attention-box two"></span>
-                    </div>
-                    <div class="answer-panel">
-                      <span>Document VQA</span>
-                      <strong>+22%</strong>
-                      <span>Domain adaptation lift</span>
-                    </div>
-                  </div>
-                </div>
-                <h3>Financial Document VQA</h3>
-                <div class="project-tags"><span>PyTorch</span><span>LayoutLMv3</span><span>Donut</span><span>Pix2Struct</span><span>LoRA</span><span>Gradio</span></div>
-                <p>Benchmarked 4 vision-language models on SEC 10-K filings, revealing 63-83% performance drop vs generic DocVQA. Domain-specific LoRA fine-tuning on 307 examples improved ANLS by 22%, while generic fine-tuning caused 39% negative transfer.</p>
-                <a href="https://github.com/vishwas182002/financial-document-vqa" target="_blank" class="project-link" data-cursor="contract">View on GitHub <span aria-hidden="true">→</span></a>
-              </div>
-              <div class="project-card fade-up" data-cursor="subtle" data-tilt>
-                <div class="project-visual visual-credit" aria-hidden="true">
-                  <div class="metric-ring">0.782</div>
-                  <div class="signal-bars"><span></span><span></span><span></span><span></span><span></span></div>
-                </div>
-                <h3>XAI Credit Lens</h3>
-                <div class="project-tags"><span>Python</span><span>SHAP</span><span>LIME</span><span>DiCE</span><span>XGBoost</span><span>Optuna</span><span>Streamlit</span></div>
-                <p>End-to-end explainable credit risk framework: 0.782 AUC on 30K records with automated fairness auditing and zero violations across four protected attributes. Regulatory compliance mapping for ECOA, EU AI Act, and Fed SR 11-7.</p>
-                <a href="https://github.com/vishwas182002/xai-credit-lens" target="_blank" class="project-link" data-cursor="contract">View on GitHub <span aria-hidden="true">→</span></a>
-              </div>
-              <div class="project-card fade-up" data-cursor="subtle" data-tilt>
-                <div class="project-visual bias-visual" aria-hidden="true">
-                  <div class="bias-panel shortcut">
-                    <span class="bias-label">SGD shortcut</span>
-                    <div class="mnist-frame"><span class="digit-stroke"></span></div>
-                  </div>
-                  <div class="bias-panel rich">
-                    <span class="bias-label">Adam shape</span>
-                    <div class="mnist-frame"><span class="digit-stroke"></span></div>
-                  </div>
-                </div>
-                <h3>Implicit Bias of Adam vs. SGD</h3>
-                <div class="project-tags"><span>PyTorch</span><span>CVXPY</span><span>NumPy</span><span>Matplotlib</span><span>Margin Theory</span><span>OOD</span></div>
-                <p>Investigated why different optimizers find fundamentally different solutions in overparameterized models. Connected recent theory showing GD converges to the ℓ₂ max-margin solution while Adam converges to ℓ∞, then verified this empirically across 5 seeds with &gt;0.98 cosine similarity to exact convex-programming solutions. Demonstrated practical consequences on an MNIST spurious-correlation benchmark: SGD suffered a 30% OOD accuracy drop and 3× higher shortcut reliance, while Adam reduced the drop to 13%.</p>
-                <a href="https://github.com/vishwas182002/implicit-bias-adam-sgd" target="_blank" class="project-link" data-cursor="contract">View on GitHub <span aria-hidden="true">→</span></a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <div class="experience-band" aria-hidden="true">
-          <div class="experience-track">
-            <span>FinAgent-Eval SEC VQA / Qwen2.5-VL financial reasoning / Financial document VQA / Explainable credit risk / Adam vs SGD implicit bias / ISRO satellite data pipelines / Springer publication / Elsevier reviewer /</span>
-            <span>FinAgent-Eval SEC VQA / Qwen2.5-VL financial reasoning / Financial document VQA / Explainable credit risk / Adam vs SGD implicit bias / ISRO satellite data pipelines / Springer publication / Elsevier reviewer /</span>
+      <!-- FinAgent-Eval -->
+      <article class="entry reveal">
+        <div>
+          <span class="entry-tag mono">Evaluation Harness · 2026</span>
+          <div class="metric">4.3×
+            <small>ANLS lift — Qwen2.5-VL-7B vs. the best document-AI baseline (0.6368 vs. 0.1472, LayoutLMv3).</small>
           </div>
         </div>
-
-        <section class="section" style="padding-top: 2rem;">
-          <div class="container">
-            <p class="section-label fade-up">Certifications & Leadership</p>
-            <div class="cert-grid">
-              <div class="cert-card fade-up" data-cursor="subtle">
-                <div class="cert-icon"><i class="fas fa-award"></i></div>
-                <h4>AWS Certified Cloud Practitioner</h4>
-                <p>Score: 970/1000 (2024), deep fluency in AWS core services and cloud architecture.</p>
-              </div>
-              <div class="cert-card fade-up" data-cursor="subtle">
-                <div class="cert-icon"><i class="fas fa-file-alt"></i></div>
-                <h4>Springer Publication</h4>
-                <p>Kothari, V., Krishwanth, B. (2025). <em>Empowering Survivors: Ethical AI for Countering Violence Against Women.</em></p>
-                <a href="https://doi.org/10.1007/978-981-96-6046-9_26" target="_blank" class="project-link" data-cursor="contract">DOI: 10.1007/978-981-96-6046-9_26 <span aria-hidden="true">→</span></a>
-              </div>
-              <div class="cert-card fade-up" data-cursor="subtle">
-                <div class="cert-icon"><i class="fas fa-clipboard-check"></i></div>
-                <h4>Peer Reviewer</h4>
-                <p><em>Public Health</em> and <em>Social Sciences and Humanities Open</em> (Elsevier Journals, 2026-Present)</p>
-              </div>
-              <div class="cert-card fade-up" data-cursor="subtle">
-                <div class="cert-icon"><i class="fas fa-users"></i></div>
-                <h4>Leadership</h4>
-                <p>Senior Core Committee: E-Cell, VIT-Stellar, VIT-Spartans, Anokha NGO, Youth Red Cross (2023-2024)</p>
-              </div>
-            </div>
+        <div class="entry-body">
+          <h3>FinAgent-Eval</h3>
+          <p>A reproducible harness for visual question answering over real SEC filing screenshots, run end-to-end on a free Colab T4. The headline isn't that a modern VLM wins — it's that even the winner can't do arithmetic, and a 7-label failure taxonomy says exactly where and why.</p>
+          <div class="stat-line">
+            <span>397 hand-curated QA pairs · 10 SEC filers · 5 models compared</span>
+            <span>Numerical reasoning collapses to 0.11 ANLS · 0/6 paraphrase consistency</span>
+            <span>95% bootstrap CIs · 12 pytest tests · live Streamlit dashboard</span>
           </div>
-        </section>
-
-        <section class="section" style="padding-top: 2rem; padding-bottom: 2rem;">
-          <div class="container-sm">
-            <p class="section-label fade-up">Technical Skills</p>
-            <div class="project-tags fade-up" style="flex-wrap: wrap; gap: 0.5rem;" data-cursor="subtle">
-              <span>Python</span><span>SQL</span><span>Java</span><span>C/C++</span><span>JavaScript</span>
-              <span>PyTorch</span><span>TensorFlow</span><span>XGBoost</span><span>LightGBM</span><span>scikit-learn</span>
-              <span>SHAP</span><span>LIME</span><span>DiCE</span><span>Optuna</span><span>LLM Workflows</span>
-              <span>NumPy</span><span>Pandas</span><span>SciPy</span><span>xarray</span><span>NetCDF</span><span>OpenCV</span>
-              <span>AWS</span><span>Docker</span><span>Git</span><span>Linux</span><span>Streamlit</span><span>Gradio</span><span>MySQL</span><span>MongoDB</span><span>Power BI</span>
-            </div>
+          <div class="links">
+            <a class="lnk" href="https://github.com/vishwas182002/FinAgent-Eval" target="_blank" rel="noopener">GitHub <span class="arr">→</span></a>
+            <a class="lnk" href="https://finagent-eval.streamlit.app" target="_blank" rel="noopener"><span class="live-dot"></span>Live dashboard</a>
           </div>
-        </section>
+        </div>
+      </article>
 
-        <section class="section" id="contact">
-          <div class="contact-block container-sm" data-cursor="extend">
-            <p class="section-label fade-up">Get in touch</p>
-            <h2>Let's build something<br><span style="color: var(--gold);">meaningful</span></h2>
-            <p style="color: var(--muted); margin-top: 1.5rem; font-size: 1.1rem;" class="fade-up">
-              <a href="mailto:vishwasvkothari@gmail.com" data-cursor="contract">vishwasvkothari@gmail.com</a>
-            </p>
-            <p style="color: var(--muted); font-size: 0.95rem; margin-top: 0.5rem;" class="fade-up">(720) 388-4856</p>
-            <div class="social-links fade-up">
-              <a href="https://linkedin.com/in/vishwas-kothari" target="_blank" aria-label="LinkedIn" data-cursor="contract" data-magnetic><i class="fab fa-linkedin-in"></i></a>
-              <a href="https://github.com/vishwas182002" target="_blank" aria-label="GitHub" data-cursor="contract" data-magnetic><i class="fab fa-github"></i></a>
-              <a href="mailto:vishwasvkothari@gmail.com" aria-label="Email" data-cursor="contract" data-magnetic><i class="fas fa-envelope"></i></a>
-            </div>
+      <!-- Financial Document VQA -->
+      <article class="entry reveal">
+        <div>
+          <span class="entry-tag mono">Benchmark · CSCI 5922</span>
+          <div class="metric">63–83%
+            <small>Performance drop on dense SEC 10-K tables versus generic DocVQA benchmarks.</small>
           </div>
-        </section>
-      </main>
+        </div>
+        <div class="entry-body">
+          <h3>Financial Document VQA</h3>
+          <p>Four vision-language models benchmarked on real financial filings. Domain-specific fine-tuning helped; generic fine-tuning actively hurt — a clean demonstration that more data is not the same as more relevant data.</p>
+          <div class="stat-line">
+            <span>LoRA on 307 in-domain pairs: +22% ANLS</span>
+            <span>5,000 generic samples: −39% (negative transfer)</span>
+            <span>Dataset built and verified from SEC EDGAR</span>
+          </div>
+          <div class="links">
+            <a class="lnk" href="https://github.com/vishwas182002/financial-document-vqa" target="_blank" rel="noopener">GitHub <span class="arr">→</span></a>
+          </div>
+        </div>
+      </article>
 
-      <footer class="footer">
-        <p>© 2026 Vishwas Kothari. Built as a living portfolio experience.</p>
-      </footer>
+      <!-- XAI Credit Lens -->
+      <article class="entry reveal">
+        <div>
+          <span class="entry-tag mono">Explainability · Compliance</span>
+          <div class="metric">0.782
+            <small>Test AUC — XGBoost on 30K credit records, with zero fairness violations.</small>
+          </div>
+        </div>
+        <div class="entry-body">
+          <h3>XAI Credit Lens</h3>
+          <p>An end-to-end credit-risk framework built so every decision can be explained to both a regulator and a rejected applicant. Fairness auditing and counterfactuals aren't bolted on afterward — they're part of the pipeline.</p>
+          <div class="stat-line">
+            <span>0 violations across 4 protected attributes (DI 0.96–1.03)</span>
+            <span>SHAP · LIME · DiCE · 9 engineered features</span>
+            <span>Mapped to ECOA, EU AI Act, Fed SR 11-7 · 38 passing tests</span>
+          </div>
+          <div class="links">
+            <a class="lnk" href="https://github.com/vishwas182002/xai-credit-lens" target="_blank" rel="noopener">GitHub <span class="arr">→</span></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Implicit Bias -->
+      <article class="entry reveal">
+        <div>
+          <span class="entry-tag mono">ML Theory · APPM 5490</span>
+          <div class="metric">0.99
+            <small>Cosine similarity between empirical margins and exact convex-program solutions (GD → ℓ₂, Adam → ℓ∞).</small>
+          </div>
+        </div>
+        <div class="entry-body">
+          <h3>Implicit Bias of Adam vs. SGD</h3>
+          <p>Why do different optimizers find fundamentally different solutions in overparameterized models? Verified the ℓ₂ / ℓ∞ max-margin theory empirically across 5 seeds, then showed the practical cost on an MNIST spurious-correlation benchmark.</p>
+          <div class="stat-line">
+            <span>SGD: 30.2% out-of-distribution accuracy drop · 3× shortcut reliance</span>
+            <span>Adam: drop reduced to 13.6%</span>
+            <span>Built on Zhang, Zou &amp; Cao (2024), arXiv:2406.10650</span>
+          </div>
+          <div class="links">
+            <a class="lnk" href="https://github.com/vishwas182002/implicit-bias-adam-sgd" target="_blank" rel="noopener">GitHub <span class="arr">→</span></a>
+          </div>
+        </div>
+      </article>
     </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="idx">02</span>
+        <h2>About</h2>
+      </div>
+      <div class="about-grid reveal">
+        <img class="avatar" src="profile_pic.jpg" alt="Vishwas Kothari" onerror="this.style.display='none'">
+        <div>
+          <p>My background runs through two very different rooms. At <strong>ISRO's Space Applications Centre</strong> I built optimization pipelines to pull clean signal out of noisy satellite sensor data. At <strong>CU Boulder</strong> the question shifted from what a model does to why it works — and what happens when it quietly stops working.</p>
+          <p>That's the thread through everything here: I care less about the demo and more about the failure mode. A model nobody can audit is a model nobody should trust, so I build the measurement, the fairness check, and the failure taxonomy <strong>alongside</strong> the model, not after it.</p>
+          <p>Away from the screen: cricket, badminton, and a reading habit that leans toward technology, business, and the occasional uncomfortable idea.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="idx">03</span>
+        <h2>Experience</h2>
+      </div>
+      <div class="row reveal">
+        <div class="when">Jan – Jul 2025</div>
+        <div>
+          <h4>Research Intern</h4>
+          <div class="org">Space Applications Centre — ISRO · Ahmedabad, India</div>
+          <ul>
+            <li>Built Python pipelines (SciPy, NumPy, xarray) for satellite data processing and NetCDF merging.</li>
+            <li>Developed Levenberg–Marquardt optimization for bio-optical parameter retrieval — remote-sensing reflectance R² = 0.987 across 5 wavelengths (MODIS Aqua, OCM-3).</li>
+            <li>Created a cross-sensor validation framework; validated chlorophyll-a retrieval (log-space R² = 0.879) and authored a 60+ page technical report.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="idx">04</span>
+        <h2>Education</h2>
+      </div>
+      <div class="row reveal">
+        <div class="when">2025 – 2027</div>
+        <div>
+          <h4>Professional Master's, Computer Science</h4>
+          <div class="org">University of Colorado Boulder · GPA 3.5 / 4.0</div>
+          <p class="note">Graduate ML with a focus on interpretability, evaluation, and real-world deployment.</p>
+        </div>
+      </div>
+      <div class="row reveal">
+        <div class="when">2021 – 2025</div>
+        <div>
+          <h4>B.Tech, Information Technology</h4>
+          <div class="org">Vellore Institute of Technology · GPA 8.49 / 10.0</div>
+          <p class="note">Foundations in computer science, algorithms, and software engineering.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECOGNITION -->
+  <section id="recognition">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="idx">05</span>
+        <h2>Recognition</h2>
+      </div>
+      <div class="rec reveal">
+        <div class="rec-item">
+          <span class="kicker mono">Certification</span>
+          <h4>AWS Certified Cloud Practitioner</h4>
+          <p>Scored 970 / 1000.</p>
+        </div>
+        <div class="rec-item">
+          <span class="kicker mono">Publication</span>
+          <h4>Springer book chapter, 2025</h4>
+          <p>Kothari, V., Krishwanth, B. — Ethical AI for countering violence against women.</p>
+          <a href="https://doi.org/10.1007/978-981-96-6046-9_26" target="_blank" rel="noopener">DOI: 10.1007/978-981-96-6046-9_26 →</a>
+        </div>
+        <div class="rec-item">
+          <span class="kicker mono">Peer Review</span>
+          <h4>Elsevier reviewer</h4>
+          <p><em>Public Health</em> and <em>Social Sciences &amp; Humanities Open</em>, 2026–present.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="idx">06</span>
+        <h2>Tools I Reach For</h2>
+      </div>
+      <div class="skills reveal">
+        <div class="skill-group">
+          <span class="label mono">Languages</span>
+          <div class="chips"><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Java</span><span class="chip">C / C++</span><span class="chip">JavaScript</span></div>
+        </div>
+        <div class="skill-group">
+          <span class="label mono">ML / DL</span>
+          <div class="chips"><span class="chip">PyTorch</span><span class="chip">scikit-learn</span><span class="chip">XGBoost</span><span class="chip">LightGBM</span><span class="chip">Hugging Face Transformers</span><span class="chip">LoRA / PEFT</span></div>
+        </div>
+        <div class="skill-group">
+          <span class="label mono">Explainability / Eval</span>
+          <div class="chips"><span class="chip">SHAP</span><span class="chip">LIME</span><span class="chip">DiCE</span><span class="chip">Optuna</span><span class="chip">Bootstrap CIs</span><span class="chip">LLM evaluation</span></div>
+        </div>
+        <div class="skill-group">
+          <span class="label mono">Data / Scientific</span>
+          <div class="chips"><span class="chip">NumPy</span><span class="chip">Pandas</span><span class="chip">SciPy</span><span class="chip">xarray</span><span class="chip">NetCDF</span><span class="chip">OpenCV</span></div>
+        </div>
+        <div class="skill-group">
+          <span class="label mono">Tooling</span>
+          <div class="chips"><span class="chip">Git</span><span class="chip">Linux</span><span class="chip">AWS</span><span class="chip">Streamlit</span><span class="chip">Gradio</span><span class="chip">pytest</span></div>
+        </div>
+        <div class="skill-group">
+          <span class="label mono">Data Stores</span>
+          <div class="chips"><span class="chip">MySQL</span><span class="chip">MongoDB</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap contact">
+      <div class="sec-head reveal">
+        <span class="idx">07</span>
+        <h2 style="text-transform:none;font-size:1.05rem;">Contact</h2>
+      </div>
+      <h2 class="reveal">Let's build something <em>worth auditing.</em></h2>
+      <div class="contact-links reveal">
+        <a class="btn solid" href="mailto:vishwasvkothari@gmail.com">vishwasvkothari@gmail.com</a>
+        <a class="btn ghost" href="https://github.com/vishwas182002" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn ghost" href="https://linkedin.com/in/vishwas-kothari" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <p class="mono small">(720) 388-4856</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Vishwas Kothari</p>
+    <p>Built to be read, not just looked at.</p>
   </div>
+</footer>
 
-  <div class="cursor-ring" id="cursorRing"></div>
-  <div class="cursor-dot" id="cursorDot"></div>
-
-  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1/bundled/lenis.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script type="importmap">
-    { "imports": { "three": "https://unpkg.com/three@0.157.0/build/three.module.js" } }
-  </script>
-
-  <script type="module">
-    import * as THREE from "three";
-
-    const canvas = document.getElementById("bgCanvas");
-    if (canvas) {
-      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const isSmallScreen = window.innerWidth < 768;
-      const maxPixelRatio = isSmallScreen ? 1.1 : 1.35;
-      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxPixelRatio));
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setClearColor(0x0d0d0d, 1);
-
-      const scene = new THREE.Scene();
-      scene.fog = new THREE.FogExp2(0x0d0d0d, 0.045);
-
-      const camera = new THREE.PerspectiveCamera(64, window.innerWidth / window.innerHeight, 0.1, 100);
-      camera.position.set(0, 0, 6.8);
-
-      const stage = new THREE.Group();
-      const core = new THREE.Group();
-      const network = new THREE.Group();
-      scene.add(stage);
-      stage.add(network, core);
-
-      function createParticleField(count, spread, size, color, opacity) {
-        const geometry = new THREE.BufferGeometry();
-        const positions = new Float32Array(count * 3);
-
-        for (let i = 0; i < count; i += 1) {
-          const i3 = i * 3;
-          positions[i3] = (Math.random() - 0.5) * spread.x;
-          positions[i3 + 1] = (Math.random() - 0.5) * spread.y;
-          positions[i3 + 2] = (Math.random() - 0.5) * spread.z;
-        }
-
-        geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-        const material = new THREE.PointsMaterial({
-          color,
-          size,
-          transparent: true,
-          opacity,
-          depthWrite: false,
-          blending: THREE.AdditiveBlending
-        });
-
-        return new THREE.Points(geometry, material);
-      }
-
-      const farField = createParticleField(isSmallScreen ? 260 : 520, { x: 27, y: 16, z: 16 }, 0.018, 0xb7ab98, 0.46);
-      const nearField = createParticleField(isSmallScreen ? 45 : 90, { x: 12, y: 7, z: 8 }, 0.035, 0xf2efe8, 0.2);
-      scene.add(farField, nearField);
-
-      const nodePositions = [];
-      const nodeCount = isSmallScreen ? 24 : 34;
-      for (let i = 0; i < nodeCount; i += 1) {
-        const ring = i % 3;
-        const angle = i * 0.72;
-        const radius = 1.2 + ring * 0.65 + Math.sin(i * 1.7) * 0.2;
-        nodePositions.push(new THREE.Vector3(
-          Math.cos(angle) * radius,
-          Math.sin(i * 0.46) * 1.35 + (ring - 1) * 0.28,
-          Math.sin(angle) * radius * 0.78
-        ));
-      }
-
-      const nodeGeometry = new THREE.BufferGeometry().setFromPoints(nodePositions);
-      const nodeMaterial = new THREE.PointsMaterial({
-        color: 0xf2efe8,
-        size: 0.055,
-        transparent: true,
-        opacity: 0.72,
-        depthWrite: false,
-        blending: THREE.AdditiveBlending
-      });
-      const nodes = new THREE.Points(nodeGeometry, nodeMaterial);
-      network.add(nodes);
-
-      const linePositions = [];
-      nodePositions.forEach((a, i) => {
-        nodePositions.forEach((b, j) => {
-          if (j <= i) return;
-          if (a.distanceTo(b) < 1.14) {
-            linePositions.push(a.x, a.y, a.z, b.x, b.y, b.z);
-          }
-        });
-      });
-
-      const lineGeometry = new THREE.BufferGeometry();
-      lineGeometry.setAttribute("position", new THREE.Float32BufferAttribute(linePositions, 3));
-      const lineMaterial = new THREE.LineBasicMaterial({
-        color: 0xb7ab98,
-        transparent: true,
-        opacity: 0.12,
-        depthWrite: false,
-        blending: THREE.AdditiveBlending
-      });
-      const networkLines = new THREE.LineSegments(lineGeometry, lineMaterial);
-      network.add(networkLines);
-
-      const knot = new THREE.Mesh(
-        new THREE.TorusKnotGeometry(1.4, 0.3, isSmallScreen ? 96 : 132, 16),
-        new THREE.MeshBasicMaterial({
-          color: 0xb7ab98,
-          wireframe: true,
-          transparent: true,
-          opacity: 0.075,
-          depthWrite: false
-        })
-      );
-      knot.position.z = -0.45;
-      core.add(knot);
-
-      const beaconMaterial = new THREE.MeshBasicMaterial({
-        color: 0xc9bda8,
-        wireframe: true,
-        transparent: true,
-        opacity: 0.24,
-        depthWrite: false
-      });
-
-      const beaconPositions = [
-        [-2.2, -0.95, 0.15],
-        [2.15, -0.35, -0.35],
-        [0.25, 1.58, 0.18]
-      ];
-
-      const beacons = beaconPositions.map(([x, y, z], index) => {
-        const beacon = new THREE.Mesh(new THREE.TorusGeometry(0.24 + index * 0.035, 0.006, 8, 44), beaconMaterial.clone());
-        beacon.position.set(x, y, z);
-        beacon.rotation.x = Math.PI / 2;
-        network.add(beacon);
-        return beacon;
-      });
-
-      let mouseX = 0;
-      let mouseY = 0;
-      let cameraX = 0;
-      let cameraY = 0;
-
-      window.addEventListener("mousemove", (event) => {
-        mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-        mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-      });
-
-      const clock = new THREE.Clock();
-      let lastFrame = 0;
-
-      function animate(frameTime = 0) {
-        if (!prefersReducedMotion) requestAnimationFrame(animate);
-        if (!prefersReducedMotion && frameTime - lastFrame < 1000 / 45) return;
-        lastFrame = frameTime;
-
-        const elapsed = clock.getElapsedTime();
-        const scrollProgress = Math.min(window.scrollY / Math.max(window.innerHeight, 1), 2.2);
-
-        farField.rotation.y = elapsed * 0.012;
-        farField.rotation.x = -elapsed * 0.004;
-        nearField.rotation.y = -elapsed * 0.024;
-        nearField.rotation.z = elapsed * 0.006;
-
-        stage.rotation.y = elapsed * 0.045 + mouseX * 0.1 + scrollProgress * 0.16;
-        stage.rotation.x = -0.08 + mouseY * 0.08 - scrollProgress * 0.04;
-        core.rotation.z = elapsed * 0.05;
-        knot.rotation.x = elapsed * 0.14;
-        knot.rotation.y = elapsed * 0.18;
-        beacons.forEach((beacon, index) => {
-          const pulse = 1 + Math.sin(elapsed * 1.8 + index) * 0.08;
-          beacon.scale.setScalar(pulse);
-          beacon.rotation.z = elapsed * (0.35 + index * 0.05);
-        });
-
-        networkLines.material.opacity = 0.11 + Math.sin(elapsed * 1.2) * 0.025;
-        nodes.material.opacity = 0.62 + Math.sin(elapsed * 1.6) * 0.08;
-
-        cameraX += (mouseX * 0.56 - cameraX) * 0.025;
-        cameraY += (mouseY * 0.28 - cameraY) * 0.025;
-        camera.position.x = cameraX;
-        camera.position.y = cameraY;
-        camera.position.z = 6.8 - scrollProgress * 0.18;
-        camera.lookAt(scene.position);
-        renderer.render(scene, camera);
-      }
-
-      animate();
-      if (prefersReducedMotion) renderer.render(scene, camera);
-
-      window.addEventListener("resize", () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth < 768 ? 1.1 : 1.35));
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      });
-    }
-  </script>
-
-  <script>
-    const baseLayer = document.getElementById("baseLayer");
-    const portfolioStage = document.getElementById("portfolioStage");
-    const root = document.documentElement;
-
-    function setViewportHeight() {
-      root.style.setProperty("--vh", `${window.innerHeight * 0.01}px`);
-    }
-
-    function buildRevealLayer() {
-      if (!baseLayer || !portfolioStage) return null;
-      const revealLayer = baseLayer.cloneNode(true);
-      revealLayer.id = "";
-      revealLayer.classList.remove("layer-base");
-      revealLayer.classList.add("layer-reveal");
-      revealLayer.setAttribute("aria-hidden", "true");
-      revealLayer.querySelectorAll("[id]").forEach((el) => el.removeAttribute("id"));
-      revealLayer.querySelectorAll("canvas").forEach((el) => el.remove());
-      portfolioStage.appendChild(revealLayer);
-      return revealLayer;
-    }
-
-    const revealLayer = buildRevealLayer();
-
-    function syncRevealHeight() {
-      if (!revealLayer || !baseLayer) return;
-      revealLayer.style.minHeight = `${baseLayer.scrollHeight}px`;
-    }
-
-    setViewportHeight();
-    syncRevealHeight();
-    window.addEventListener("resize", () => {
-      setViewportHeight();
-      syncRevealHeight();
+<script>
+  // Theme toggle
+  (function () {
+    var btn = document.getElementById("themeToggle");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      var current = document.documentElement.getAttribute("data-theme");
+      var next = current === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      try { localStorage.setItem("vk-theme", next); } catch (e) {}
     });
-    window.addEventListener("load", syncRevealHeight);
+  })();
 
-    function clamp(value, min, max) {
-      return Math.min(Math.max(value, min), max);
+  // Scroll reveal
+  (function () {
+    var els = document.querySelectorAll(".reveal");
+    if (!("IntersectionObserver" in window)) {
+      els.forEach(function (el) { el.classList.add("in"); });
+      return;
     }
-
-    function initRowMasks() {
-      document.querySelectorAll(".layer-base [data-row-mask]").forEach((row) => {
-        row.addEventListener("mouseenter", () => row.classList.add("is-row-hover"));
-        row.addEventListener("mouseleave", () => row.classList.remove("is-row-hover"));
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
       });
-    }
+    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+</script>
 
-    function initMagneticElements() {
-      document.querySelectorAll(".layer-base [data-magnetic], .preloader [data-magnetic]").forEach((el) => {
-        el.addEventListener("pointermove", (event) => {
-          const rect = el.getBoundingClientRect();
-          const x = (event.clientX - rect.left - rect.width / 2) * 0.35;
-          const y = (event.clientY - rect.top - rect.height / 2) * 0.35;
-          el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-        });
-
-        el.addEventListener("pointerleave", () => {
-          el.style.transform = "";
-        });
-      });
-    }
-
-    function initTiltCards() {
-      document.querySelectorAll(".layer-base .project-card[data-tilt]").forEach((card) => {
-        card.addEventListener("pointermove", (event) => {
-          const rect = card.getBoundingClientRect();
-          const x = event.clientX - rect.left;
-          const y = event.clientY - rect.top;
-          const rotX = (y - rect.height / 2) / 12;
-          const rotY = (rect.width / 2 - x) / 12;
-          card.classList.add("is-card-hover");
-          card.style.setProperty("--card-x", `${x}px`);
-          card.style.setProperty("--card-y", `${y}px`);
-          card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
-        });
-
-        card.addEventListener("pointerleave", () => {
-          card.classList.remove("is-card-hover");
-          card.style.removeProperty("--card-x");
-          card.style.removeProperty("--card-y");
-          card.style.transform = "perspective(1000px) rotateX(0) rotateY(0) scale(1)";
-        });
-      });
-    }
-
-    function initCardHighlights() {
-      document.querySelectorAll(".layer-base .cert-card").forEach((card) => {
-        card.addEventListener("pointermove", (event) => {
-          const rect = card.getBoundingClientRect();
-          card.classList.add("is-card-hover");
-          card.style.setProperty("--card-x", `${event.clientX - rect.left}px`);
-          card.style.setProperty("--card-y", `${event.clientY - rect.top}px`);
-        });
-
-        card.addEventListener("pointerleave", () => {
-          card.classList.remove("is-card-hover");
-          card.style.removeProperty("--card-x");
-          card.style.removeProperty("--card-y");
-        });
-      });
-    }
-
-    const navLinks = Array.from(document.querySelectorAll('.header-menu a[href^="#"]'));
-    const sectionIds = ["about", "experience", "education", "projects", "contact"];
-    const navSections = sectionIds.map((id) => ({ id, section: document.getElementById(id) }));
-    const scrollMaskEls = Array.from(document.querySelectorAll("[data-scroll-mask]"));
-    const parallaxEls = Array.from(document.querySelectorAll("[data-parallax]"));
-
-    function updateActiveNav() {
-      let activeId = sectionIds[0];
-      const marker = window.scrollY + window.innerHeight * 0.38;
-
-      navSections.forEach(({ id, section }) => {
-        if (section && section.offsetTop <= marker) activeId = id;
-      });
-
-      navLinks.forEach((link) => {
-        link.classList.toggle("is-active", link.getAttribute("href") === `#${activeId}`);
-      });
-    }
-
-    let scrollEffectTick = 0;
-
-    function updateScrollDrivenEffects() {
-      const vh = window.innerHeight || 1;
-
-      scrollMaskEls.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        const progress = clamp((vh * 0.82 - rect.top) / (vh * 0.55 + rect.height), 0, 1);
-        el.style.setProperty("--scrub", `${Math.round(progress * 100)}%`);
-      });
-
-      parallaxEls.forEach((el) => {
-        const speed = parseFloat(el.dataset.parallax || "0");
-        const rect = el.getBoundingClientRect();
-        const centerDelta = rect.top + rect.height / 2 - vh / 2;
-        const y = clamp(-centerDelta * speed, -90, 90);
-        el.style.transform = `translate3d(0, ${y}px, 0)`;
-      });
-
-      updateActiveNav();
-      scrollEffectTick += 1;
-      if (scrollEffectTick % 20 === 0) syncRevealHeight();
-      requestAnimationFrame(updateScrollDrivenEffects);
-    }
-
-    initRowMasks();
-    initMagneticElements();
-    initTiltCards();
-    initCardHighlights();
-    updateScrollDrivenEffects();
-
-    // ==================== MINH-STYLE FULL-PAGE MASK CURSOR ====================
-    (function initCursorReveal() {
-      const cursorDot = document.getElementById("cursorDot");
-      const cursorRing = document.getElementById("cursorRing");
-      if (!cursorDot || !cursorRing) return;
-      if (!window.matchMedia("(pointer: fine)").matches) {
-        if (revealLayer) revealLayer.classList.add("is-dormant");
-        return;
-      }
-
-      const cursor = {
-        x: window.innerWidth / 2,
-        y: window.innerHeight / 2,
-        targetX: window.innerWidth / 2,
-        targetY: window.innerHeight / 2,
-        size: 18,
-        targetSize: 18,
-        ringSize: 24,
-        targetRingSize: 24
-      };
-
-      function setCursorMode(mode) {
-        if (mode === "extend") {
-          cursor.targetSize = Math.min(190, Math.max(125, window.innerWidth * 0.13));
-          cursor.targetRingSize = cursor.targetSize;
-          return;
-        }
-
-        if (mode === "subtle") {
-          cursor.targetSize = 0;
-          cursor.targetRingSize = 18;
-          return;
-        }
-
-        if (mode === "contract") {
-          cursor.targetSize = 0;
-          cursor.targetRingSize = 16;
-          return;
-        }
-
-        cursor.targetSize = 18;
-        cursor.targetRingSize = 24;
-      }
-
-      function updatePointer(event) {
-        cursor.targetX = event.clientX;
-        cursor.targetY = event.clientY;
-        document.body.classList.remove("is-cursor-hidden");
-      }
-
-      window.addEventListener("pointermove", updatePointer);
-      window.addEventListener("mousemove", updatePointer);
-
-      document.addEventListener("mouseleave", () => {
-        document.body.classList.add("is-cursor-hidden");
-      });
-
-      document.addEventListener("mouseenter", () => {
-        document.body.classList.remove("is-cursor-hidden");
-      });
-
-      document.querySelectorAll(".layer-base [data-cursor], .preloader [data-cursor]").forEach((el) => {
-        el.addEventListener("mouseenter", () => setCursorMode(el.dataset.cursor));
-        el.addEventListener("mouseleave", () => setCursorMode("default"));
-      });
-
-      function renderCursor() {
-        cursor.x += (cursor.targetX - cursor.x) * 0.22;
-        cursor.y += (cursor.targetY - cursor.y) * 0.22;
-        cursor.size += (cursor.targetSize - cursor.size) * 0.18;
-        cursor.ringSize += (cursor.targetRingSize - cursor.ringSize) * 0.18;
-
-        const shouldReveal = cursor.size > 2 || cursor.targetSize > 2;
-        if (revealLayer) revealLayer.classList.toggle("is-dormant", !shouldReveal);
-        if (shouldReveal) {
-          root.style.setProperty("--cursor-x", `${cursor.x}px`);
-          root.style.setProperty("--cursor-y", `${cursor.y + window.scrollY}px`);
-          root.style.setProperty("--cursor-size", `${Math.max(cursor.size, 0)}px`);
-        }
-
-        cursorDot.style.transform = `translate3d(${cursor.x}px, ${cursor.y}px, 0) translate(-50%, -50%)`;
-        cursorRing.style.transform = `translate3d(${cursor.x}px, ${cursor.y}px, 0) translate(-50%, -50%)`;
-        cursorRing.style.width = `${Math.max(cursor.ringSize, 16)}px`;
-        cursorRing.style.height = `${Math.max(cursor.ringSize, 16)}px`;
-        cursorRing.style.opacity = cursor.size > 110 ? "0" : "1";
-
-        requestAnimationFrame(renderCursor);
-      }
-
-      renderCursor();
-    })();
-
-    // ==================== PRELOADER ====================
-    const preloader = document.getElementById("preloader");
-    const progressCircle = document.getElementById("progressCircle");
-    const preloaderPercent = document.getElementById("preloaderPercent");
-    const preloaderBtn = document.getElementById("preloaderBtn");
-    const circumference = 2 * Math.PI * 90;
-
-    let progress = 0;
-    let ready = false;
-
-    function updateProgress(value) {
-      progress = Math.min(value, 100);
-      const offset = circumference - (progress / 100) * circumference;
-      progressCircle.style.strokeDashoffset = offset;
-      if (progress >= 100) {
-        preloaderPercent.textContent = "Ready";
-      } else if (progress >= 70) {
-        preloaderPercent.textContent = "Shaping";
-      } else if (progress >= 35) {
-        preloaderPercent.textContent = "Loading";
-      } else {
-        preloaderPercent.textContent = "VK";
-      }
-
-      if (progress === 100 && !ready) {
-        ready = true;
-        preloaderBtn.classList.add("visible");
-      }
-    }
-
-    let loadProgress = 0;
-    const loadInterval = setInterval(() => {
-      loadProgress += Math.random() * 15;
-      if (loadProgress >= 85) {
-        loadProgress = 85;
-        clearInterval(loadInterval);
-        setTimeout(() => updateProgress(100), 300);
-      }
-      updateProgress(loadProgress);
-    }, 120);
-
-    window.addEventListener("load", () => {
-      clearInterval(loadInterval);
-      updateProgress(100);
-      syncRevealHeight();
-    });
-
-    setTimeout(() => {
-      clearInterval(loadInterval);
-      updateProgress(100);
-    }, 2000);
-
-    function revealInitialContent() {
-      document.querySelectorAll(".layer-base .fade-up").forEach((el) => el.classList.add("visible"));
-    }
-
-    function playHeroAnimation() {
-      if (!window.gsap) return;
-      const heroLines = document.querySelectorAll(".layer-base .hero-title .line span");
-      gsap.fromTo(heroLines, { y: "110%" }, {
-        y: "0%",
-        duration: 1,
-        stagger: 0.2,
-        ease: "power3.out",
-        delay: 0.1
-      });
-    }
-
-    preloaderBtn.addEventListener("click", () => {
-      if (!ready) return;
-      preloader.classList.add("hidden");
-      document.body.classList.remove("no-scroll");
-      setTimeout(() => {
-        revealInitialContent();
-        playHeroAnimation();
-        syncRevealHeight();
-      }, 250);
-    });
-
-    // ==================== LENIS SMOOTH SCROLL ====================
-    let lenis = null;
-    if (window.Lenis) {
-      lenis = new Lenis({
-        duration: 1.4,
-        easing: (t) => 1 - Math.pow(1 - t, 3),
-        smoothWheel: true
-      });
-
-      function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
-
-      requestAnimationFrame(raf);
-    }
-
-    document.querySelectorAll('.layer-base a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener("click", (event) => {
-        const href = anchor.getAttribute("href");
-        if (!href || href === "#") return;
-        const target = document.querySelector(href);
-        if (!target) return;
-        event.preventDefault();
-        if (lenis) {
-          lenis.scrollTo(target);
-        } else {
-          target.scrollIntoView({ behavior: "smooth" });
-        }
-      });
-    });
-
-    // ==================== SCROLL REVEAL ====================
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          syncRevealHeight();
-        }
-      });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll(".layer-base .fade-up").forEach((el) => revealObserver.observe(el));
-
-    // ==================== GSAP ANIMATIONS ====================
-    if (window.gsap && window.ScrollTrigger) {
-      gsap.registerPlugin(ScrollTrigger);
-
-      document.querySelectorAll(".layer-base .bio-text .line-mask span").forEach((el, index) => {
-        gsap.fromTo(el, { y: "100%" }, {
-          y: "0%",
-          duration: 1,
-          delay: 0.2 * index,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: el.closest(".section"),
-            start: "top 80%"
-          }
-        });
-      });
-
-      document.querySelectorAll(".layer-base .skill-row").forEach((row, index) => {
-        gsap.fromTo(row, { opacity: 0, y: 40 }, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          delay: 0.1 * index,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: row,
-            start: "top 85%"
-          }
-        });
-      });
-    }
-  </script>
 </body>
 </html>
