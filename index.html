@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vishwas Kothari — Applied ML / Evaluation & Explainability</title>
-<meta name="description" content="Vishwas Kothari — MS Computer Science, CU Boulder. I build machine-learning systems people can audit and trust: evaluation harnesses, explainability, and the failure modes benchmarks hide.">
-<meta property="og:title" content="Vishwas Kothari — Applied ML">
-<meta property="og:description" content="Machine learning you can audit. Evaluation, explainability, and failure analysis.">
+<title>Vishwas Kothari — AI · ML · Data Science</title>
+<meta name="description" content="Vishwas Kothari — MS Computer Science, CU Boulder. I build machine-learning systems end to end and stress-test them: evaluation, modeling, data pipelines, and the failure modes most demos skip.">
+<meta property="og:title" content="Vishwas Kothari — AI · ML · Data Science">
+<meta property="og:description" content="I build machine-learning systems, then I try to break them. Evaluation, modeling, and data work across domains.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#f4f4f2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -461,11 +461,11 @@
   <header class="hero">
     <div class="wrap">
       <span class="eyebrow mono">MS Computer Science · University of Colorado Boulder</span>
-      <h1>I build machine learning people can <em>audit</em>, not just deploy.</h1>
-      <p class="lede">Right now I'm measuring where financial AI breaks — building evaluation harnesses that surface the failures a single accuracy number quietly hides.</p>
+      <h1>I build machine-learning systems — then I try to <em>break</em> them.</h1>
+      <p class="lede">From satellite-data pipelines to vision-language benchmarks, my work lives in the same place: the gap between a model that demos well and one that holds up when the inputs get strange.</p>
       <div class="facts">
         <span>Boulder, CO</span>
-        <span>Applied AI / ML</span>
+        <span>AI · ML · Data Science</span>
         <span>Open to full-time roles</span>
       </div>
       <div class="cta-row">
@@ -487,16 +487,16 @@
       <!-- FinAgent-Eval -->
       <article class="entry reveal">
         <div>
-          <span class="entry-tag mono">Evaluation Harness · 2026</span>
+          <span class="entry-tag mono">Evaluation · Multimodal</span>
           <div class="metric">4.3×
-            <small>ANLS lift — Qwen2.5-VL-7B vs. the best document-AI baseline (0.6368 vs. 0.1472, LayoutLMv3).</small>
+            <small>ANLS lift — best modern VLM (Qwen2.5-VL-7B) vs. the strongest document-AI baseline: 0.6368 vs. 0.1472.</small>
           </div>
         </div>
         <div class="entry-body">
           <h3>FinAgent-Eval</h3>
-          <p>A reproducible harness for visual question answering over real SEC filing screenshots, run end-to-end on a free Colab T4. The headline isn't that a modern VLM wins — it's that even the winner can't do arithmetic, and a 7-label failure taxonomy says exactly where and why.</p>
+          <p>A reproducible harness for stress-testing vision-language models on hard, real-world documents, run end to end on a free Colab T4. The interesting result isn't which model wins — it's that the winner still can't reliably do arithmetic, and a 7-label failure taxonomy pins down exactly where it breaks.</p>
           <div class="stat-line">
-            <span>397 hand-curated QA pairs · 10 SEC filers · 5 models compared</span>
+            <span>397 hand-curated QA pairs · 10 sources · 5 models compared</span>
             <span>Numerical reasoning collapses to 0.11 ANLS · 0/6 paraphrase consistency</span>
             <span>95% bootstrap CIs · 12 pytest tests · live Streamlit dashboard</span>
           </div>
@@ -507,61 +507,17 @@
         </div>
       </article>
 
-      <!-- Financial Document VQA -->
-      <article class="entry reveal">
-        <div>
-          <span class="entry-tag mono">Benchmark · CSCI 5922</span>
-          <div class="metric">63–83%
-            <small>Performance drop on dense SEC 10-K tables versus generic DocVQA benchmarks.</small>
-          </div>
-        </div>
-        <div class="entry-body">
-          <h3>Financial Document VQA</h3>
-          <p>Four vision-language models benchmarked on real financial filings. Domain-specific fine-tuning helped; generic fine-tuning actively hurt — a clean demonstration that more data is not the same as more relevant data.</p>
-          <div class="stat-line">
-            <span>LoRA on 307 in-domain pairs: +22% ANLS</span>
-            <span>5,000 generic samples: −39% (negative transfer)</span>
-            <span>Dataset built and verified from SEC EDGAR</span>
-          </div>
-          <div class="links">
-            <a class="lnk" href="https://github.com/vishwas182002/financial-document-vqa" target="_blank" rel="noopener">GitHub <span class="arr">→</span></a>
-          </div>
-        </div>
-      </article>
-
-      <!-- XAI Credit Lens -->
-      <article class="entry reveal">
-        <div>
-          <span class="entry-tag mono">Explainability · Compliance</span>
-          <div class="metric">0.782
-            <small>Test AUC — XGBoost on 30K credit records, with zero fairness violations.</small>
-          </div>
-        </div>
-        <div class="entry-body">
-          <h3>XAI Credit Lens</h3>
-          <p>An end-to-end credit-risk framework built so every decision can be explained to both a regulator and a rejected applicant. Fairness auditing and counterfactuals aren't bolted on afterward — they're part of the pipeline.</p>
-          <div class="stat-line">
-            <span>0 violations across 4 protected attributes (DI 0.96–1.03)</span>
-            <span>SHAP · LIME · DiCE · 9 engineered features</span>
-            <span>Mapped to ECOA, EU AI Act, Fed SR 11-7 · 38 passing tests</span>
-          </div>
-          <div class="links">
-            <a class="lnk" href="https://github.com/vishwas182002/xai-credit-lens" target="_blank" rel="noopener">GitHub <span class="arr">→</span></a>
-          </div>
-        </div>
-      </article>
-
       <!-- Implicit Bias -->
       <article class="entry reveal">
         <div>
-          <span class="entry-tag mono">ML Theory · APPM 5490</span>
+          <span class="entry-tag mono">ML Theory · Optimization</span>
           <div class="metric">0.99
             <small>Cosine similarity between empirical margins and exact convex-program solutions (GD → ℓ₂, Adam → ℓ∞).</small>
           </div>
         </div>
         <div class="entry-body">
           <h3>Implicit Bias of Adam vs. SGD</h3>
-          <p>Why do different optimizers find fundamentally different solutions in overparameterized models? Verified the ℓ₂ / ℓ∞ max-margin theory empirically across 5 seeds, then showed the practical cost on an MNIST spurious-correlation benchmark.</p>
+          <p>Why do different optimizers find fundamentally different solutions in overparameterized models? I verified the ℓ₂ / ℓ∞ max-margin theory empirically across 5 seeds, then showed the practical cost on a spurious-correlation benchmark — the kind of generalization gap that quietly sinks models in production.</p>
           <div class="stat-line">
             <span>SGD: 30.2% out-of-distribution accuracy drop · 3× shortcut reliance</span>
             <span>Adam: drop reduced to 13.6%</span>
@@ -569,6 +525,50 @@
           </div>
           <div class="links">
             <a class="lnk" href="https://github.com/vishwas182002/implicit-bias-adam-sgd" target="_blank" rel="noopener">GitHub <span class="arr">→</span></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- XAI Credit Lens -->
+      <article class="entry reveal">
+        <div>
+          <span class="entry-tag mono">Responsible ML · Fairness</span>
+          <div class="metric">0.782
+            <small>Test AUC — gradient-boosted model on 30K records, shipped with zero fairness violations.</small>
+          </div>
+        </div>
+        <div class="entry-body">
+          <h3>XAI Credit Lens</h3>
+          <p>A template for building decision models you can actually defend: fairness auditing, SHAP / LIME explanations, and DiCE counterfactuals wired into the pipeline instead of bolted on. Credit scoring is the testbed; the machinery transfers to any high-stakes prediction.</p>
+          <div class="stat-line">
+            <span>0 violations across 4 protected attributes (disparate impact 0.96–1.03)</span>
+            <span>SHAP · LIME · DiCE · 9 engineered features · Optuna tuning</span>
+            <span>38 passing tests · interactive Streamlit dashboard</span>
+          </div>
+          <div class="links">
+            <a class="lnk" href="https://github.com/vishwas182002/xai-credit-lens" target="_blank" rel="noopener">GitHub <span class="arr">→</span></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Document VQA -->
+      <article class="entry reveal">
+        <div>
+          <span class="entry-tag mono">Benchmark · Transfer Learning</span>
+          <div class="metric">+22% / −39%
+            <small>What targeted fine-tuning bought, and what generic fine-tuning cost — same model, same task.</small>
+          </div>
+        </div>
+        <div class="entry-body">
+          <h3>Document VQA &amp; Transfer</h3>
+          <p>Four vision-language models benchmarked on dense, real-world documents, with a clean lesson about transfer learning: a small, in-domain LoRA run improved ANLS by 22%, while training on 5,000 generic samples actively hurt. More data is not the same as more relevant data.</p>
+          <div class="stat-line">
+            <span>63–83% performance gap vs. generic document-QA benchmarks</span>
+            <span>LoRA on 307 in-domain pairs · evaluated against negative transfer</span>
+            <span>Dataset built and hand-verified end to end</span>
+          </div>
+          <div class="links">
+            <a class="lnk" href="https://github.com/vishwas182002/financial-document-vqa" target="_blank" rel="noopener">GitHub <span class="arr">→</span></a>
           </div>
         </div>
       </article>
@@ -585,9 +585,9 @@
       <div class="about-grid reveal">
         <img class="avatar" src="profile_pic.jpg" alt="Vishwas Kothari" onerror="this.style.display='none'">
         <div>
-          <p>My background runs through two very different rooms. At <strong>ISRO's Space Applications Centre</strong> I built optimization pipelines to pull clean signal out of noisy satellite sensor data. At <strong>CU Boulder</strong> the question shifted from what a model does to why it works — and what happens when it quietly stops working.</p>
-          <p>That's the thread through everything here: I care less about the demo and more about the failure mode. A model nobody can audit is a model nobody should trust, so I build the measurement, the fairness check, and the failure taxonomy <strong>alongside</strong> the model, not after it.</p>
-          <p>Away from the screen: cricket, badminton, and a reading habit that leans toward technology, business, and the occasional uncomfortable idea.</p>
+          <p>I started in remote sensing at <strong>ISRO</strong>, fitting optimization models to messy satellite reflectance data — the kind of problem where the signal you actually want is buried under everything you don't. Graduate work at <strong>CU Boulder</strong> pushed me a layer deeper: not just getting a model to work, but understanding the geometry of <em>why</em> it works and predicting where it'll quietly fall apart.</p>
+          <p>Since then I've worked across pretty different problems — multimodal document understanding, decision modeling, optimizer theory, data pipelines — but the instinct is the same everywhere. I build the whole thing end to end, then spend most of my energy trying to break it: the edge cases, the distribution shifts, the numbers that look fine until you ask the question a second way. The part of engineering I find most interesting is the failure mode nobody put in the demo.</p>
+          <p>Away from the screen: cricket, badminton, and a steady diet of books on technology, markets, and ideas that don't resolve neatly.</p>
         </div>
       </div>
     </div>
@@ -712,7 +712,7 @@
         <span class="idx">07</span>
         <h2 style="text-transform:none;font-size:1.05rem;">Contact</h2>
       </div>
-      <h2 class="reveal">Let's build something <em>worth auditing.</em></h2>
+      <h2 class="reveal">Let's build something that <em>holds up.</em></h2>
       <div class="contact-links reveal">
         <a class="btn solid" href="mailto:vishwasvkothari@gmail.com">vishwasvkothari@gmail.com</a>
         <a class="btn ghost" href="https://github.com/vishwas182002" target="_blank" rel="noopener">GitHub</a>
