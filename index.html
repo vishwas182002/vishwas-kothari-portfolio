@@ -155,7 +155,7 @@
     font-weight: 600;
   }
 
-  .profile-lines { text-align: center; margin-bottom: 8px; }
+  .profile-lines { text-align: center; margin-bottom: 6px; }
   .profile-lines p { margin-bottom: 5px; }
   .profile-lines .role { color: var(--ink); font-weight: 600; }
   .profile-links { color: var(--faint); font-family: var(--mono); font-size: 13px; }
@@ -483,7 +483,7 @@
            onerror="this.outerHTML='&lt;div class=&quot;portrait portrait-fallback&quot; aria-label=&quot;Vishwas Kothari&quot;&gt;VK&lt;/div&gt;'">
 
       <div class="profile-lines">
-        <p class="role">MS Computer Science, University of Colorado Boulder</p>
+        <p class="role">MS in Computer Science, University of Colorado Boulder</p>
         <p>Email: <a href="mailto:vishwasvkothari@gmail.com">vishwasvkothari@gmail.com</a></p>
         <p class="profile-links">
           <a href="resume_vk.pdf" target="_blank" rel="noopener">Resume</a><span>|</span>
@@ -493,7 +493,7 @@
       </div>
 
       <h2 class="section-title" id="about">About</h2>
-      <p class="about-lead">I'm Vishwas, a computer science master's student at CU Boulder. Short version: I do machine learning, and I don't fully trust it. The part I actually enjoy is not just getting a model to work. It is finding the exact spot where it quietly falls apart, and then figuring out why.</p>
+      <p class="about-lead">I'm Vishwas, a computer science master's student at CU Boulder. Short version: I do machine learning, and I don't fully trust it. The part I actually enjoy is not just getting a model to work; it is finding the exact spot where it quietly falls apart, and then figuring out why.</p>
       <p class="about-lead">That is the theme across pretty much everything I build: document AI, explainability, trustworthy ML, and the occasional optimizer mystery. Less "look how high the score is," more "okay, but does this hold up when nobody's watching?"</p>
       <p class="about-lead">Before Boulder, I was at ISRO pulling chlorophyll-a estimates out of satellite data and checking them against real ocean samples until the numbers behaved. Excellent training for being suspicious of nice-looking results.</p>
       <p class="about-lead">Outside of all that, you will usually find me trying to convince myself that walking counts as a hobby, or deep in philosophy books that are far more pessimistic than I actually am. It balances out.</p>
@@ -503,13 +503,13 @@
 
       <div class="work-item reveal">
         <div class="work-heading">
-          <span class="work-title">FinAgent-Eval.</span>
+          <span class="work-title">FinAgent-Eval</span>
           <span class="work-links">
             <a href="https://github.com/vishwas182002/FinAgent-Eval" target="_blank" rel="noopener">Code</a>
             <a href="https://finagent-eval.streamlit.app" target="_blank" rel="noopener">Web</a>
           </span>
         </div>
-        <span class="project-subtitle">LLM/VLM evaluation system for financial documents.</span>
+        <span class="project-subtitle">LLM/VLM evaluation system for financial documents</span>
         <p class="work-body">FinAgent-Eval is an evaluation framework I built to test how well generative AI models understand real financial documents. The goal was not only to measure model accuracy, but to understand where models fail when answering questions from financial reports, tables, layouts, charts, and numerical content.
         I created an automated evaluation pipeline around 397 financial-document questions drawn from 79 document images across 10 companies. The system benchmarked 5 generative AI models across extractive, numerical, layout-based, and chart-related questions. A key finding was that headline accuracy can hide serious reliability issues: one model performed reasonably overall but collapsed on numerical reasoning.</p>
         <span class="work-venue">Includes automated tests, bootstrap confidence intervals, structured reports, a failure-mode taxonomy, and a Streamlit dashboard.</span>
@@ -518,12 +518,12 @@
 
       <div class="work-item reveal">
         <div class="work-heading">
-          <span class="work-title">Financial Document VQA.</span>
+          <span class="work-title">Financial Document VQA</span>
           <span class="work-links">
             <a href="https://github.com/vishwas182002/financial-document-vqa" target="_blank" rel="noopener">Code</a>
           </span>
         </div>
-        <span class="project-subtitle">Deep learning benchmark for visual question answering on financial reports.</span>
+        <span class="project-subtitle">Deep learning benchmark for visual question answering on financial reports</span>
         <p class="work-body">This project evaluates how vision-language models perform on real-world financial documents. I built it because many document AI models look strong on clean benchmarks but struggle with dense tables, scanned layouts, financial terminology, and numerical reasoning.
         I created a dataset of 397 question-answer pairs across 79 financial-document images from 10 companies, then benchmarked multiple deep learning and vision-language architectures. The results showed a 63 to 83 percent performance gap between cleaner benchmark-style tasks and real business-document understanding.
         I also experimented with LoRA fine-tuning using 307 curated financial QA examples. The fine-tuned model improved from 0.137 to 0.168 ANLS, a roughly 22 percent gain.</p>
@@ -532,12 +532,12 @@
 
       <div class="work-item reveal">
         <div class="work-heading">
-          <span class="work-title">XAI Credit Lens.</span>
+          <span class="work-title">XAI Credit Lens</span>
           <span class="work-links">
             <a href="https://github.com/vishwas182002/xai-credit-lens" target="_blank" rel="noopener">Code</a>
           </span>
         </div>
-        <span class="project-subtitle">Explainable AI tool for credit-risk decisioning.</span>
+        <span class="project-subtitle">Explainable AI tool for credit-risk decisioning</span>
         <p class="work-body">XAI Credit Lens is an explainable machine-learning application for credit-risk prediction. The project combines predictive modeling with interpretability tools so users can understand not only what a model predicted, but why it made that decision.
         I trained and evaluated multiple models on a 30,000-record credit dataset, including XGBoost, LightGBM, and Random Forest. The pipeline used Optuna hyperparameter tuning and 5-fold cross-validation, with the final system achieving a test ROC-AUC of 0.782. I integrated SHAP, LIME, and DiCE explanations, and added a fairness audit across 4 protected or sensitive attributes, with zero violations detected in the tested setup.</p>
         <span class="tech-stack">Tech stack: Python, Scikit-learn, XGBoost, LightGBM, Random Forest, Optuna, SHAP, LIME, DiCE, Streamlit.</span>
@@ -545,12 +545,12 @@
 
       <div class="work-item reveal">
         <div class="work-heading">
-          <span class="work-title">Implicit Bias in Adam vs. SGD.</span>
+          <span class="work-title">Implicit Bias in Adam vs. SGD</span>
           <span class="work-links">
             <a href="https://github.com/vishwas182002/implicit-bias-adam-sgd" target="_blank" rel="noopener">Code</a>
           </span>
         </div>
-        <span class="project-subtitle">Research project on optimizer behavior and model generalization.</span>
+        <span class="project-subtitle">Research project on optimizer behavior and model generalization</span>
         <p class="work-body">This project investigated how optimizer choice affects the behavior of machine-learning models. Instead of treating Adam and SGD as interchangeable training tools, I studied how each optimizer can guide models toward different solutions, even when trained on the same data.
         I reproduced theoretical optimizer-bias behavior in controlled experiments: gradient descent aligned with L2 max-margin behavior, while Adam aligned more closely with L-infinity style solutions. I then extended the analysis to MNIST experiments with spurious patch features to study shortcut learning and generalization. Optimizer choice changed out-of-distribution behavior, with SGD showing a 30.2 percent OOD drop and Adam showing a 13.6 percent drop in the tested setting.</p>
         <span class="tech-stack">Tech stack: Python, PyTorch, NumPy, Matplotlib, Optimization, SGD, Adam, MNIST, Robustness, Generalization Analysis.</span>
@@ -571,13 +571,13 @@
 
       <h2 class="section-title" id="education">Education</h2>
       <ul class="plain-list reveal">
-        <li><span class="li-strong">MS, Computer Science, University of Colorado Boulder.</span> 2025 to 2027. GPA 3.74 / 4.0.</li>
-        <li><span class="li-strong">B.Tech, Information Technology, Vellore Institute of Technology.</span> 2021 to 2025. GPA 3.4 / 4.0.</li>
+        <li><span class="li-strong">MS in Computer Science, University of Colorado Boulder</span> | 2025 to 2027 | GPA: 3.74 / 4.0.</li>
+        <li><span class="li-strong">B.Tech in Information Technology, Vellore Institute of Technology</span> | 2021 to 2025 | GPA: 3.4 / 4.0.</li>
       </ul>
 
       <h2 class="section-title" id="recognition">Recognition</h2>
       <ul class="plain-list reveal">
-        <li><span class="li-strong">AWS Certified Cloud Practitioner.</span> Score: 970 / 1000.</li>
+        <li><span class="li-strong">AWS Certified Cloud Practitioner</span> | Score: 970 / 1000.</li>
         <li><span class="li-strong">Springer book chapter, 2025:</span> Kothari, V., and Krishwanth, B. Ethical AI for countering violence against women. <a href="https://doi.org/10.1007/978-981-96-6046-9_26" target="_blank" rel="noopener">DOI</a></li>
         <li><span class="li-strong">Elsevier reviewer</span> for Public Health and Social Sciences &amp; Humanities Open. Reviewing since 2026.</li>
       </ul>
