@@ -8,102 +8,130 @@
 <meta property="og:title" content="Vishwas Kothari">
 <meta property="og:description" content="Machine learning, model evaluation, document intelligence, trustworthy AI, and scientific data systems.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#F8FAF2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
-  * {
-    box-sizing: border-box;
+  :root {
+    --bg: #F8FAF2;
+    --ink: #181a1e;
+    --body: #34373e;
+    --muted: #6c707a;
+    --faint: #989da6;
+    --line: #e7e7e1;
+    --line-soft: #efefe9;
+    --accent: #294c8c;
+    --accent-hover: #1b3568;
+    --card: rgba(255, 255, 255, 0.42);
+    --card-hover: rgba(255, 255, 255, 0.72);
+
+    --serif: "Newsreader", Georgia, "Times New Roman", serif;
+    --sans: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   }
+
+  html[data-theme="dark"] {
+    --bg: #111318;
+    --ink: #ecedf0;
+    --body: #bcc0c8;
+    --muted: #8b909a;
+    --faint: #6f747e;
+    --line: #282c34;
+    --line-soft: #20242b;
+    --accent: #92aaff;
+    --accent-hover: #b2c2ff;
+    --card: rgba(255, 255, 255, 0.04);
+    --card-hover: rgba(146, 170, 255, 0.08);
+  }
+
+  * { box-sizing: border-box; }
 
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 24px;
   }
 
   body {
     margin: 0;
-    color: #111;
-    background: #fff;
-    font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    line-height: 25px;
+    color: var(--body);
+    background: var(--bg);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    transition: background .25s ease, color .25s ease;
   }
 
-  a {
-    color: #0645ad;
-    text-decoration: none;
-  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent-hover); text-decoration: underline; text-underline-offset: 2px; }
 
-  a:hover {
-    color: #042f75;
-    text-decoration: underline;
-  }
+  p { margin: 0 0 15px; }
+  sup { font-size: .72em; }
 
-  p {
-    margin: 0 0 14px;
-  }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
 
-  .wrapper {
-    width: 800px;
-    margin: 0 auto;
-  }
+  .wrapper { width: 760px; margin: 0 auto; }
 
-  .site-header {
-    padding-top: 64px;
-  }
-
+  /* ---------- header ---------- */
+  .site-header { padding-top: 60px; }
   .header-row {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
     gap: 24px;
   }
-
   .site-title {
-    color: #111;
-    font-family: "Source Serif 4", Georgia, serif;
-    font-size: 34px;
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 35px;
     font-weight: 600;
     line-height: 1.05;
+    letter-spacing: 0;
   }
-
-  .site-title:hover {
-    color: #111;
-    text-decoration: none;
-  }
+  .site-title:hover { color: var(--ink); text-decoration: none; }
 
   .site-nav {
-    color: #777;
-    font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0;
     text-transform: uppercase;
     white-space: nowrap;
+    color: var(--faint);
   }
+  .site-nav a { color: var(--muted); }
+  .site-nav a:hover { color: var(--accent); text-decoration: none; }
+  .site-nav .sep { margin: 0 9px; color: var(--line); }
 
-  .site-nav a {
-    color: #555;
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 14px;
+    padding: 0;
+    color: var(--muted);
+    background: none;
+    border: 0;
+    cursor: pointer;
+    line-height: 0;
   }
-
-  .site-nav span {
-    margin: 0 8px;
-    color: #aaa;
-  }
+  .theme-toggle:hover { color: var(--accent); }
+  .theme-toggle svg { width: 15px; height: 15px; }
 
   .site-description {
-    margin-top: 22px;
-    color: #777;
-    font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    line-height: 21px;
+    margin-top: 20px;
+    color: var(--muted);
+    font-size: 14.5px;
+    line-height: 1.5;
   }
 
-  .intro {
-    padding-top: 18px;
-  }
+  /* ---------- intro ---------- */
+  .intro { padding-top: 16px; padding-bottom: 56px; }
 
   .portrait {
     display: block;
@@ -111,181 +139,321 @@
     height: 340px;
     object-fit: cover;
     object-position: 50% 38%;
-    margin: 30px auto 18px;
-    border: 0;
-    background: #f4f4f4;
+    margin: 32px auto 18px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--line-soft);
   }
-
   .portrait-fallback {
     display: grid;
     place-items: center;
     width: 300px;
     height: 300px;
-    color: #777;
-    font-family: "Source Serif 4", Georgia, serif;
-    font-size: 48px;
+    color: var(--muted);
+    font-family: var(--serif);
+    font-size: 50px;
     font-weight: 600;
   }
 
-  .profile-lines {
-    text-align: center;
-    margin-bottom: 28px;
-  }
+  .profile-lines { text-align: center; margin-bottom: 8px; }
+  .profile-lines p { margin-bottom: 5px; }
+  .profile-lines .role { color: var(--ink); font-weight: 600; }
+  .profile-links { color: var(--faint); font-family: var(--mono); font-size: 13px; }
+  .profile-links span { margin: 0 8px; color: var(--line); }
 
-  .profile-lines p {
-    margin-bottom: 5px;
-  }
-
-  .profile-links {
-    color: #555;
-  }
-
-  .profile-links span {
-    margin: 0 7px;
-    color: #999;
-  }
-
-  article {
-    padding-bottom: 48px;
-  }
-
+  /* ---------- sections ---------- */
   .section-title {
-    display: block;
-    margin: 22px 0 10px;
-    font-weight: 700;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin: 46px 0 18px;
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--ink);
   }
+  .section-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+    transform: translateY(-5px);
+  }
+
+  .about-lead { color: var(--body); }
 
   .year {
-    display: block;
-    margin: 18px 0 8px;
-    font-weight: 700;
+    display: inline-block;
+    margin: 6px 0 18px;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0;
+    color: var(--faint);
+    padding: 2px 9px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
   }
 
-  .work-item {
-    margin: 0 0 16px;
-  }
+  /* project / work entries */
+  .work-item { margin: 0 0 24px; padding-bottom: 24px; border-bottom: 1px solid var(--line-soft); }
+  .work-item:last-of-type { border-bottom: 0; }
 
-  .work-title {
-    font-weight: 700;
+  .work-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 2px;
   }
+  .work-title { font-family: var(--serif); font-size: 19px; font-weight: 600; color: var(--ink); letter-spacing: 0; }
+
+  .work-links { display: inline-flex; gap: 7px; flex: none; }
+  .work-links a {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 3px 10px;
+    transition: color .15s ease, border-color .15s ease;
+  }
+  .work-links a:hover { color: var(--accent); border-color: var(--accent); text-decoration: none; }
+
+  .project-subtitle { display: block; margin: 0 0 10px; color: var(--accent); font-weight: 600; font-size: 14.5px; }
+
+  .work-body { color: var(--body); }
 
   .work-venue {
-    color: #555;
-  }
-
-  .project-subtitle {
     display: block;
-    margin-top: 1px;
-    color: #555;
-    font-weight: 600;
+    margin: 10px 0 0;
+    padding-left: 13px;
+    border-left: 2px solid var(--line);
+    color: var(--muted);
+    font-size: 14.5px;
   }
 
   .tech-stack {
     display: block;
-    margin-top: 5px;
-    color: #555;
-    font-size: 15px;
-  }
-
-  .work-links {
-    display: inline-block;
-    margin-left: 4px;
-    white-space: nowrap;
-  }
-
-  .work-links a {
-    margin-right: 8px;
-  }
-
-  .plain-list {
-    margin: 0;
-    padding-left: 22px;
-  }
-
-  .plain-list li {
-    margin-bottom: 7px;
-  }
-
-  .skills {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .skills li {
-    margin-bottom: 7px;
-  }
-
-  .skills strong {
-    display: inline-block;
-    width: 132px;
-  }
-
-  .contact-line {
-    margin-bottom: 5px;
-  }
-
-  .site-footer {
-    border-top: 1px solid #eee;
-    padding: 28px 0 56px;
-    color: #777;
+    margin-top: 12px;
+    color: var(--muted);
     font-size: 14px;
+    line-height: 1.55;
   }
 
-  @media (max-width: 860px) {
-    .wrapper {
-      width: auto;
-      margin: 0 24px;
-    }
+  /* experience block */
+  .xp-head { margin-bottom: 10px; }
+  .xp-title { display: block; color: var(--ink); font-family: var(--serif); font-size: 19px; font-weight: 600; }
+  .xp-org { display: block; margin-top: 1px; color: var(--accent); font-weight: 600; font-size: 14.5px; }
+  .xp-meta { display: block; margin-top: 3px; color: var(--muted); font-family: var(--mono); font-size: 12.5px; }
 
-    .site-header {
-      padding-top: 34px;
-    }
+  /* simple lists */
+  .plain-list { margin: 0; padding: 0; list-style: none; }
+  .plain-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line-soft);
+    color: var(--body);
+  }
+  .plain-list li:first-child { padding-top: 2px; }
+  .plain-list li:last-child { border-bottom: 0; }
+  .plain-list .li-strong { color: var(--ink); font-weight: 600; }
 
-    .header-row {
-      display: block;
-    }
+  /* skills */
+  .skills { margin: 0; padding: 0; list-style: none; }
+  .skills li {
+    display: grid;
+    grid-template-columns: 132px 1fr;
+    gap: 16px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--line-soft);
+    align-items: baseline;
+  }
+  .skills li:last-child { border-bottom: 0; }
+  .skills strong {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .skills .skill-val { color: var(--body); font-size: 15px; }
 
-    .site-nav {
-      margin-top: 14px;
-      white-space: normal;
-      line-height: 22px;
-    }
+  /* contact */
+  .contact-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+    gap: 26px;
+    align-items: start;
+  }
+  .contact-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+  .live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px rgba(41, 76, 140, 0.12);
+  }
+  .contact-copy h3 {
+    margin: 0;
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 31px;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: 0;
+    max-width: 13ch;
+  }
+  .contact-intro {
+    margin-top: 14px;
+    color: var(--body);
+    font-size: 15.5px;
+    line-height: 1.6;
+    max-width: 40ch;
+  }
+  .contact-availability {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+  }
+  .contact-availability span {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 5px 10px;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 11.5px;
+  }
+  .contact-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .contact-card {
+    min-height: 142px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--ink);
+    background: var(--card);
+    text-decoration: none;
+    transition: transform .18s ease, border-color .18s ease, background .18s ease;
+  }
+  .contact-card.primary {
+    border-color: var(--accent);
+  }
+  .contact-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    background: var(--card-hover);
+    text-decoration: none;
+  }
+  .contact-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .contact-icon {
+    width: 34px;
+    height: 34px;
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--accent);
+    background: var(--bg);
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+  .contact-arrow {
+    color: var(--faint);
+    font-size: 17px;
+    transition: transform .18s ease, color .18s ease;
+  }
+  .contact-card:hover .contact-arrow {
+    color: var(--accent);
+    transform: translateX(3px);
+  }
+  .contact-label {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 11.5px;
+  }
+  .contact-title {
+    display: block;
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .contact-note {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+  }
 
-    .portrait {
-      width: 220px;
-      height: 260px;
-    }
+  /* footer */
+  .site-footer {
+    border-top: 1px solid var(--line-soft);
+    padding: 26px 0 64px;
+    color: var(--faint);
+    font-family: var(--mono);
+    font-size: 12.5px;
+  }
 
-    .portrait-fallback {
-      width: 220px;
-      height: 220px;
-    }
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(12px); transition: opacity .55s ease, transform .55s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
 
-    .skills strong {
-      display: block;
-      width: auto;
-    }
+  /* responsive */
+  @media (max-width: 820px) {
+    .wrapper { width: auto; margin: 0 26px; }
+    .site-header { padding-top: 38px; }
+    .header-row { display: block; }
+    .site-nav { margin-top: 14px; flex-wrap: wrap; white-space: normal; }
+    .portrait { width: 240px; height: 274px; }
+    .portrait-fallback { width: 240px; height: 240px; }
+    .contact-layout { grid-template-columns: 1fr; gap: 20px; }
   }
 
   @media (max-width: 460px) {
-    .wrapper {
-      margin: 0 18px;
-    }
-
-    .site-title {
-      font-size: 28px;
-    }
-
-    .portrait {
-      width: 180px;
-      height: 220px;
-    }
-
-    .portrait-fallback {
-      width: 180px;
-      height: 180px;
-    }
+    .wrapper { margin: 0 18px; }
+    .site-title { font-size: 29px; }
+    .portrait { width: 190px; height: 220px; }
+    .portrait-fallback { width: 190px; height: 190px; }
+    .skills li { grid-template-columns: 1fr; gap: 5px; }
+    .work-heading { gap: 8px; }
+    .contact-actions { grid-template-columns: 1fr; }
+    .contact-copy h3 { font-size: 28px; max-width: none; }
   }
 </style>
 </head>
@@ -294,10 +462,13 @@
     <div class="wrapper header-row">
       <a class="site-title" href="#top">Vishwas Kothari</a>
       <nav class="site-nav" aria-label="Primary navigation">
-        <a href="#top">Home</a><span>/</span>
-        <a href="#research">Projects</a><span>/</span>
-        <a href="#experience">Experience</a><span>/</span>
+        <a href="#top">Home</a><span class="sep">/</span>
+        <a href="#research">Projects</a><span class="sep">/</span>
+        <a href="#experience">Experience</a><span class="sep">/</span>
         <a href="resume_vk.pdf" target="_blank" rel="noopener">Resume</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">
+          <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+        </button>
       </nav>
     </div>
   </header>
@@ -308,10 +479,11 @@
 
   <main id="top" class="wrapper">
     <article class="intro">
-      <img class="portrait" src="profile_pic.jpeg" alt="Vishwas Kothari" onerror="this.outerHTML='<div class=&quot;portrait portrait-fallback&quot; aria-label=&quot;Vishwas Kothari&quot;>VK</div>'">
+      <img class="portrait" src="profile_pic.jpeg" alt="Vishwas Kothari"
+           onerror="this.outerHTML='&lt;div class=&quot;portrait portrait-fallback&quot; aria-label=&quot;Vishwas Kothari&quot;&gt;VK&lt;/div&gt;'">
 
       <div class="profile-lines">
-        <p>MS Computer Science, University of Colorado Boulder</p>
+        <p class="role">MS Computer Science, University of Colorado Boulder</p>
         <p>Email: <a href="mailto:vishwasvkothari@gmail.com">vishwasvkothari@gmail.com</a></p>
         <p class="profile-links">
           <a href="resume_vk.pdf" target="_blank" rel="noopener">Resume</a><span>|</span>
@@ -320,90 +492,141 @@
         </p>
       </div>
 
-      <strong class="section-title" id="about">About</strong>
-      <p>I am a computer science master's student at the University of Colorado Boulder, working on machine-learning systems that need careful evaluation, not just good headline scores. My interests span document intelligence, trustworthy AI, explainability, optimizer behavior, and scientific data systems.</p>
-      <p>Before CU Boulder, I worked at ISRO's Space Applications Centre on ocean-colour remote sensing for chlorophyll-a retrieval. That work connected satellite data processing, numerical optimization, and model validation, with retrieval outputs evaluated against measured reference samples.</p>
-      <p>Across projects, I am drawn to the same question: where does a model fail, why does it fail, and what evidence should make us trust it in a real workflow?</p>
+      <h2 class="section-title" id="about">About</h2>
+      <p class="about-lead">I'm Vishwas, a computer science master's student at CU Boulder. Short version: I do machine learning, and I don't fully trust it. The part I actually enjoy is not just getting a model to work. It is finding the exact spot where it quietly falls apart, and then figuring out why.</p>
+      <p class="about-lead">That is the theme across pretty much everything I build: document AI, explainability, trustworthy ML, and the occasional optimizer mystery. Less "look how high the score is," more "okay, but does this hold up when nobody's watching?"</p>
+      <p class="about-lead">Before Boulder, I was at ISRO pulling chlorophyll-a estimates out of satellite data and checking them against real ocean samples until the numbers behaved. Excellent training for being suspicious of nice-looking results.</p>
+      <p class="about-lead">Outside of all that, you will usually find me trying to convince myself that walking counts as a hobby, or deep in philosophy books that are far more pessimistic than I actually am. It balances out.</p>
 
-      <strong class="section-title" id="research">Projects and Research</strong>
-      <strong class="year">2026</strong>
+      <h2 class="section-title" id="research">Projects and Research</h2>
+      <span class="year">2026</span>
 
-      <p class="work-item">
-        <span class="work-title">FinAgent-Eval.</span>
+      <div class="work-item reveal">
+        <div class="work-heading">
+          <span class="work-title">FinAgent-Eval.</span>
+          <span class="work-links">
+            <a href="https://github.com/vishwas182002/FinAgent-Eval" target="_blank" rel="noopener">Code</a>
+            <a href="https://finagent-eval.streamlit.app" target="_blank" rel="noopener">Web</a>
+          </span>
+        </div>
         <span class="project-subtitle">LLM/VLM evaluation system for financial documents.</span>
-        FinAgent-Eval is an evaluation framework I built to test how well generative AI models understand real financial documents. The goal was not only to measure model accuracy, but to understand where models fail when answering questions from financial reports, tables, layouts, charts, and numerical content.
-        I created an automated evaluation pipeline around 397 financial-document questions drawn from 79 document images across 10 companies. The system benchmarked 5 generative AI models across extractive, numerical, layout-based, and chart-related questions. A key finding was that headline accuracy can hide serious reliability issues: one model performed reasonably overall but collapsed on numerical reasoning.
+        <p class="work-body">FinAgent-Eval is an evaluation framework I built to test how well generative AI models understand real financial documents. The goal was not only to measure model accuracy, but to understand where models fail when answering questions from financial reports, tables, layouts, charts, and numerical content.
+        I created an automated evaluation pipeline around 397 financial-document questions drawn from 79 document images across 10 companies. The system benchmarked 5 generative AI models across extractive, numerical, layout-based, and chart-related questions. A key finding was that headline accuracy can hide serious reliability issues: one model performed reasonably overall but collapsed on numerical reasoning.</p>
         <span class="work-venue">Includes automated tests, bootstrap confidence intervals, structured reports, a failure-mode taxonomy, and a Streamlit dashboard.</span>
         <span class="tech-stack">Tech stack: Python, PyTorch, Hugging Face, Qwen2.5-VL, Streamlit, Pandas, statistical evaluation, LLM evaluation, VLMs.</span>
-        <span class="work-links"><a href="https://github.com/vishwas182002/FinAgent-Eval" target="_blank" rel="noopener">Code</a><a href="https://finagent-eval.streamlit.app" target="_blank" rel="noopener">Web</a></span>
-      </p>
+      </div>
 
-      <p class="work-item">
-        <span class="work-title">Financial Document VQA.</span>
+      <div class="work-item reveal">
+        <div class="work-heading">
+          <span class="work-title">Financial Document VQA.</span>
+          <span class="work-links">
+            <a href="https://github.com/vishwas182002/financial-document-vqa" target="_blank" rel="noopener">Code</a>
+          </span>
+        </div>
         <span class="project-subtitle">Deep learning benchmark for visual question answering on financial reports.</span>
-        This project evaluates how vision-language models perform on real-world financial documents. I built it because many document AI models look strong on clean benchmarks but struggle with dense tables, scanned layouts, financial terminology, and numerical reasoning.
+        <p class="work-body">This project evaluates how vision-language models perform on real-world financial documents. I built it because many document AI models look strong on clean benchmarks but struggle with dense tables, scanned layouts, financial terminology, and numerical reasoning.
         I created a dataset of 397 question-answer pairs across 79 financial-document images from 10 companies, then benchmarked multiple deep learning and vision-language architectures. The results showed a 63 to 83 percent performance gap between cleaner benchmark-style tasks and real business-document understanding.
-        I also experimented with LoRA fine-tuning using 307 curated financial QA examples. The fine-tuned model improved from 0.137 to 0.168 ANLS, a roughly 22 percent gain.
+        I also experimented with LoRA fine-tuning using 307 curated financial QA examples. The fine-tuned model improved from 0.137 to 0.168 ANLS, a roughly 22 percent gain.</p>
         <span class="tech-stack">Tech stack: Python, PyTorch, Hugging Face, LayoutLMv3, Pix2Struct, LoRA, OCR, Document AI, Visual Question Answering.</span>
-        <span class="work-links"><a href="https://github.com/vishwas182002/financial-document-vqa" target="_blank" rel="noopener">Code</a></span>
-      </p>
+      </div>
 
-      <p class="work-item">
-        <span class="work-title">XAI Credit Lens.</span>
+      <div class="work-item reveal">
+        <div class="work-heading">
+          <span class="work-title">XAI Credit Lens.</span>
+          <span class="work-links">
+            <a href="https://github.com/vishwas182002/xai-credit-lens" target="_blank" rel="noopener">Code</a>
+          </span>
+        </div>
         <span class="project-subtitle">Explainable AI tool for credit-risk decisioning.</span>
-        XAI Credit Lens is an explainable machine-learning application for credit-risk prediction. The project combines predictive modeling with interpretability tools so users can understand not only what a model predicted, but why it made that decision.
-        I trained and evaluated multiple models on a 30,000-record credit dataset, including XGBoost, LightGBM, and Random Forest. The pipeline used Optuna hyperparameter tuning and 5-fold cross-validation, with the final system achieving a test ROC-AUC of 0.782. I integrated SHAP, LIME, and DiCE explanations, and added a fairness audit across 4 protected or sensitive attributes, with zero violations detected in the tested setup.
+        <p class="work-body">XAI Credit Lens is an explainable machine-learning application for credit-risk prediction. The project combines predictive modeling with interpretability tools so users can understand not only what a model predicted, but why it made that decision.
+        I trained and evaluated multiple models on a 30,000-record credit dataset, including XGBoost, LightGBM, and Random Forest. The pipeline used Optuna hyperparameter tuning and 5-fold cross-validation, with the final system achieving a test ROC-AUC of 0.782. I integrated SHAP, LIME, and DiCE explanations, and added a fairness audit across 4 protected or sensitive attributes, with zero violations detected in the tested setup.</p>
         <span class="tech-stack">Tech stack: Python, Scikit-learn, XGBoost, LightGBM, Random Forest, Optuna, SHAP, LIME, DiCE, Streamlit.</span>
-        <span class="work-links"><a href="https://github.com/vishwas182002/xai-credit-lens" target="_blank" rel="noopener">Code</a></span>
-      </p>
+      </div>
 
-      <p class="work-item">
-        <span class="work-title">Implicit Bias in Adam vs. SGD.</span>
+      <div class="work-item reveal">
+        <div class="work-heading">
+          <span class="work-title">Implicit Bias in Adam vs. SGD.</span>
+          <span class="work-links">
+            <a href="https://github.com/vishwas182002/implicit-bias-adam-sgd" target="_blank" rel="noopener">Code</a>
+          </span>
+        </div>
         <span class="project-subtitle">Research project on optimizer behavior and model generalization.</span>
-        This project investigated how optimizer choice affects the behavior of machine-learning models. Instead of treating Adam and SGD as interchangeable training tools, I studied how each optimizer can guide models toward different solutions, even when trained on the same data.
-        I reproduced theoretical optimizer-bias behavior in controlled experiments: gradient descent aligned with L2 max-margin behavior, while Adam aligned more closely with L-infinity style solutions. I then extended the analysis to MNIST experiments with spurious patch features to study shortcut learning and generalization. Optimizer choice changed out-of-distribution behavior, with SGD showing a 30.2 percent OOD drop and Adam showing a 13.6 percent drop in the tested setting.
+        <p class="work-body">This project investigated how optimizer choice affects the behavior of machine-learning models. Instead of treating Adam and SGD as interchangeable training tools, I studied how each optimizer can guide models toward different solutions, even when trained on the same data.
+        I reproduced theoretical optimizer-bias behavior in controlled experiments: gradient descent aligned with L2 max-margin behavior, while Adam aligned more closely with L-infinity style solutions. I then extended the analysis to MNIST experiments with spurious patch features to study shortcut learning and generalization. Optimizer choice changed out-of-distribution behavior, with SGD showing a 30.2 percent OOD drop and Adam showing a 13.6 percent drop in the tested setting.</p>
         <span class="tech-stack">Tech stack: Python, PyTorch, NumPy, Matplotlib, Optimization, SGD, Adam, MNIST, Robustness, Generalization Analysis.</span>
-        <span class="work-links"><a href="https://github.com/vishwas182002/implicit-bias-adam-sgd" target="_blank" rel="noopener">Code</a></span>
-      </p>
+      </div>
 
-      <strong class="section-title" id="experience">Experience</strong>
-      <p class="work-item">
-        <span class="work-title">Research Intern, Biological Oceanography Division, Space Applications Centre, ISRO.</span>
-        <span class="work-venue">Ahmedabad, India. January to July 2025.</span>
-      </p>
-      <p>At the Space Applications Centre, ISRO, I worked on ocean-colour remote sensing for retrieving and validating chlorophyll-a concentration from satellite observations. My work focused on building scientific computing workflows that connected satellite data processing, numerical optimization, and model validation.</p>
-      <p>I developed Python-based data pipelines to ingest, clean, collocate, and analyze satellite products from sensors such as MODIS Aqua and OCM. The workflow converted raw and intermediate satellite observations into analysis-ready datasets using NumPy, Pandas, xarray, NetCDF, SNAP, and Snappy. A major part of the project involved implementing a Levenberg-Marquardt optimization approach for ocean-colour parameter retrieval and validating results against reference datasets such as NASA NOMAD.</p>
-      <p>The final retrieval workflow was evaluated using scientific metrics including RMSE, MAPD, relative bias, and R<sup>2</sup>. The model achieved an R<sup>2</sup> of 0.987 for remote-sensing reflectance reconstruction, and chlorophyll-a validation reached an R<sup>2</sup> of 0.879 in log-space across 105 matched samples. I also prepared a detailed technical report documenting the methodology, data flow, validation approach, and results.</p>
-      <p class="tech-stack">Tech stack: Python, NumPy, Pandas, xarray, NetCDF, SNAP, Snappy, MODIS Aqua, OCM, NASA NOMAD, Matplotlib.</p>
+      <h2 class="section-title" id="experience">Experience</h2>
+      <div class="work-item reveal" style="border-bottom:0; padding-bottom:0;">
+        <div class="xp-head">
+          <span class="xp-title">Research Intern</span>
+          <span class="xp-org">Biological Oceanography Division, Space Applications Centre, ISRO</span>
+          <span class="xp-meta">Ahmedabad, India | January to July 2025</span>
+        </div>
+        <p>At the Space Applications Centre, ISRO, I worked on ocean-colour remote sensing for retrieving and validating chlorophyll-a concentration from satellite observations. My work focused on building scientific computing workflows that connected satellite data processing, numerical optimization, and model validation.</p>
+        <p>I developed Python-based data pipelines to ingest, clean, collocate, and analyze satellite products from sensors such as MODIS Aqua and OCM. The workflow converted raw and intermediate satellite observations into analysis-ready datasets using NumPy, Pandas, xarray, NetCDF, SNAP, and Snappy. A major part of the project involved implementing a Levenberg-Marquardt optimization approach for ocean-colour parameter retrieval and validating results against reference datasets such as NASA NOMAD.</p>
+        <p>The final retrieval workflow was evaluated using scientific metrics including RMSE, MAPD, relative bias, and R<sup>2</sup>. The model achieved an R<sup>2</sup> of 0.987 for remote-sensing reflectance reconstruction, and chlorophyll-a validation reached an R<sup>2</sup> of 0.879 in log-space across 105 matched samples. I also prepared a detailed technical report documenting the methodology, data flow, validation approach, and results.</p>
+        <span class="tech-stack">Tech stack: Python, NumPy, Pandas, xarray, NetCDF, SNAP, Snappy, MODIS Aqua, OCM, NASA NOMAD, Matplotlib.</span>
+      </div>
 
-      <strong class="section-title" id="education">Education</strong>
-      <ul class="plain-list">
-        <li>MS, Computer Science, University of Colorado Boulder. 2025 to 2027. GPA 3.74 / 4.0.</li>
-        <li>B.Tech, Information Technology, Vellore Institute of Technology. 2021 to 2025. GPA 3.4 / 4.0.</li>
+      <h2 class="section-title" id="education">Education</h2>
+      <ul class="plain-list reveal">
+        <li><span class="li-strong">MS, Computer Science, University of Colorado Boulder.</span> 2025 to 2027. GPA 3.74 / 4.0.</li>
+        <li><span class="li-strong">B.Tech, Information Technology, Vellore Institute of Technology.</span> 2021 to 2025. GPA 3.4 / 4.0.</li>
       </ul>
 
-      <strong class="section-title" id="recognition">Recognition</strong>
-      <ul class="plain-list">
-        <li>AWS Certified Cloud Practitioner. Score: 970 / 1000.</li>
-        <li>Springer book chapter, 2025: Kothari, V., and Krishwanth, B. Ethical AI for countering violence against women. <a href="https://doi.org/10.1007/978-981-96-6046-9_26" target="_blank" rel="noopener">DOI</a></li>
-        <li>Elsevier reviewer for Public Health and Social Sciences &amp; Humanities Open. Reviewing since 2026.</li>
+      <h2 class="section-title" id="recognition">Recognition</h2>
+      <ul class="plain-list reveal">
+        <li><span class="li-strong">AWS Certified Cloud Practitioner.</span> Score: 970 / 1000.</li>
+        <li><span class="li-strong">Springer book chapter, 2025:</span> Kothari, V., and Krishwanth, B. Ethical AI for countering violence against women. <a href="https://doi.org/10.1007/978-981-96-6046-9_26" target="_blank" rel="noopener">DOI</a></li>
+        <li><span class="li-strong">Elsevier reviewer</span> for Public Health and Social Sciences &amp; Humanities Open. Reviewing since 2026.</li>
       </ul>
 
-      <strong class="section-title" id="skills">Skills</strong>
-      <ul class="skills">
-        <li><strong>Languages</strong>Python, SQL, Java, C / C++, JavaScript</li>
-        <li><strong>ML / DL</strong>PyTorch, scikit-learn, XGBoost, LightGBM, Hugging Face Transformers, LoRA / PEFT</li>
-        <li><strong>Evaluation</strong>Bootstrap confidence intervals, LLM evaluation, failure taxonomies, pytest, Optuna</li>
-        <li><strong>XAI / Fairness</strong>SHAP, LIME, DiCE, fairness auditing, counterfactual explanations</li>
-        <li><strong>Data</strong>NumPy, Pandas, SciPy, xarray, NetCDF, OpenCV, MySQL, MongoDB</li>
-        <li><strong>Tooling</strong>Git, Linux, AWS, Streamlit, Gradio</li>
+      <h2 class="section-title" id="skills">Skills</h2>
+      <ul class="skills reveal">
+        <li><strong>Languages</strong><span class="skill-val">Python, SQL, Java, C / C++, JavaScript</span></li>
+        <li><strong>ML / DL</strong><span class="skill-val">PyTorch, scikit-learn, XGBoost, LightGBM, Hugging Face Transformers, LoRA / PEFT</span></li>
+        <li><strong>Evaluation</strong><span class="skill-val">Bootstrap confidence intervals, LLM evaluation, failure taxonomies, pytest, Optuna</span></li>
+        <li><strong>XAI / Fairness</strong><span class="skill-val">SHAP, LIME, DiCE, fairness auditing, counterfactual explanations</span></li>
+        <li><strong>Data</strong><span class="skill-val">NumPy, Pandas, SciPy, xarray, NetCDF, OpenCV, MySQL, MongoDB</span></li>
+        <li><strong>Tooling</strong><span class="skill-val">Git, Linux, AWS, Streamlit, Gradio</span></li>
       </ul>
 
-      <strong class="section-title" id="contact">Contact</strong>
-      <p class="contact-line">Email: <a href="mailto:vishwasvkothari@gmail.com">vishwasvkothari@gmail.com</a></p>
-      <p class="contact-line">Resume: <a href="resume_vk.pdf" target="_blank" rel="noopener">resume_vk.pdf</a></p>
-      <p class="contact-line">LinkedIn: <a href="https://linkedin.com/in/vishwas-kothari" target="_blank" rel="noopener">linkedin.com/in/vishwas-kothari</a></p>
-      <p class="contact-line">GitHub: <a href="https://github.com/vishwas182002" target="_blank" rel="noopener">github.com/vishwas182002</a></p>
+      <h2 class="section-title" id="contact">Contact</h2>
+      <div class="contact-layout reveal">
+        <div class="contact-copy">
+          <span class="contact-kicker"><span class="live-dot" aria-hidden="true"></span>Available now</span>
+          <h3>Let's talk about reliable AI.</h3>
+          <p class="contact-intro">Open to full-time roles in machine learning engineering, applied AI, data science, and model evaluation, especially on teams that care about evidence, reliability, and real-world behavior.</p>
+          <div class="contact-availability" aria-label="Availability">
+            <span>Boulder, CO</span>
+            <span>Full-time roles</span>
+            <span>AI, ML, Data Science</span>
+          </div>
+        </div>
+
+        <div class="contact-actions" aria-label="Contact links">
+          <a class="contact-card primary" href="mailto:vishwasvkothari@gmail.com">
+            <span class="contact-card-top"><span class="contact-icon" aria-hidden="true">@</span><span class="contact-arrow" aria-hidden="true">→</span></span>
+            <span><span class="contact-label">Email</span><span class="contact-title">Start a conversation</span><span class="contact-note">vishwasvkothari@gmail.com</span></span>
+          </a>
+
+          <a class="contact-card" href="https://linkedin.com/in/vishwas-kothari" target="_blank" rel="noopener">
+            <span class="contact-card-top"><span class="contact-icon" aria-hidden="true">in</span><span class="contact-arrow" aria-hidden="true">↗</span></span>
+            <span><span class="contact-label">LinkedIn</span><span class="contact-title">Connect professionally</span><span class="contact-note">Profile, updates, and background.</span></span>
+          </a>
+
+          <a class="contact-card" href="https://github.com/vishwas182002" target="_blank" rel="noopener">
+            <span class="contact-card-top"><span class="contact-icon" aria-hidden="true">GH</span><span class="contact-arrow" aria-hidden="true">↗</span></span>
+            <span><span class="contact-label">GitHub</span><span class="contact-title">Review the code</span><span class="contact-note">Projects, experiments, and demos.</span></span>
+          </a>
+
+          <a class="contact-card" href="resume_vk.pdf" target="_blank" rel="noopener">
+            <span class="contact-card-top"><span class="contact-icon" aria-hidden="true">PDF</span><span class="contact-arrow" aria-hidden="true">↗</span></span>
+            <span><span class="contact-label">Résumé</span><span class="contact-title">Download résumé</span><span class="contact-note">Education, experience, and selected work.</span></span>
+          </a>
+        </div>
+      </div>
     </article>
   </main>
 
@@ -412,5 +635,39 @@
       Vishwas Kothari. Last updated 2026.
     </div>
   </footer>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var stored = null;
+      try { stored = localStorage.getItem("theme"); } catch (e) {}
+      apply(stored || "light");
+      document.getElementById("themeToggle").addEventListener("click", function () {
+        var t = (root.getAttribute("data-theme") === "dark") ? "light" : "dark";
+        apply(t);
+        try { localStorage.setItem("theme", t); } catch (e) {}
+      });
+      function apply(t) {
+        root.setAttribute("data-theme", t);
+        var icon = document.getElementById("themeIcon");
+        if (t === "dark") {
+          icon.innerHTML = '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>';
+        } else {
+          icon.innerHTML = '<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>';
+        }
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute("content", t === "dark" ? "#111318" : "#F8FAF2");
+      }
+    })();
+
+    (function () {
+      var els = document.querySelectorAll(".reveal");
+      if (!("IntersectionObserver" in window)) { els.forEach(function (el){ el.classList.add("in"); }); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+      }, { rootMargin: "0px 0px -8% 0px", threshold: 0.06 });
+      els.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
 </body>
 </html>
