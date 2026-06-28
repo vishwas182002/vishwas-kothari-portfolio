@@ -1,686 +1,381 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vishwas Kothari · Machine Learning Engineer</title>
-<meta name="description" content="Vishwas Kothari. MS Computer Science at CU Boulder. Machine learning engineer focused on evaluation, trustworthy AI, document intelligence, and scientific data systems.">
-<meta property="og:title" content="Vishwas Kothari · Machine Learning Engineer">
-<meta property="og:description" content="Machine learning engineer focused on evaluation, trustworthy AI, document intelligence, and scientific data systems.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vishwas Kothari</title>
+<meta name="description" content="Vishwas Kothari. MS Computer Science at CU Boulder. Machine learning, model evaluation, document intelligence, trustworthy AI, and scientific data systems.">
+<meta property="og:title" content="Vishwas Kothari">
+<meta property="og:description" content="Machine learning, model evaluation, document intelligence, trustworthy AI, and scientific data systems.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#f4f4f2">
+<meta name="theme-color" content="#ffffff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<script>
-  (function () {
-    try {
-      var saved = localStorage.getItem("vk-theme");
-      var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-      document.documentElement.setAttribute("data-theme", saved || (prefersDark ? "dark" : "light"));
-    } catch (e) { document.documentElement.setAttribute("data-theme", "light"); }
-  })();
-</script>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #f4f4f2;
-    --surface: #fbfbf9;
-    --ink: #16161a;
-    --ink-soft: #34343a;
-    --muted: #76767e;
-    --faint: #9b9ba2;
-    --line: rgba(20, 20, 26, 0.13);
-    --line-soft: rgba(20, 20, 26, 0.07);
-    --accent: #2a5078;
-    --accent-ink: #1f3d5c;
-    --live: #2f7d5e;
-    --maxw: 1120px;
-    --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
-  }
-  [data-theme="dark"] {
-    --bg: #111114;
-    --surface: #18181c;
-    --ink: #ededee;
-    --ink-soft: #c9c9cd;
-    --muted: #8c8c94;
-    --faint: #66666e;
-    --line: rgba(255, 255, 255, 0.14);
-    --line-soft: rgba(255, 255, 255, 0.06);
-    --accent: #8fb3dd;
-    --accent-ink: #a9c6e8;
-    --live: #5cba8e;
+  * {
+    box-sizing: border-box;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
   body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: "Inter", system-ui, sans-serif;
+    margin: 0;
+    color: #111;
+    background: #fff;
+    font-family: "PT Sans", Helvetica, Arial, sans-serif;
     font-size: 16px;
-    line-height: 1.65;
-    min-width: 320px;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    transition: background 0.4s var(--ease), color 0.4s var(--ease);
+    line-height: 24px;
   }
 
-  /* Subtle Grid Background Texture */
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image: linear-gradient(var(--line-soft) 1px, transparent 1px), linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
-    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
-    z-index: -1;
-    pointer-events: none;
+  a {
+    color: #0645ad;
+    text-decoration: none;
   }
 
-  ::selection { background: var(--accent); color: var(--bg); }
-  a { color: inherit; }
-  *:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
-
-  /* Custom Scrollbar */
-  ::-webkit-scrollbar { width: 8px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
-
-  .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1rem, 3vw, 2.2rem); }
-  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; }
-
-  /* Scroll Progress Bar */
-  .scroll-progress {
-    position: fixed; top: 0; left: 0; height: 2px; width: 0%;
-    background: var(--accent); z-index: 100;
-    transition: width 0.1s linear;
+  a:hover {
+    color: #042f75;
+    text-decoration: underline;
   }
 
-  /* ---------- top bar ---------- */
-  .topbar {
-    position: sticky; top: 0; z-index: 50;
-    background: color-mix(in srgb, var(--bg) 82%, transparent);
-    backdrop-filter: saturate(160%) blur(12px);
-    -webkit-backdrop-filter: saturate(160%) blur(12px);
-    border-bottom: 1px solid var(--line-soft);
+  p {
+    margin: 0 0 14px;
   }
-  .topbar-inner {
-    max-width: var(--maxw); margin: 0 auto;
-    padding: 0.85rem clamp(1rem, 3vw, 2.2rem);
-    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-  }
-  .tb-name {
-    font-family: "Space Grotesk", sans-serif; font-weight: 600; font-size: 0.98rem;
-    letter-spacing: -0.01em; text-decoration: none; color: var(--ink); white-space: nowrap;
-    transition: opacity 0.2s var(--ease);
-  }
-  .tb-name:hover { opacity: 0.7; }
-  .tb-right { display: flex; align-items: center; gap: 1.3rem; }
-  .tb-right nav { display: flex; gap: 1.3rem; }
-  .tb-right nav a {
-    font-family: "JetBrains Mono", monospace; font-size: 0.72rem; letter-spacing: 0.06em;
-    text-transform: uppercase; color: var(--muted); text-decoration: none; 
-    transition: color 0.2s var(--ease); position: relative; padding-bottom: 2px;
-  }
-  .tb-right nav a:hover { color: var(--ink); }
-  .tb-right nav a.active { color: var(--ink); }
-  .tb-right nav a.active::after {
-    content: ""; position: absolute; bottom: -2px; left: 0; right: 0; height: 1px; background: var(--accent);
-  }
-  .tb-resume {
-    font-family: "JetBrains Mono", monospace; font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase;
-    text-decoration: none; background: var(--ink); color: var(--bg);
-    padding: 0.5rem 0.9rem; border-radius: 7px; border: 1px solid var(--ink);
-    transition: transform 0.2s var(--ease), background 0.2s var(--ease), border-color 0.2s var(--ease);
-    display: inline-flex; align-items: center; gap: 0.45rem; white-space: nowrap;
-  }
-  .tb-resume:hover { transform: translateY(-1px); background: var(--accent-ink); border-color: var(--accent-ink); }
-  .toggle {
-    background: none; border: 1px solid var(--line); border-radius: 999px;
-    width: 32px; height: 32px; display: inline-grid; place-items: center; cursor: pointer;
-    color: var(--ink); transition: border-color 0.2s var(--ease), transform 0.2s var(--ease); flex: none;
-  }
-  .toggle:hover { border-color: var(--accent); transform: rotate(15deg); }
-  .toggle svg { width: 15px; height: 15px; display: none; }
-  [data-theme="light"] .toggle .moon { display: block; }
-  [data-theme="dark"] .toggle .sun { display: block; }
-  @media (max-width: 640px) { .tb-right nav { display: none; } }
 
-  /* ---------- header ---------- */
-  .header { padding: 4.5rem 0 3rem; border-bottom: 1px solid var(--line-soft); }
-  .header-top { display: flex; align-items: center; gap: 1.8rem; }
-  .avatar {
-    width: 112px; height: 112px; border-radius: 20px; object-fit: cover;
-    border: 1px solid var(--line); filter: grayscale(10%); flex: none; background: var(--surface);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+  .wrapper {
+    width: 800px;
+    margin: 0 auto;
   }
-  .header h1 {
-    font-family: "Space Grotesk", sans-serif; font-weight: 700;
-    font-size: clamp(2.2rem, 5.5vw, 3.2rem); letter-spacing: -0.03em; line-height: 1.02;
-  }
-  .header .role { margin-top: 0.7rem; font-size: 1.1rem; color: var(--ink-soft); line-height: 1.45; max-width: 58ch; }
-  .meta-line {
-    margin-top: 1.8rem; display: flex; flex-wrap: wrap; gap: 0.45rem 1.2rem;
-    font-family: "JetBrains Mono", monospace; font-size: 0.73rem; color: var(--muted); letter-spacing: 0.02em;
-  }
-  .meta-line span { display: inline-flex; align-items: center; gap: 0.5rem; }
-  .actions { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.6rem; }
-  .btn {
-    font-family: "JetBrains Mono", monospace; font-size: 0.73rem; letter-spacing: 0.05em; text-transform: uppercase;
-    text-decoration: none; padding: 0.75rem 1.2rem; border-radius: 8px; border: 1px solid var(--line);
-    color: var(--ink); display: inline-flex; align-items: center; gap: 0.5rem;
-    transition: all 0.2s var(--ease);
-  }
-  .btn.solid { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-  .btn.solid:hover { background: var(--accent-ink); border-color: var(--accent-ink); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-  .btn.ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
-  /* ---------- sections (label column + content) ---------- */
-  .block {
+  .site-header {
+    padding-top: 64px;
+  }
+
+  .header-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .site-title {
+    color: #111;
+    font-family: "Josefin Sans", Helvetica, Arial, sans-serif;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  .site-title:hover {
+    color: #111;
+    text-decoration: none;
+  }
+
+  .site-nav {
+    color: #777;
+    font-family: "Josefin Sans", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .site-nav a {
+    color: #555;
+  }
+
+  .site-nav span {
+    margin: 0 8px;
+    color: #aaa;
+  }
+
+  .site-description {
+    margin-top: 22px;
+    color: #777;
+    font-family: "Josefin Sans", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  .intro {
+    padding-top: 18px;
+  }
+
+  .portrait {
+    display: block;
+    width: 300px;
+    height: 296px;
+    object-fit: cover;
+    margin: 30px auto 18px;
+    border: 0;
+    background: #f4f4f4;
+  }
+
+  .portrait-fallback {
     display: grid;
-    grid-template-columns: 160px 1fr;
-    gap: 0 3rem;
-    padding: 3.2rem 0;
-    border-bottom: 1px solid var(--line-soft);
-  }
-  .block:last-of-type { border-bottom: none; }
-  .block > .block-label { color: var(--faint); padding-top: 0.4rem; }
-  .block > .block-body { min-width: 0; }
-
-  .entry { 
-    position: relative;
-    padding: 2.2rem 0 2.2rem 1.5rem; 
-    border-top: 1px solid var(--line); 
-    transition: background 0.3s var(--ease);
-    margin-left: -1.5rem;
-    border-radius: 8px;
-  }
-  .entry:first-child { border-top: none; padding-top: 0; margin-top: 0; }
-  .entry::before {
-    content: ""; position: absolute; left: 0; top: 2.2rem; bottom: 2.2rem; width: 2px; 
-    background: var(--accent); transform: scaleY(0); transform-origin: top; 
-    transition: transform 0.3s var(--ease); border-radius: 2px;
-  }
-  .entry:hover { background: color-mix(in srgb, var(--surface) 55%, transparent); }
-  .entry:hover::before { transform: scaleY(1); }
-  .entry:first-child::before { top: 0; }
-  
-  .entry-meta { color: var(--muted); margin-bottom: 0.65rem; }
-  .entry-meta .ix { color: var(--faint); margin-right: 0.85rem; }
-  .entry h3 { font-family: "Space Grotesk", sans-serif; font-size: 1.55rem; font-weight: 600; letter-spacing: -0.02em; }
-  .entry-result { margin-top: 0.8rem; font-size: 1rem; color: var(--ink-soft); }
-  .entry-result b {
-    font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 1.4rem; letter-spacing: -0.02em;
-    color: var(--accent); margin-right: 0.5rem; font-feature-settings: "tnum" 1;
-  }
-  .entry-desc { margin-top: 0.9rem; color: var(--ink-soft); font-size: 0.98rem; line-height: 1.65; max-width: 78ch; }
-  .entry-stats {
-    margin-top: 1rem; font-family: "JetBrains Mono", monospace; font-size: 0.74rem;
-    color: var(--muted); line-height: 1.7; text-transform: none;
-  }
-  .links { margin-top: 1.1rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.4rem; }
-  .lnk {
-    font-family: "JetBrains Mono", monospace; font-size: 0.74rem; letter-spacing: 0.03em; text-decoration: none;
-    color: var(--ink); border-bottom: 1px solid var(--line); padding-bottom: 2px;
-    transition: all 0.2s var(--ease); display: inline-flex; align-items: center; gap: 0.5rem;
-  }
-  .lnk:hover { color: var(--accent); border-color: var(--accent); }
-  .lnk .arr { transition: transform 0.2s var(--ease); }
-  .lnk:hover .arr { transform: translateX(4px); }
-  .live-dot {
-    width: 7px; height: 7px; border-radius: 50%; background: var(--live);
-    box-shadow: 0 0 0 0 color-mix(in srgb, var(--live) 55%, transparent); animation: pulse 2.4s var(--ease) infinite;
-  }
-  @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--live) 55%, transparent); }
-    70% { box-shadow: 0 0 0 7px transparent; }
-    100% { box-shadow: 0 0 0 0 transparent; }
+    place-items: center;
+    color: #777;
+    font-family: "Josefin Sans", Helvetica, Arial, sans-serif;
+    font-size: 48px;
   }
 
-  .block-body p { color: var(--ink-soft); font-size: 1rem; line-height: 1.7; max-width: 78ch; }
-  .block-body p + p { margin-top: 1.1rem; }
-  .block-body p strong { color: var(--ink); font-weight: 600; }
-
-  .item { padding: 1.6rem 0; border-top: 1px solid var(--line); }
-  .item:first-child { border-top: none; padding-top: 0; }
-  .item .when { font-family: "JetBrains Mono", monospace; font-size: 0.74rem; color: var(--muted); margin-bottom: 0.4rem; }
-  .item h4 { font-size: 1.12rem; font-weight: 600; letter-spacing: -0.01em; }
-  .item .org { color: var(--muted); font-size: 0.9rem; margin-top: 0.15rem; }
-  .item ul { list-style: none; margin-top: 0.9rem; display: flex; flex-direction: column; gap: 0.5rem; }
-  .item li { color: var(--ink-soft); font-size: 0.96rem; line-height: 1.6; padding-left: 1.2rem; position: relative; max-width: 78ch; }
-  .item li::before { content: ""; position: absolute; left: 0; top: 0.7em; width: 6px; height: 1px; background: var(--accent); }
-
-  .rec-item { padding: 1.3rem 0; border-top: 1px solid var(--line-soft); }
-  .rec-item:first-child { border-top: none; padding-top: 0; }
-  .rec-item .kicker { color: var(--accent); display: block; margin-bottom: 0.35rem; }
-  .rec-item h4 { font-size: 1.05rem; font-weight: 600; }
-  .rec-item p { font-size: 0.92rem; color: var(--muted); margin-top: 0.3rem; max-width: 72ch; }
-  .rec-item a { color: var(--accent); text-decoration: none; font-family: "JetBrains Mono", monospace; font-size: 0.72rem; display: inline-block; margin-top: 0.4rem; transition: opacity 0.2s var(--ease); }
-  .rec-item a:hover { opacity: 0.8; }
-
-  .skill-group { display: grid; grid-template-columns: 130px 1fr; gap: 0.8rem 1.5rem; padding: 1.1rem 0; border-top: 1px solid var(--line-soft); }
-  .skill-group:first-child { border-top: none; padding-top: 0; }
-  .skill-group .label { color: var(--accent); padding-top: 0.25rem; }
-  .chips { display: flex; flex-wrap: wrap; gap: 0.45rem; }
-  .chip {
-    font-family: "JetBrains Mono", monospace; font-size: 0.74rem; color: var(--ink-soft);
-    border: 1px solid var(--line); border-radius: 6px; padding: 0.3rem 0.65rem;
-    transition: all 0.2s var(--ease);
+  .profile-lines {
+    text-align: center;
+    margin-bottom: 28px;
   }
-  .chip:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
-  .contact-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.15fr);
-    gap: 2.5rem;
-    align-items: start;
+  .profile-lines p {
+    margin-bottom: 5px;
   }
-  .contact-kicker { color: var(--accent); margin-bottom: 0.65rem; display: inline-flex; align-items: center; gap: 0.5rem; }
-  .contact-copy h3 {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
-    line-height: 1.08;
-    letter-spacing: -0.02em;
+
+  .profile-links {
+    color: #555;
+  }
+
+  .profile-links span {
+    margin: 0 7px;
+    color: #999;
+  }
+
+  article {
+    padding-bottom: 48px;
+  }
+
+  .section-title {
+    display: block;
+    margin: 22px 0 10px;
     font-weight: 700;
-    max-width: 12ch;
-  }
-  .contact-intro { font-size: 1rem; color: var(--ink-soft); margin-top: 1.1rem; max-width: 40ch; }
-  .contact-availability {
-    margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.55rem;
-  }
-  .contact-availability span {
-    font-family: "JetBrains Mono", monospace; font-size: 0.72rem; color: var(--muted);
-    border: 1px solid var(--line-soft); border-radius: 999px; padding: 0.4rem 0.7rem; 
-    display: inline-flex; align-items: center; gap: 0.45rem;
-  }
-  .contact-actions {
-    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem;
-  }
-  .contact-card {
-    min-height: 152px; border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem;
-    text-decoration: none; color: var(--ink); background: color-mix(in srgb, var(--surface) 82%, transparent);
-    display: flex; flex-direction: column; justify-content: space-between; gap: 1rem;
-    transition: transform 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease), box-shadow 0.2s var(--ease);
-  }
-  .contact-card.primary {
-    border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
-    background: color-mix(in srgb, var(--surface) 90%, var(--accent) 10%);
-  }
-  .contact-card:hover {
-    transform: translateY(-3px); border-color: var(--accent);
-    background: color-mix(in srgb, var(--surface) 88%, var(--accent) 12%);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.04);
-  }
-  .contact-card-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-  .contact-icon {
-    width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 8px; 
-    display: inline-grid; place-items: center; font-family: "JetBrains Mono", monospace; font-size: 0.72rem;
-    color: var(--accent); background: var(--bg); flex: none; transition: background 0.2s var(--ease);
-  }
-  .contact-card:hover .contact-icon { background: color-mix(in srgb, var(--accent) 10%, var(--bg)); }
-  .contact-arrow { color: var(--faint); font-size: 1.05rem; transition: transform 0.2s var(--ease), color 0.2s var(--ease); }
-  .contact-card:hover .contact-arrow { color: var(--accent); transform: translateX(4px); }
-  .contact-label { display: block; color: var(--muted); margin-bottom: 0.3rem; }
-  .contact-title { display: block; font-family: "Space Grotesk", sans-serif; font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; color: var(--ink); }
-  .contact-note { display: block; margin-top: 0.25rem; font-size: 0.9rem; color: var(--muted); line-height: 1.45; overflow-wrap: anywhere; }
-
-  /* Back to top button */
-  .back-to-top {
-    position: fixed; bottom: 2rem; right: 2rem; z-index: 40;
-    width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); 
-    background: var(--bg); color: var(--ink); cursor: pointer;
-    display: grid; place-items: center; opacity: 0; pointer-events: none;
-    transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), border-color 0.2s var(--ease);
-  }
-  .back-to-top.visible { opacity: 1; pointer-events: auto; }
-  .back-to-top:hover { border-color: var(--accent); transform: translateY(-3px); }
-
-  footer { padding: 2.5rem 0 3.5rem; }
-  footer p { font-family: "JetBrains Mono", monospace; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.02em; }
-
-  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
-  .reveal.in { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) {
-    .reveal { opacity: 1; transform: none; transition: none; }
-    .live-dot { animation: none; }
-    .back-to-top { transition: none; }
   }
 
-  @media (max-width: 720px) {
-    .block { grid-template-columns: 1fr; gap: 0; }
-    .block > .block-label { margin-bottom: 1.5rem; }
-    .header-top { flex-direction: column; align-items: flex-start; gap: 1.2rem; }
-    .avatar { width: 88px; height: 88px; }
-    .skill-group { grid-template-columns: 1fr; gap: 0.5rem; }
-    .contact-layout { grid-template-columns: 1fr; gap: 1.5rem; }
-    .contact-copy h3 { max-width: 16ch; }
-    .back-to-top { bottom: 1rem; right: 1rem; }
+  .year {
+    display: block;
+    margin: 18px 0 8px;
+    font-weight: 700;
   }
-  @media (max-width: 480px) {
-    .wrap { padding-left: 1rem; padding-right: 1rem; }
-    .topbar-inner { padding-left: 1rem; padding-right: 1rem; gap: 0.75rem; }
-    .tb-right { gap: 0.65rem; }
-    .tb-resume { padding: 0.48rem 0.65rem; }
-    .contact-actions { grid-template-columns: 1fr; }
+
+  .work-item {
+    margin: 0 0 16px;
+  }
+
+  .work-title {
+    font-weight: 700;
+  }
+
+  .work-venue {
+    color: #555;
+  }
+
+  .work-links {
+    display: inline-block;
+    margin-left: 4px;
+    white-space: nowrap;
+  }
+
+  .work-links a {
+    margin-right: 8px;
+  }
+
+  .plain-list {
+    margin: 0;
+    padding-left: 22px;
+  }
+
+  .plain-list li {
+    margin-bottom: 7px;
+  }
+
+  .skills {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .skills li {
+    margin-bottom: 7px;
+  }
+
+  .skills strong {
+    display: inline-block;
+    width: 132px;
+  }
+
+  .contact-line {
+    margin-bottom: 5px;
+  }
+
+  .site-footer {
+    border-top: 1px solid #eee;
+    padding: 28px 0 56px;
+    color: #777;
+    font-size: 14px;
+  }
+
+  @media (max-width: 860px) {
+    .wrapper {
+      width: auto;
+      margin: 0 24px;
+    }
+
+    .site-header {
+      padding-top: 34px;
+    }
+
+    .header-row {
+      display: block;
+    }
+
+    .site-nav {
+      margin-top: 14px;
+      white-space: normal;
+      line-height: 22px;
+    }
+
+    .portrait {
+      width: 220px;
+      height: 220px;
+    }
+
+    .skills strong {
+      display: block;
+      width: auto;
+    }
+  }
+
+  @media (max-width: 460px) {
+    .wrapper {
+      margin: 0 18px;
+    }
+
+    .site-title {
+      font-size: 28px;
+    }
+
+    .portrait {
+      width: 180px;
+      height: 180px;
+    }
   }
 </style>
 </head>
 <body>
-
-<div class="scroll-progress" id="scrollProgress"></div>
-
-<div class="topbar">
-  <div class="topbar-inner">
-    <a href="#top" class="tb-name">Vishwas Kothari</a>
-    <div class="tb-right">
-      <nav>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#work" class="nav-link">Work</a>
-        <a href="#experience" class="nav-link">Experience</a>
-        <a href="#contact" class="nav-link">Contact</a>
+  <header class="site-header">
+    <div class="wrapper header-row">
+      <a class="site-title" href="#top">Vishwas Kothari</a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#top">Home</a><span>/</span>
+        <a href="#research">Projects</a><span>/</span>
+        <a href="#experience">Experience</a><span>/</span>
+        <a href="resume_vk.pdf" target="_blank" rel="noopener">Resume</a>
       </nav>
-      <a class="tb-resume" href="resume_vk.pdf" target="_blank" rel="noopener">Résumé <span aria-hidden="true">↗</span></a>
-      <button class="toggle" id="themeToggle" aria-label="Toggle color theme">
-        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-      </button>
     </div>
+  </header>
+
+  <div class="wrapper site-description">
+    Machine learning, model evaluation, document intelligence, trustworthy AI, and scientific data systems.
   </div>
-</div>
 
-<main id="top">
-  <div class="wrap">
+  <main id="top" class="wrapper">
+    <article class="intro">
+      <img class="portrait" src="profile_pic.jpg" alt="Vishwas Kothari" onerror="this.outerHTML='<div class=&quot;portrait portrait-fallback&quot; aria-label=&quot;Vishwas Kothari&quot;>VK</div>'">
 
-    <!-- HEADER -->
-    <header class="header">
-      <div class="header-top">
-        <img class="avatar" src="profile_pic.jpg" alt="Vishwas Kothari" onerror="this.style.display='none'">
-        <div>
-          <h1>Vishwas Kothari</h1>
-          <p class="role">Machine learning engineer focused on model evaluation, trustworthy AI, document intelligence, and scientific data systems.</p>
-        </div>
+      <div class="profile-lines">
+        <p>MS Computer Science, University of Colorado Boulder</p>
+        <p>Email: <a href="mailto:vishwasvkothari@gmail.com">vishwasvkothari@gmail.com</a></p>
+        <p class="profile-links">
+          <a href="resume_vk.pdf" target="_blank" rel="noopener">Resume</a><span>|</span>
+          <a href="https://linkedin.com/in/vishwas-kothari" target="_blank" rel="noopener">LinkedIn</a><span>|</span>
+          <a href="https://github.com/vishwas182002" target="_blank" rel="noopener">GitHub</a>
+        </p>
       </div>
-      <div class="meta-line">
-        <span>MS Computer Science · CU Boulder</span>
-        <span>Boulder, CO</span>
-        <span><span class="live-dot"></span>Open to full-time AI, ML, and data roles</span>
-      </div>
-      <div class="actions">
-        <a class="btn solid" href="resume_vk.pdf" target="_blank" rel="noopener">Résumé <span aria-hidden="true">↗</span></a>
-        <a class="btn ghost" href="https://github.com/vishwas182002" target="_blank" rel="noopener">GitHub</a>
-        <a class="btn ghost" href="https://linkedin.com/in/vishwas-kothari" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn ghost" href="mailto:vishwasvkothari@gmail.com">Email</a>
-      </div>
-    </header>
 
-    <!-- ABOUT -->
-    <section class="block" id="about">
-      <span class="block-label mono reveal">About</span>
-      <div class="block-body reveal">
-        <p>I build machine-learning systems that are measured as carefully as they are modeled. My work spans data pipelines, model development, evaluation design, explainability, and the interfaces that make results usable for technical teams.</p>
-        <p>Before joining <strong>CU Boulder</strong> for my MS in Computer Science, I worked at <strong>ISRO's Space Applications Centre</strong> on ocean-color retrieval from satellite reflectance. I developed retrieval models using the Levenberg-Marquardt optimization method to estimate chlorophyll and related water properties, then validated the outputs against 105 measured samples with strong agreement across reflectance and chlorophyll-a.</p>
-        <p>My current focus is practical and evaluation-heavy: vision-language models, document AI, trustworthy ML, optimizer behavior, and scientific data systems. The throughline is reliability: not only whether a model works, but where it breaks, why it breaks, and what evidence should make us trust it.</p>
-      </div>
-    </section>
+      <strong class="section-title" id="about">About</strong>
+      <p>I am a computer science master's student at the University of Colorado Boulder, working on machine learning systems that are evaluated as carefully as they are built. My interests are in model evaluation, document intelligence, trustworthy AI, optimizer behavior, and scientific data systems.</p>
+      <p>Before CU Boulder, I worked at ISRO's Space Applications Centre on ocean-color retrieval from satellite reflectance. I developed retrieval models using the Levenberg-Marquardt optimization method to estimate chlorophyll and related water properties, then validated the outputs against 105 measured samples.</p>
+      <p>I like projects where the central question is not only whether a model performs well, but where it fails, why it fails, and what evidence should make us trust it.</p>
 
-    <!-- WORK -->
-    <section class="block" id="work">
-      <span class="block-label mono reveal">Selected Work</span>
-      <div class="block-body">
+      <strong class="section-title" id="research">Projects and Research</strong>
+      <strong class="year">2026</strong>
 
-        <article class="entry reveal">
-          <div class="entry-meta mono"><span class="ix">01</span>Evaluation · Multimodal · 2026</div>
-          <h3>FinAgent-Eval</h3>
-          <p class="entry-result"><b>4.3×</b>ANLS over the strongest document-AI baseline, 0.6368 vs. 0.1472.</p>
-          <p class="entry-desc">A full evaluation system for vision-language models on financial document question answering. I curated 397 QA pairs from ten sources, compared five models on a single free GPU, and paired aggregate scores with failure analysis. The best model led overall, yet exposed a sharp weakness in numerical reasoning, with 0.11 ANLS and 0/6 paraphrase consistency. A seven-label taxonomy turns those errors into clear, reviewable failure modes.</p>
-          <div class="entry-stats">5 models · 397 QA pairs · 95% bootstrap CIs · 12 pytest tests · live Streamlit dashboard</div>
-          <div class="links">
-            <a class="lnk" href="https://github.com/vishwas182002/FinAgent-Eval" target="_blank" rel="noopener">GitHub <span class="arr">→</span></a>
-            <a class="lnk" href="https://finagent-eval.streamlit.app" target="_blank" rel="noopener"><span class="live-dot"></span>Live dashboard</a>
-          </div>
-        </article>
+      <p class="work-item">
+        <span class="work-title">FinAgent-Eval: evaluation for financial document question answering.</span>
+        I curated 397 QA pairs from ten sources and compared five vision-language models on a single free GPU.
+        The best model achieved 4.3x ANLS over the strongest document-AI baseline, but failed sharply on numerical reasoning, with 0.11 ANLS and 0/6 paraphrase consistency.
+        <span class="work-venue">Includes bootstrap confidence intervals, a seven-label failure taxonomy, pytest coverage, and a Streamlit dashboard.</span>
+        <span class="work-links"><a href="https://github.com/vishwas182002/FinAgent-Eval" target="_blank" rel="noopener">Code</a><a href="https://finagent-eval.streamlit.app" target="_blank" rel="noopener">Web</a></span>
+      </p>
 
-        <article class="entry reveal">
-          <div class="entry-meta mono"><span class="ix">02</span>ML Theory · Optimization</div>
-          <h3>Implicit Bias of Adam vs. SGD</h3>
-          <p class="entry-result"><b>0.99</b>cosine similarity between empirical and exact max-margin solutions.</p>
-          <p class="entry-desc">A research-grade empirical study of optimizer implicit bias. I tested the theory that gradient descent converges toward the ℓ₂ max-margin solution while Adam moves toward ℓ∞, then verified the behavior across five seeds against exact convex-program solutions. I also measured the downstream cost on a spurious-correlation benchmark, where SGD dropped 30.2% out of distribution with 3× shortcut reliance, while Adam dropped 13.6%.</p>
-          <div class="entry-stats">5 seeds · CVXPY reference solutions · arXiv:2406.10650</div>
-          <div class="links">
-            <a class="lnk" href="https://github.com/vishwas182002/implicit-bias-adam-sgd" target="_blank" rel="noopener">GitHub <span class="arr">→</span></a>
-          </div>
-        </article>
+      <p class="work-item">
+        <span class="work-title">Implicit Bias of Adam vs. SGD.</span>
+        I tested recent theory on optimizer implicit bias, verifying empirical solutions against exact convex-program references across five seeds.
+        The study measured how optimizer choice affected shortcut reliance and out-of-distribution degradation on a spurious-correlation benchmark.
+        <span class="work-venue">Empirical and exact solutions reached 0.99 cosine similarity.</span>
+        <span class="work-links"><a href="https://github.com/vishwas182002/implicit-bias-adam-sgd" target="_blank" rel="noopener">Code</a></span>
+      </p>
 
-        <article class="entry reveal">
-          <div class="entry-meta mono"><span class="ix">03</span>Responsible ML · Fairness</div>
-          <h3>XAI Credit Lens</h3>
-          <p class="entry-result"><b>0.782</b>test AUC, with zero fairness violations across four protected attributes.</p>
-          <p class="entry-desc">A responsible-ML pipeline for credit-risk modeling where fairness checks, explainability, and counterfactual recourse are part of the system design. The gradient-boosted model trains on 30,000 records, keeps disparate impact between 0.96 and 1.03 across four protected attributes, and exposes predictions through SHAP, LIME, and DiCE workflows.</p>
-          <div class="entry-stats">30K records · SHAP · LIME · DiCE · Optuna · 38 tests · Streamlit dashboard</div>
-          <div class="links">
-            <a class="lnk" href="https://github.com/vishwas182002/xai-credit-lens" target="_blank" rel="noopener">GitHub <span class="arr">→</span></a>
-          </div>
-        </article>
+      <p class="work-item">
+        <span class="work-title">XAI Credit Lens.</span>
+        A responsible-ML pipeline for credit-risk modeling with fairness auditing, SHAP and LIME explanations, DiCE counterfactuals, Optuna tuning, and Streamlit reporting.
+        The model reached 0.782 test AUC with zero fairness violations across four protected attributes.
+        <span class="work-links"><a href="https://github.com/vishwas182002/xai-credit-lens" target="_blank" rel="noopener">Code</a></span>
+      </p>
 
-        <article class="entry reveal">
-          <div class="entry-meta mono"><span class="ix">04</span>Benchmark · Transfer Learning</div>
-          <h3>Document VQA &amp; Transfer</h3>
-          <p class="entry-result"><b>+22% / -39%</b>in-domain fine-tuning versus generic fine-tuning on the same model and task.</p>
-          <p class="entry-desc">A document-VQA benchmark focused on dense, real-world financial documents rather than simplified benchmark pages. I evaluated four vision-language models, built and hand-verified the dataset, and compared LoRA adaptation strategies. A small in-domain run improved ANLS by 22%, while 5,000 generic samples reduced it by 39%, showing how quickly transfer quality changes when the document distribution shifts.</p>
-          <div class="entry-stats">4 models · LoRA · 307 in-domain pairs · dataset built and hand-verified</div>
-          <div class="links">
-            <a class="lnk" href="https://github.com/vishwas182002/financial-document-vqa" target="_blank" rel="noopener">GitHub <span class="arr">→</span></a>
-          </div>
-        </article>
+      <p class="work-item">
+        <span class="work-title">Document VQA and Transfer.</span>
+        I benchmarked four vision-language models on dense financial documents, built and hand-verified a 307-pair dataset, and compared LoRA adaptation strategies.
+        A small in-domain run improved ANLS by 22 percent, while generic fine-tuning reduced it by 39 percent.
+        <span class="work-links"><a href="https://github.com/vishwas182002/financial-document-vqa" target="_blank" rel="noopener">Code</a></span>
+      </p>
 
-      </div>
-    </section>
+      <strong class="section-title" id="experience">Experience</strong>
+      <p class="work-item">
+        <span class="work-title">Research Intern, Space Applications Centre, ISRO.</span>
+        <span class="work-venue">Ahmedabad, India. January to July 2025.</span>
+      </p>
+      <p>Worked on ocean-color retrieval from satellite reflectance, with a focus on turning raw satellite observations into validated bio-optical estimates. The work combined scientific data engineering, numerical optimization, inter-sensor comparison, and validation against measured samples.</p>
+      <ul class="plain-list">
+        <li>Built Python preprocessing pipelines with SciPy, NumPy, xarray, and SNAP for reprojection, resampling, and pixel-level NetCDF merging.</li>
+        <li>Developed Levenberg-Marquardt retrieval models for bio-optical parameters, reaching reflectance R<sup>2</sup> = 0.987 across five wavelengths and chlorophyll-a R<sup>2</sup> = 0.879 in log-space on 105 validated samples.</li>
+        <li>Designed an inter-sensor colocation workflow to compare chlorophyll-a products across MODIS-Aqua and OCM, then documented the methodology and findings in a 60+ page technical report.</li>
+      </ul>
 
-    <!-- EXPERIENCE -->
-    <section class="block" id="experience">
-      <span class="block-label mono reveal">Experience</span>
-      <div class="block-body reveal">
-        <div class="item">
-          <div class="when">January to July 2025</div>
-          <h4>Research Intern</h4>
-          <div class="org">Space Applications Centre, ISRO · Ahmedabad, India</div>
-          <ul>
-            <li>Built Python pipelines with SciPy, NumPy, xarray, and SNAP for satellite preprocessing, reprojection, resampling, and pixel-level NetCDF merging.</li>
-            <li>Developed Levenberg-Marquardt retrieval models for bio-optical parameters, reaching reflectance R² = 0.987 across five wavelengths and chlorophyll-a R² = 0.879 in log-space on 105 validated samples.</li>
-            <li>Designed an inter-sensor colocation and validation workflow for matching chlorophyll-a products across MODIS-Aqua and OCM, then documented the system in a 60+ page technical report.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+      <strong class="section-title" id="education">Education</strong>
+      <ul class="plain-list">
+        <li>MS, Computer Science, University of Colorado Boulder. 2025 to 2027. GPA 3.74 / 4.0.</li>
+        <li>B.Tech, Information Technology, Vellore Institute of Technology. 2021 to 2025. GPA 3.4 / 4.0.</li>
+      </ul>
 
-    <!-- EDUCATION -->
-    <section class="block" id="education">
-      <span class="block-label mono reveal">Education</span>
-      <div class="block-body reveal">
-        <div class="item">
-          <div class="when">2025-2027</div>
-          <h4>MS, Computer Science</h4>
-          <div class="org">University of Colorado Boulder · GPA 3.74 / 4.0</div>
-        </div>
-        <div class="item">
-          <div class="when">2021-2025</div>
-          <h4>B.Tech, Information Technology</h4>
-          <div class="org">Vellore Institute of Technology · GPA 3.4 / 4.0</div>
-        </div>
-      </div>
-    </section>
+      <strong class="section-title" id="recognition">Recognition</strong>
+      <ul class="plain-list">
+        <li>AWS Certified Cloud Practitioner. Score: 970 / 1000.</li>
+        <li>Springer book chapter, 2025: Kothari, V., and Krishwanth, B. Ethical AI for countering violence against women. <a href="https://doi.org/10.1007/978-981-96-6046-9_26" target="_blank" rel="noopener">DOI</a></li>
+        <li>Elsevier reviewer for Public Health and Social Sciences &amp; Humanities Open. Reviewing since 2026.</li>
+      </ul>
 
-    <!-- RECOGNITION -->
-    <section class="block" id="recognition">
-      <span class="block-label mono reveal">Recognition</span>
-      <div class="block-body reveal">
-        <div class="rec-item">
-          <span class="kicker mono">Certification</span>
-          <h4>AWS Certified Cloud Practitioner</h4>
-          <p>Scored 970 / 1000.</p>
-        </div>
-        <div class="rec-item">
-          <span class="kicker mono">Publication</span>
-          <h4>Springer book chapter, 2025</h4>
-          <p>Kothari, V., and Krishwanth, B. Ethical AI for countering violence against women.</p>
-          <a href="https://doi.org/10.1007/978-981-96-6046-9_26" target="_blank" rel="noopener">DOI: 10.1007/978-981-96-6046-9_26 →</a>
-        </div>
-        <div class="rec-item">
-          <span class="kicker mono">Peer Review</span>
-          <h4>Elsevier reviewer</h4>
-          <p>Reviewer for Public Health and Social Sciences &amp; Humanities Open. Reviewing since 2026.</p>
-        </div>
-      </div>
-    </section>
+      <strong class="section-title" id="skills">Skills</strong>
+      <ul class="skills">
+        <li><strong>Languages</strong>Python, SQL, Java, C / C++, JavaScript</li>
+        <li><strong>ML / DL</strong>PyTorch, scikit-learn, XGBoost, LightGBM, Hugging Face Transformers, LoRA / PEFT</li>
+        <li><strong>Evaluation</strong>Bootstrap confidence intervals, LLM evaluation, failure taxonomies, pytest, Optuna</li>
+        <li><strong>XAI / Fairness</strong>SHAP, LIME, DiCE, fairness auditing, counterfactual explanations</li>
+        <li><strong>Data</strong>NumPy, Pandas, SciPy, xarray, NetCDF, OpenCV, MySQL, MongoDB</li>
+        <li><strong>Tooling</strong>Git, Linux, AWS, Streamlit, Gradio</li>
+      </ul>
 
-    <!-- SKILLS -->
-    <section class="block" id="skills">
-      <span class="block-label mono reveal">Skills</span>
-      <div class="block-body reveal">
-        <div class="skill-group">
-          <span class="label mono">Languages</span>
-          <div class="chips"><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Java</span><span class="chip">C / C++</span><span class="chip">JavaScript</span></div>
-        </div>
-        <div class="skill-group">
-          <span class="label mono">ML / DL</span>
-          <div class="chips"><span class="chip">PyTorch</span><span class="chip">scikit-learn</span><span class="chip">XGBoost</span><span class="chip">LightGBM</span><span class="chip">Hugging Face Transformers</span><span class="chip">LoRA / PEFT</span></div>
-        </div>
-        <div class="skill-group">
-          <span class="label mono">Eval / XAI</span>
-          <div class="chips"><span class="chip">SHAP</span><span class="chip">LIME</span><span class="chip">DiCE</span><span class="chip">Optuna</span><span class="chip">Bootstrap CIs</span><span class="chip">LLM evaluation</span></div>
-        </div>
-        <div class="skill-group">
-          <span class="label mono">Data / Scientific</span>
-          <div class="chips"><span class="chip">NumPy</span><span class="chip">Pandas</span><span class="chip">SciPy</span><span class="chip">xarray</span><span class="chip">NetCDF</span><span class="chip">OpenCV</span></div>
-        </div>
-        <div class="skill-group">
-          <span class="label mono">Tooling</span>
-          <div class="chips"><span class="chip">Git</span><span class="chip">Linux</span><span class="chip">AWS</span><span class="chip">Streamlit</span><span class="chip">Gradio</span><span class="chip">pytest</span></div>
-        </div>
-        <div class="skill-group">
-          <span class="label mono">Data Stores</span>
-          <div class="chips"><span class="chip">MySQL</span><span class="chip">MongoDB</span></div>
-        </div>
-      </div>
-    </section>
+      <strong class="section-title" id="contact">Contact</strong>
+      <p class="contact-line">Email: <a href="mailto:vishwasvkothari@gmail.com">vishwasvkothari@gmail.com</a></p>
+      <p class="contact-line">Resume: <a href="resume_vk.pdf" target="_blank" rel="noopener">resume_vk.pdf</a></p>
+      <p class="contact-line">LinkedIn: <a href="https://linkedin.com/in/vishwas-kothari" target="_blank" rel="noopener">linkedin.com/in/vishwas-kothari</a></p>
+      <p class="contact-line">GitHub: <a href="https://github.com/vishwas182002" target="_blank" rel="noopener">github.com/vishwas182002</a></p>
+    </article>
+  </main>
 
-    <!-- CONTACT -->
-    <section class="block" id="contact">
-      <span class="block-label mono reveal">Contact</span>
-      <div class="block-body reveal">
-        <div class="contact-layout">
-          <div class="contact-copy">
-            <span class="contact-kicker mono"><span class="live-dot"></span>Available now</span>
-            <h3>Let's talk about reliable AI.</h3>
-            <p class="contact-intro">Open to full-time roles in machine learning engineering, applied AI, data science, and model evaluation, especially on teams that care about evidence, reliability, and real-world behavior.</p>
-            <div class="contact-availability" aria-label="Availability">
-              <span>Boulder, CO</span>
-              <span>Full-time roles</span>
-              <span>AI, ML, Data Science</span>
-            </div>
-          </div>
-          <div class="contact-actions" aria-label="Contact links">
-            <a class="contact-card primary" href="mailto:vishwasvkothari@gmail.com">
-              <span class="contact-card-top"><span class="contact-icon" aria-hidden="true">@</span><span class="contact-arrow" aria-hidden="true">→</span></span>
-              <span><span class="contact-label mono">Email</span><span class="contact-title">Start a conversation</span><span class="contact-note">vishwasvkothari@gmail.com</span></span>
-            </a>
-            <a class="contact-card" href="https://linkedin.com/in/vishwas-kothari" target="_blank" rel="noopener">
-              <span class="contact-card-top"><span class="contact-icon" aria-hidden="true">in</span><span class="contact-arrow" aria-hidden="true">↗</span></span>
-              <span><span class="contact-label mono">LinkedIn</span><span class="contact-title">Connect professionally</span><span class="contact-note">Profile, updates, and background.</span></span>
-            </a>
-            <a class="contact-card" href="https://github.com/vishwas182002" target="_blank" rel="noopener">
-              <span class="contact-card-top"><span class="contact-icon" aria-hidden="true">GH</span><span class="contact-arrow" aria-hidden="true">↗</span></span>
-              <span><span class="contact-label mono">GitHub</span><span class="contact-title">Review the code</span><span class="contact-note">Projects, experiments, and demos.</span></span>
-            </a>
-            <a class="contact-card" href="resume_vk.pdf" target="_blank" rel="noopener">
-              <span class="contact-card-top"><span class="contact-icon" aria-hidden="true">PDF</span><span class="contact-arrow" aria-hidden="true">↗</span></span>
-              <span><span class="contact-label mono">Résumé</span><span class="contact-title">Download résumé</span><span class="contact-note">Education, experience, and selected work.</span></span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <p>© 2026 Vishwas Kothari · Built with precision.</p>
-    </footer>
-
-  </div>
-</main>
-
-<button class="back-to-top" id="backToTop" aria-label="Back to top">
-  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
-</button>
-
-<script>
-  // Theme Toggle
-  (function () {
-    var btn = document.getElementById("themeToggle");
-    if (!btn) return;
-    btn.addEventListener("click", function () {
-      var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", next);
-      try { localStorage.setItem("vk-theme", next); } catch (e) {}
-    });
-  })();
-
-  // Reveal on Scroll
-  (function () {
-    var els = document.querySelectorAll(".reveal");
-    if (!("IntersectionObserver" in window)) { els.forEach(function (el) { el.classList.add("in"); }); return; }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-    }, { threshold: 0.1, rootMargin: "0px 0px -6% 0px" });
-    els.forEach(function (el) { io.observe(el); });
-  })();
-
-  // Scroll Progress & Back to Top
-  (function () {
-    var progressBar = document.getElementById("scrollProgress");
-    var backToTop = document.getElementById("backToTop");
-    
-    window.addEventListener("scroll", function () {
-      var scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      var progress = (window.scrollY / scrollHeight) * 100;
-      progressBar.style.width = progress + "%";
-      
-      if (window.scrollY > 600) {
-        backToTop.classList.add("visible");
-      } else {
-        backToTop.classList.remove("visible");
-      }
-    }, { passive: true });
-
-    backToTop.addEventListener("click", function () {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  })();
-
-  // Active Nav Link on Scroll
-  (function () {
-    var sections = document.querySelectorAll("section[id]");
-    var navLinks = document.querySelectorAll(".nav-link");
-    
-    if (!("IntersectionObserver" in window)) return;
-    
-    var navObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          navLinks.forEach(function (link) {
-            link.classList.toggle("active", link.getAttribute("href") === "#" + entry.target.id);
-          });
-        }
-      });
-    }, { rootMargin: "-30% 0px -60% 0px" }); // Trigger when section is in middle of viewport
-    
-    sections.forEach(function (sec) { navObserver.observe(sec); });
-  })();
-</script>
-
+  <footer class="site-footer">
+    <div class="wrapper">
+      Vishwas Kothari. Last updated 2026.
+    </div>
+  </footer>
 </body>
 </html>
