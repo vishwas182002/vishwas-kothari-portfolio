@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#ffffff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:wght@500;600&display=swap" rel="stylesheet">
 <style>
   * {
     box-sizing: border-box;
@@ -26,9 +26,9 @@
     margin: 0;
     color: #111;
     background: #fff;
-    font-family: "PT Sans", Helvetica, Arial, sans-serif;
+    font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     font-size: 16px;
-    line-height: 24px;
+    line-height: 25px;
   }
 
   a {
@@ -63,10 +63,10 @@
 
   .site-title {
     color: #111;
-    font-family: "Josefin Sans", Helvetica, Arial, sans-serif;
-    font-size: 32px;
-    font-weight: 500;
-    line-height: 1;
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 1.05;
   }
 
   .site-title:hover {
@@ -76,9 +76,10 @@
 
   .site-nav {
     color: #777;
-    font-family: "Josefin Sans", Helvetica, Arial, sans-serif;
+    font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     font-size: 13px;
-    letter-spacing: 0.03em;
+    font-weight: 600;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
     white-space: nowrap;
   }
@@ -95,7 +96,7 @@
   .site-description {
     margin-top: 22px;
     color: #777;
-    font-family: "Josefin Sans", Helvetica, Arial, sans-serif;
+    font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     font-size: 14px;
     line-height: 21px;
   }
@@ -118,8 +119,9 @@
     display: grid;
     place-items: center;
     color: #777;
-    font-family: "Josefin Sans", Helvetica, Arial, sans-serif;
+    font-family: "Source Serif 4", Georgia, serif;
     font-size: 48px;
+    font-weight: 600;
   }
 
   .profile-lines {
@@ -166,6 +168,20 @@
 
   .work-venue {
     color: #555;
+  }
+
+  .project-subtitle {
+    display: block;
+    margin-top: 1px;
+    color: #555;
+    font-weight: 600;
+  }
+
+  .tech-stack {
+    display: block;
+    margin-top: 5px;
+    color: #555;
+    font-size: 15px;
   }
 
   .work-links {
@@ -274,7 +290,7 @@
   </header>
 
   <div class="wrapper site-description">
-    Machine learning, model evaluation, document intelligence, trustworthy AI, and scientific data systems.
+    Machine learning evaluation, document AI, explainable systems, and scientific data workflows.
   </div>
 
   <main id="top" class="wrapper">
@@ -292,54 +308,60 @@
       </div>
 
       <strong class="section-title" id="about">About</strong>
-      <p>I am a computer science master's student at the University of Colorado Boulder, working on machine learning systems that are evaluated as carefully as they are built. My interests are in model evaluation, document intelligence, trustworthy AI, optimizer behavior, and scientific data systems.</p>
-      <p>Before CU Boulder, I worked at ISRO's Space Applications Centre on ocean-color retrieval from satellite reflectance. I developed retrieval models using the Levenberg-Marquardt optimization method to estimate chlorophyll and related water properties, then validated the outputs against 105 measured samples.</p>
-      <p>I like projects where the central question is not only whether a model performs well, but where it fails, why it fails, and what evidence should make us trust it.</p>
+      <p>I am a computer science master's student at the University of Colorado Boulder, working on machine-learning systems that need careful evaluation, not just good headline scores. My interests span document intelligence, trustworthy AI, explainability, optimizer behavior, and scientific data systems.</p>
+      <p>Before CU Boulder, I worked at ISRO's Space Applications Centre on ocean-colour remote sensing for chlorophyll-a retrieval. That work connected satellite data processing, numerical optimization, and model validation, with retrieval outputs evaluated against measured reference samples.</p>
+      <p>Across projects, I am drawn to the same question: where does a model fail, why does it fail, and what evidence should make us trust it in a real workflow?</p>
 
       <strong class="section-title" id="research">Projects and Research</strong>
       <strong class="year">2026</strong>
 
       <p class="work-item">
-        <span class="work-title">FinAgent-Eval: evaluation for financial document question answering.</span>
-        I curated 397 QA pairs from ten sources and compared five vision-language models on a single free GPU.
-        The best model achieved 4.3x ANLS over the strongest document-AI baseline, but failed sharply on numerical reasoning, with 0.11 ANLS and 0/6 paraphrase consistency.
-        <span class="work-venue">Includes bootstrap confidence intervals, a seven-label failure taxonomy, pytest coverage, and a Streamlit dashboard.</span>
+        <span class="work-title">FinAgent-Eval.</span>
+        <span class="project-subtitle">LLM/VLM evaluation system for financial documents.</span>
+        FinAgent-Eval is an evaluation framework I built to test how well generative AI models understand real financial documents. The goal was not only to measure model accuracy, but to understand where models fail when answering questions from financial reports, tables, layouts, charts, and numerical content.
+        I created an automated evaluation pipeline around 397 financial-document questions drawn from 79 document images across 10 companies. The system benchmarked 5 generative AI models across extractive, numerical, layout-based, and chart-related questions. A key finding was that headline accuracy can hide serious reliability issues: one model performed reasonably overall but collapsed on numerical reasoning.
+        <span class="work-venue">Includes automated tests, bootstrap confidence intervals, structured reports, a failure-mode taxonomy, and a Streamlit dashboard.</span>
+        <span class="tech-stack">Tech stack: Python, PyTorch, Hugging Face, Qwen2.5-VL, Streamlit, Pandas, statistical evaluation, LLM evaluation, VLMs.</span>
         <span class="work-links"><a href="https://github.com/vishwas182002/FinAgent-Eval" target="_blank" rel="noopener">Code</a><a href="https://finagent-eval.streamlit.app" target="_blank" rel="noopener">Web</a></span>
       </p>
 
       <p class="work-item">
-        <span class="work-title">Implicit Bias of Adam vs. SGD.</span>
-        I tested recent theory on optimizer implicit bias, verifying empirical solutions against exact convex-program references across five seeds.
-        The study measured how optimizer choice affected shortcut reliance and out-of-distribution degradation on a spurious-correlation benchmark.
-        <span class="work-venue">Empirical and exact solutions reached 0.99 cosine similarity.</span>
-        <span class="work-links"><a href="https://github.com/vishwas182002/implicit-bias-adam-sgd" target="_blank" rel="noopener">Code</a></span>
+        <span class="work-title">Financial Document VQA.</span>
+        <span class="project-subtitle">Deep learning benchmark for visual question answering on financial reports.</span>
+        This project evaluates how vision-language models perform on real-world financial documents. I built it because many document AI models look strong on clean benchmarks but struggle with dense tables, scanned layouts, financial terminology, and numerical reasoning.
+        I created a dataset of 397 question-answer pairs across 79 financial-document images from 10 companies, then benchmarked multiple deep learning and vision-language architectures. The results showed a 63 to 83 percent performance gap between cleaner benchmark-style tasks and real business-document understanding.
+        I also experimented with LoRA fine-tuning using 307 curated financial QA examples. The fine-tuned model improved from 0.137 to 0.168 ANLS, a roughly 22 percent gain.
+        <span class="tech-stack">Tech stack: Python, PyTorch, Hugging Face, LayoutLMv3, Pix2Struct, LoRA, OCR, Document AI, Visual Question Answering.</span>
+        <span class="work-links"><a href="https://github.com/vishwas182002/financial-document-vqa" target="_blank" rel="noopener">Code</a></span>
       </p>
 
       <p class="work-item">
         <span class="work-title">XAI Credit Lens.</span>
-        A responsible-ML pipeline for credit-risk modeling with fairness auditing, SHAP and LIME explanations, DiCE counterfactuals, Optuna tuning, and Streamlit reporting.
-        The model reached 0.782 test AUC with zero fairness violations across four protected attributes.
+        <span class="project-subtitle">Explainable AI tool for credit-risk decisioning.</span>
+        XAI Credit Lens is an explainable machine-learning application for credit-risk prediction. The project combines predictive modeling with interpretability tools so users can understand not only what a model predicted, but why it made that decision.
+        I trained and evaluated multiple models on a 30,000-record credit dataset, including XGBoost, LightGBM, and Random Forest. The pipeline used Optuna hyperparameter tuning and 5-fold cross-validation, with the final system achieving a test ROC-AUC of 0.782. I integrated SHAP, LIME, and DiCE explanations, and added a fairness audit across 4 protected or sensitive attributes, with zero violations detected in the tested setup.
+        <span class="tech-stack">Tech stack: Python, Scikit-learn, XGBoost, LightGBM, Random Forest, Optuna, SHAP, LIME, DiCE, Streamlit.</span>
         <span class="work-links"><a href="https://github.com/vishwas182002/xai-credit-lens" target="_blank" rel="noopener">Code</a></span>
       </p>
 
       <p class="work-item">
-        <span class="work-title">Document VQA and Transfer.</span>
-        I benchmarked four vision-language models on dense financial documents, built and hand-verified a 307-pair dataset, and compared LoRA adaptation strategies.
-        A small in-domain run improved ANLS by 22 percent, while generic fine-tuning reduced it by 39 percent.
-        <span class="work-links"><a href="https://github.com/vishwas182002/financial-document-vqa" target="_blank" rel="noopener">Code</a></span>
+        <span class="work-title">Implicit Bias in Adam vs. SGD.</span>
+        <span class="project-subtitle">Research project on optimizer behavior and model generalization.</span>
+        This project investigated how optimizer choice affects the behavior of machine-learning models. Instead of treating Adam and SGD as interchangeable training tools, I studied how each optimizer can guide models toward different solutions, even when trained on the same data.
+        I reproduced theoretical optimizer-bias behavior in controlled experiments: gradient descent aligned with L2 max-margin behavior, while Adam aligned more closely with L-infinity style solutions. I then extended the analysis to MNIST experiments with spurious patch features to study shortcut learning and generalization. Optimizer choice changed out-of-distribution behavior, with SGD showing a 30.2 percent OOD drop and Adam showing a 13.6 percent drop in the tested setting.
+        <span class="tech-stack">Tech stack: Python, PyTorch, NumPy, Matplotlib, Optimization, SGD, Adam, MNIST, Robustness, Generalization Analysis.</span>
+        <span class="work-links"><a href="https://github.com/vishwas182002/implicit-bias-adam-sgd" target="_blank" rel="noopener">Code</a></span>
       </p>
 
       <strong class="section-title" id="experience">Experience</strong>
       <p class="work-item">
-        <span class="work-title">Research Intern, Space Applications Centre, ISRO.</span>
+        <span class="work-title">Research Intern, Biological Oceanography Division, Space Applications Centre, ISRO.</span>
         <span class="work-venue">Ahmedabad, India. January to July 2025.</span>
       </p>
-      <p>Worked on ocean-color retrieval from satellite reflectance, with a focus on turning raw satellite observations into validated bio-optical estimates. The work combined scientific data engineering, numerical optimization, inter-sensor comparison, and validation against measured samples.</p>
-      <ul class="plain-list">
-        <li>Built Python preprocessing pipelines with SciPy, NumPy, xarray, and SNAP for reprojection, resampling, and pixel-level NetCDF merging.</li>
-        <li>Developed Levenberg-Marquardt retrieval models for bio-optical parameters, reaching reflectance R<sup>2</sup> = 0.987 across five wavelengths and chlorophyll-a R<sup>2</sup> = 0.879 in log-space on 105 validated samples.</li>
-        <li>Designed an inter-sensor colocation workflow to compare chlorophyll-a products across MODIS-Aqua and OCM, then documented the methodology and findings in a 60+ page technical report.</li>
-      </ul>
+      <p>At the Space Applications Centre, ISRO, I worked on ocean-colour remote sensing for retrieving and validating chlorophyll-a concentration from satellite observations. My work focused on building scientific computing workflows that connected satellite data processing, numerical optimization, and model validation.</p>
+      <p>I developed Python-based data pipelines to ingest, clean, collocate, and analyze satellite products from sensors such as MODIS Aqua and OCM. The workflow converted raw and intermediate satellite observations into analysis-ready datasets using NumPy, Pandas, xarray, NetCDF, SNAP, and Snappy. A major part of the project involved implementing a Levenberg-Marquardt optimization approach for ocean-colour parameter retrieval and validating results against reference datasets such as NASA NOMAD.</p>
+      <p>The final retrieval workflow was evaluated using scientific metrics including RMSE, MAPD, relative bias, and R<sup>2</sup>. The model achieved an R<sup>2</sup> of 0.987 for remote-sensing reflectance reconstruction, and chlorophyll-a validation reached an R<sup>2</sup> of 0.879 in log-space across 105 matched samples. I also prepared a detailed technical report documenting the methodology, data flow, validation approach, and results.</p>
+      <p class="tech-stack">Tech stack: Python, NumPy, Pandas, xarray, NetCDF, SNAP, Snappy, MODIS Aqua, OCM, NASA NOMAD, Matplotlib.</p>
 
       <strong class="section-title" id="education">Education</strong>
       <ul class="plain-list">
