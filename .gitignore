@@ -1,0 +1,9 @@
+source/node_modules/
+source/dist/
+source/.wrangler/
+source/.vinext/
+source/work/
+source/*.tsbuildinfo
+standalone.html
+README.txt
+.DS_Store

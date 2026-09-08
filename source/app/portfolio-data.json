@@ -1,0 +1,83 @@
+{
+  "name": "Vishwas Kothari",
+  "role": "MS in Computer Science, University of Colorado Boulder",
+  "kicker": "Machine learning evaluation, document AI, explainable systems, and scientific data workflows.",
+  "about": [
+    "I&apos;m Vishwas, a computer science master&apos;s student at CU Boulder. Short version: I do machine learning, and I don&apos;t fully trust it. The part I actually enjoy is not just getting a model to work; it is finding the exact spot where it quietly falls apart, and then figuring out why.",
+    "That is the theme across pretty much everything I build: document AI, explainability, trustworthy ML, and the occasional optimizer mystery. Less &quot;look how high the score is,&quot; more &quot;okay, but does this hold up when nobody&apos;s watching?&quot;",
+    "Before Boulder, I was at ISRO pulling chlorophyll-a estimates out of satellite data and checking them against real ocean samples until the numbers behaved. Excellent training for being suspicious of nice-looking results.",
+    "Outside of all that, you will usually find me trying to convince myself that walking counts as a hobby, or deep in philosophy books that are far more pessimistic than I actually am. It balances out."
+  ],
+  "projects": [
+    {
+      "id": "finagent",
+      "title": "FinAgent-Eval",
+      "subtitle": "LLM/VLM evaluation system for financial documents",
+      "paragraphs": [
+        "FinAgent-Eval is an evaluation framework I built to test how well generative AI models understand real financial documents. The goal was not only to measure model accuracy, but to understand where models fail when answering questions from financial reports, tables, layouts, charts, and numerical content. I created an automated evaluation pipeline around 397 financial-document questions drawn from 79 document images across 10 companies. The system benchmarked 5 generative AI models across extractive, numerical, layout-based, and chart-related questions. A key finding was that headline accuracy can hide serious reliability issues: one model performed reasonably overall but collapsed on numerical reasoning.",
+        "Includes automated tests, bootstrap confidence intervals, structured reports, a failure-mode taxonomy, and a Streamlit dashboard.",
+        "Tech stack: Python, PyTorch, Hugging Face, Qwen2.5-VL, Streamlit, Pandas, statistical evaluation, LLM evaluation, VLMs."
+      ],
+      "links": [
+        {
+          "href": "https://github.com/vishwas182002/FinAgent-Eval",
+          "label": "Code"
+        },
+        {
+          "href": "https://finagent-eval.streamlit.app",
+          "label": "Web"
+        }
+      ]
+    },
+    {
+      "id": "financial-vqa",
+      "title": "Financial Document VQA",
+      "subtitle": "Deep learning benchmark for visual question answering on financial reports",
+      "paragraphs": [
+        "This project evaluates how vision-language models perform on real-world financial documents. I built it because many document AI models look strong on clean benchmarks but struggle with dense tables, scanned layouts, financial terminology, and numerical reasoning. I created a dataset of 397 question-answer pairs across 79 financial-document images from 10 companies, then benchmarked multiple deep learning and vision-language architectures. The results showed a 63 to 83 percent performance gap between cleaner benchmark-style tasks and real business-document understanding. I also experimented with LoRA fine-tuning using 307 curated financial QA examples. The fine-tuned model improved from 0.137 to 0.168 ANLS, a roughly 22 percent gain.",
+        "Tech stack: Python, PyTorch, Hugging Face, LayoutLMv3, Pix2Struct, LoRA, OCR, Document AI, Visual Question Answering."
+      ],
+      "links": [
+        {
+          "href": "https://github.com/vishwas182002/financial-document-vqa",
+          "label": "Code"
+        }
+      ]
+    },
+    {
+      "id": "credit-lens",
+      "title": "XAI Credit Lens",
+      "subtitle": "Explainable AI tool for credit-risk decisioning",
+      "paragraphs": [
+        "XAI Credit Lens is an explainable machine-learning application for credit-risk prediction. The project combines predictive modeling with interpretability tools so users can understand not only what a model predicted, but why it made that decision. I trained and evaluated multiple models on a 30,000-record credit dataset, including XGBoost, LightGBM, and Random Forest. The pipeline used Optuna hyperparameter tuning and 5-fold cross-validation, with the final system achieving a test ROC-AUC of 0.782. I integrated SHAP, LIME, and DiCE explanations, and added a fairness audit across 4 protected or sensitive attributes, with zero violations detected in the tested setup.",
+        "Tech stack: Python, Scikit-learn, XGBoost, LightGBM, Random Forest, Optuna, SHAP, LIME, DiCE, Streamlit."
+      ],
+      "links": [
+        {
+          "href": "https://github.com/vishwas182002/xai-credit-lens",
+          "label": "Code"
+        }
+      ]
+    },
+    {
+      "id": "optimizer-bias",
+      "title": "Implicit Bias in Adam vs. SGD",
+      "subtitle": "Research project on optimizer behavior and model generalization",
+      "paragraphs": [
+        "This project investigated how optimizer choice affects the behavior of machine-learning models. Instead of treating Adam and SGD as interchangeable training tools, I studied how each optimizer can guide models toward different solutions, even when trained on the same data. I reproduced theoretical optimizer-bias behavior in controlled experiments: gradient descent aligned with L2 max-margin behavior, while Adam aligned more closely with L-infinity style solutions. I then extended the analysis to MNIST experiments with spurious patch features to study shortcut learning and generalization. Optimizer choice changed out-of-distribution behavior, with SGD showing a 30.2 percent OOD drop and Adam showing a 13.6 percent drop in the tested setting.",
+        "Tech stack: Python, PyTorch, NumPy, Matplotlib, Optimization, SGD, Adam, MNIST, Robustness, Generalization Analysis."
+      ],
+      "links": [
+        {
+          "href": "https://github.com/vishwas182002/implicit-bias-adam-sgd",
+          "label": "Code"
+        }
+      ]
+    }
+  ],
+  "experience": "\n            <h2>Experience</h2>\n            <article class=\"work-item experience-item\">\n              <div class=\"work-heading experience-heading\">\n                <div>\n                  <h3>Research Intern</h3>\n                  <p class=\"project-subtitle\">Biological Oceanography Division, Space Applications Centre, ISRO</p>\n                  <p class=\"experience-meta\">Ahmedabad, India | January to July 2025</p>\n                </div>\n              </div>\n              <div class=\"work-copy\">\n                <p>At the Space Applications Centre, ISRO, I worked on ocean-colour remote sensing for retrieving and validating chlorophyll-a concentration from satellite observations. My work focused on building scientific computing workflows that connected satellite data processing, numerical optimization, and model validation.</p>\n                <p>I developed Python-based data pipelines to ingest, clean, collocate, and analyze satellite products from sensors such as MODIS Aqua and OCM. The workflow converted raw and intermediate satellite observations into analysis-ready datasets using NumPy, Pandas, xarray, NetCDF, SNAP, and Snappy. A major part of the project involved implementing a Levenberg-Marquardt optimization approach for ocean-colour parameter retrieval and validating results against reference datasets such as NASA NOMAD.</p>\n                <p>The final retrieval workflow was evaluated using scientific metrics including RMSE, MAPD, relative bias, and R<sup>2</sup>. The model achieved an R<sup>2</sup> of 0.987 for remote-sensing reflectance reconstruction, and chlorophyll-a validation reached an R<sup>2</sup> of 0.879 in log-space across 105 matched samples. I also prepared a detailed technical report documenting the methodology, data flow, validation approach, and results.</p>\n                <p class=\"tech-stack\">Tech stack: Python, NumPy, Pandas, xarray, NetCDF, SNAP, Snappy, MODIS Aqua, OCM, NASA NOMAD, Matplotlib.</p>\n              </div>\n            </article>\n          ",
+  "education": "\n            <h2>Education</h2>\n            <ul class=\"plain-list\">\n              <li><strong>MS in Computer Science, University of Colorado Boulder</strong> | 2025 to 2027 | GPA: 3.74 / 4.0.</li>\n              <li><strong>B.Tech in Information Technology, Vellore Institute of Technology</strong> | 2021 to 2025 | GPA: 3.4 / 4.0.</li>\n            </ul>\n          ",
+  "recognition": "\n            <h2>Recognition</h2>\n            <ul class=\"plain-list\">\n              <li><strong>AWS Certified Cloud Practitioner</strong> | Score: 970 / 1000.</li>\n              <li><strong>Springer book chapter, 2025:</strong> Kothari, V., and Krishwanth, B. Ethical AI for countering violence against women. <a href=\"https://doi.org/10.1007/978-981-96-6046-9_26\" target=\"_blank\" rel=\"noreferrer\">DOI</a></li>\n              <li><strong>Elsevier reviewer</strong> for Public Health and Social Sciences &amp; Humanities Open. Reviewing since 2026.</li>\n            </ul>\n          ",
+  "skills": "\n            <h2>Skills</h2>\n            <ul class=\"skills-list\">\n              <li><strong>Languages</strong><span>Python, SQL, Java, C / C++, JavaScript</span></li>\n              <li><strong>ML / DL</strong><span>PyTorch, scikit-learn, XGBoost, LightGBM, Hugging Face Transformers, LoRA / PEFT</span></li>\n              <li><strong>Evaluation</strong><span>Bootstrap confidence intervals, LLM evaluation, failure taxonomies, pytest, Optuna</span></li>\n              <li><strong>XAI / Fairness</strong><span>SHAP, LIME, DiCE, fairness auditing, counterfactual explanations</span></li>\n              <li><strong>Data</strong><span>NumPy, Pandas, SciPy, xarray, NetCDF, OpenCV, MySQL, MongoDB</span></li>\n              <li><strong>Tooling</strong><span>Git, Linux, AWS, Streamlit, Gradio</span></li>\n            </ul>\n          ",
+  "contact": "\n            <h2>Contact</h2>\n            <div class=\"contact-layout\">\n              <div class=\"contact-copy\">\n                <span class=\"contact-kicker\"><span aria-hidden=\"true\"></span>Available now</span>\n                <h3>Let&apos;s talk about reliable AI.</h3>\n                <p>Open to full-time roles in machine learning engineering, applied AI, data science, and model evaluation, especially on teams that care about evidence, reliability, and real-world behavior.</p>\n                <div class=\"availability\" aria-label=\"Availability\">\n                  <span>Boulder, CO</span>\n                  <span>Full-time roles</span>\n                  <span>AI, ML, Data Science</span>\n                </div>\n              </div>\n              <div class=\"contact-actions\" aria-label=\"Contact links\">\n                <a href=\"mailto:vishwasvkothari@gmail.com\"><span class=\"contact-mark\">@</span><span><small>Email</small><strong>Start a conversation</strong><em>vishwasvkothari@gmail.com</em></span></a>\n                <a href=\"https://linkedin.com/in/vishwas-kothari\" target=\"_blank\" rel=\"noreferrer\"><span class=\"contact-mark\">in</span><span><small>LinkedIn</small><strong>Connect professionally</strong><em>Profile, updates, and background.</em></span></a>\n                <a href=\"https://github.com/vishwas182002\" target=\"_blank\" rel=\"noreferrer\"><span class=\"contact-mark\">GH</span><span><small>GitHub</small><strong>Review the code</strong><em>Projects, experiments, and demos.</em></span></a>\n                <a href=\"https://vishwas182002.github.io/vishwas-kothari-portfolio/resume_vk.pdf\" target=\"_blank\" rel=\"noreferrer\"><span class=\"contact-mark\">PDF</span><span><small>Résumé</small><strong>Download résumé</strong><em>Education, experience, and selected work.</em></span></a>\n              </div>\n            </div>\n          "
+}
