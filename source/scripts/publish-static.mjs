@@ -1,4 +1,5 @@
 import { build } from 'esbuild';
+import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
@@ -87,4 +88,12 @@ execFileSync(
   ],
   { stdio: 'inherit' },
 );
+// Refresh cached assets whenever their contents change.
+html = await readFile(path.join(root, 'index.html'), 'utf8');
+for (const name of ['styles.css', 'app.js', 'theme.js']) {
+  const contents = await readFile(path.join(root, name));
+  const version = createHash('sha256').update(contents).digest('hex').slice(0, 12);
+  html = html.replace(`"${name}"`, `"${name}?v=${version}"`);
+}
+await writeFile(path.join(root, 'index.html'), html);
 console.log('Published readable static files to the repository root.');
