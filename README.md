@@ -1,4 +1,4 @@
-# Vishwas Kothari — Portfolio
+# Vishwas Kothari: Portfolio
 
 [View the portfolio](https://vishwas182002.github.io/vishwas-kothari-portfolio/)
 
@@ -16,4 +16,4 @@ A responsive portfolio with light/dark themes, a directional portrait, 3D projec
 
 The website is generated from React. Edit the files in `source/` for lasting content or behavior changes, then rebuild and export as described in [source/README.md](source/README.md). Editing only the generated HTML does not update the JavaScript-rendered application.
 
-GitHub Pages serves the root of `main`; no Pages configuration change is needed. Original English text and project/contact links are retained. Creative mode shows notes 01–05, margin annotations on wide screens, inline annotations on narrow screens, and purple inspection guides. The Style panel saves reading preferences locally.
+GitHub Pages serves the root of `main`; no Pages configuration change is needed. Original English text and project/contact links are retained. Creative mode shows notes 01–09, margin annotations on wide screens, inline annotations on narrow screens, and purple inspection guides. The Style panel saves reading preferences locally.

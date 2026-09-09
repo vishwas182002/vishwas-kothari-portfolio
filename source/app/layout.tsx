@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Vishwas Kothari — ML Engineer & Researcher',
+  title: 'Vishwas Kothari: ML Engineer & Researcher',
   description:
     'Vishwas Kothari. MS Computer Science at CU Boulder. Machine learning, model evaluation, document intelligence, trustworthy AI, and scientific data systems.',
   icons: { icon: '/favicon.svg' },

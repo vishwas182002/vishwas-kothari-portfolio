@@ -555,7 +555,7 @@ export default function Portfolio() {
                 <span
                   className="selection switch-frame"
                   data-inspect-label="Creative mode"
-                  title="Creative mode — research notes"
+                  title="Creative mode: research notes"
                 >
                   <Switch
                     className="creative-switch"
@@ -743,29 +743,78 @@ export default function Portfolio() {
           id="experience"
           data-reveal
         >
+          <h2>Experience</h2>
+          <Note
+            enabled={creative}
+            number="05"
+            title="Where the skepticism started"
+          >
+            Real satellite data. Numerical optimization. Results checked against
+            the ocean.
+          </Note>
           <div
             className="original-content"
-            dangerouslySetInnerHTML={{ __html: data.experience }}
+            dangerouslySetInnerHTML={{
+              __html: data.experience.replace(/<h2>[^<]*<\/h2>/, ''),
+            }}
           />
         </section>
         <section
           className="section original-section"
           id="education"
           data-reveal
-          dangerouslySetInnerHTML={{ __html: data.education }}
-        />
+        >
+          <h2>Education</h2>
+          <Note
+            enabled={creative}
+            number="06"
+            title="Still asking questions"
+            right
+          >
+            From VIT to Boulder. More to learn, more assumptions to question.
+          </Note>
+          <div
+            className="original-content"
+            dangerouslySetInnerHTML={{
+              __html: data.education.replace(/<h2>[^<]*<\/h2>/, ''),
+            }}
+          />
+        </section>
         <section
           className="section original-section"
           id="recognition"
           data-reveal
-          dangerouslySetInnerHTML={{ __html: data.recognition }}
-        />
-        <section
-          className="section original-section"
-          id="skills"
-          data-reveal
-          dangerouslySetInnerHTML={{ __html: data.skills }}
-        />
+        >
+          <h2>Recognition</h2>
+          <Note enabled={creative} number="07" title="Beyond the experiments">
+            Writing, reviewing, and thinking about the responsibility that comes
+            with AI.
+          </Note>
+          <div
+            className="original-content"
+            dangerouslySetInnerHTML={{
+              __html: data.recognition.replace(/<h2>[^<]*<\/h2>/, ''),
+            }}
+          />
+        </section>
+        <section className="section original-section" id="skills" data-reveal>
+          <h2>Skills</h2>
+          <Note
+            enabled={creative}
+            number="08"
+            title="Tools with a purpose"
+            right
+          >
+            From messy data to model behavior and the tools to understand what
+            happened in between.
+          </Note>
+          <div
+            className="original-content"
+            dangerouslySetInnerHTML={{
+              __html: data.skills.replace(/<h2>[^<]*<\/h2>/, ''),
+            }}
+          />
+        </section>
         <section
           className="section contact-section"
           id="contact"
@@ -788,7 +837,7 @@ export default function Portfolio() {
             <span>AI, ML, Data Science</span>
           </div>
           <div className="email-anchor">
-            <Note enabled={creative} number="05" title="It starts here">
+            <Note enabled={creative} number="09" title="It starts here">
               A good product starts with a conversation.
             </Note>
             <button

@@ -3,7 +3,7 @@
 The public website is served from the repository root. This directory holds the editable React source.
 
 - `app/portfolio-data.json`: original biography, experience, education, skills, and project descriptions.
-- `app/page.tsx`: page sections and interactions, including the five Creative mode notes.
+- `app/page.tsx`: page sections and interactions, including the nine Creative mode notes.
 - `app/research-notes.ts`: project notebook details.
 - `app/globals.css`: layout, themes, responsive styles, and animations.
 - `app/creative-inspector.tsx`: purple layout guides.

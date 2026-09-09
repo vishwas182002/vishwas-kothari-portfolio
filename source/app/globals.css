@@ -1873,7 +1873,7 @@ h3 {
   }
 }
 
-/* Notes 01–05 follow their subject in both margin and inline layouts. */
+/* Notes 01–09 follow their subject in both margin and inline layouts. */
 .intro-passage {
   position: relative;
 }
@@ -2075,5 +2075,12 @@ h3 {
   }
   .email-anchor > .margin-note svg {
     top: 0;
+  }
+}
+
+/* Section notes precede their content in the narrow layout. */
+@media (max-width: 1199px) {
+  .folio[data-creative='true'] .original-section > .margin-note {
+    margin: -8px 0 24px;
   }
 }
